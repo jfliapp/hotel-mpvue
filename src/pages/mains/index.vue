@@ -1,6 +1,6 @@
 <template>
   <div style="width: 100%;height: 100%;">
-    <!-- 这里开始弹框 -->
+    <!-- 这里筛选弹框 -->
     <div class="mask" v-show="tapState">
       <div style="display: flex; flex-direction: column;">
         <div style="display:flex;align-items:center;justify-content:center;height:50px;background: rgb(0, 126, 226)">上海<img src="/static/imgs/down.png" style="width: 15px;height: 15px;"></div>
@@ -39,8 +39,8 @@
               </div>
             </div>
             <div class="F_model_B" style="display: flex;">
-              <div style="width: 50%;text-align: center;height: 43px;line-height: 43px">清空</div>
-              <div style="width: 50%;text-align: center;height: 43px;line-height: 43px;background: rgb(254, 105, 19);"
+              <div style="width: 50%;text-align: center;height: 40px;line-height: 40px">清空</div>
+              <div style="width: 50%;text-align: center;height: 40px;line-height: 40px;background: rgb(254, 105, 19);"
               @click="sureF">确定</div>
             </div>
         </div>
@@ -63,8 +63,8 @@
             </div>
           </div>
           <div class="F_model_B" style="display: flex;">
-            <div style="width: 50%;text-align: center;height: 43px;line-height: 43px">清空</div>
-            <div style="width: 50%;text-align: center;height: 43px;line-height: 43px;background: rgb(254, 105, 19);"
+            <div style="width: 50%;text-align: center;height: 40px;line-height: 40px">清空</div>
+            <div style="width: 50%;text-align: center;height: 40px;line-height: 40px;background: rgb(254, 105, 19);"
             @click="sureF">确定</div>
           </div>
         </div>
@@ -90,32 +90,38 @@
             </div>
           </div>
           <div class="F_model_B" style="display: flex;">
-            <div style="width: 50%;text-align: center;height: 43px;line-height: 43px">清空</div>
-            <div style="width: 50%;text-align: center;height: 43px;line-height: 43px;background: rgb(254, 105, 19);"
+            <div style="width: 50%;text-align: center;height: 40px;line-height: 40px">清空</div>
+            <div style="width: 50%;text-align: center;height: 40px;line-height: 40px;background: rgb(254, 105, 19);"
             @click="sureF">确定</div>
           </div>
         </div>
         <div v-else></div>
       </div>      
     </div>
+    <!-- 地点弹框 -->
+    <!-- <div class="placeMask">
+      <div style="background: white;height: 80%">
+        城市
+      </div>
+    </div> -->
     <div class="sub_title">
       <div style="width: 100%;height: 20px;display: flex;justify-content: flex-end">
-        <div style="display: flex;align-items: center;margin-right: 30%">上海<img src="/static/imgs/down.png" alt="" style="width: 15px;height: 15px;margin-left: 5px"></div>
-        <div style="display: flex;align-items: center"><img src="/static/imgs/map_icon.png" style="width: 15px;height: 15px;"/><span style="margin-left: 5px;">附近</span></div>
+        <div style="display: flex;align-items: center;margin-right: 30%">上海<img src="/static/imgs/down.png" class="imgS" style="margin-left: 5px"></div>
+        <div style="display: flex;align-items: center"><img src="/static/imgs/map_icon.png" class="imgS"/><span style="margin-left: 5px;">附近</span></div>
       </div>
       <div style="margin-top: 10px;">
         <div class="input_sel">
           <div>
-            <div style="float: left;font-size: 13px;">
-              <p>住<span style="color: #ccc;margin-left: 5px;">06-11</span></p>
-              <p>离<span style="color: #ccc;margin-left: 5px;">06-11</span></p>
+            <div class="input_sel_date" @click="dateTap">
+              <p>住<span style="color: #ccc;margin-left: 5px;">{{checkInDate}}</span></p>
+              <p>离<span style="color: #ccc;margin-left: 5px;">{{checkOutDate}}</span></p>
             </div>
-            <div style="float: left;margin-top: 8px;"><img src="/static/imgs/down.png" alt="" style="width: 15px;height: 15px;"></div>
-            <div style="margin-top: 3px;float: left;color: #ccc;font-size: 19px;">|</div>
+            <div style="float: left;margin-top: 8px ;"><img src="/static/imgs/down.png" class="imgS"></div>
+            <div style="margin: 3px 5px;float: left;color: #ccc;font-size: 19px;">|</div>
             <!-- <div style="float: left;"><img src="/static/imgs/filter_line.png" alt="" style="width: 15px;height: 40px;"></div> -->
           </div>
           <div>
-            <div style="float: left;margin-left: 5px;margin-top: 9px;"><img src="/static/imgs/search.png" style="width: 15px;height: 15px;"></div>
+            <div style="float: left;margin-left: 5px;margin-top: 9px;"><img src="/static/imgs/search.png" class="imgS"></div>
             <div><input style="height: 40px;padding-left: 3px" type="text" placeholder="关键字/位置/品牌/酒店名"></div>
           </div>          
         </div>
@@ -165,14 +171,16 @@
   </div>
 </template>
 <script>
-  import img from '../../../static/imgs/hotel_item.png'
-  // import sort from '@/components/sort'
+  import img from '@/../static/imgs/hotel_item.png'
+  var Moment = require('../../utils/moment.js')
   export default {
     name: 'main',
     data () {
       return {
         F_item: false,
         color_change: true,
+        checkInDate: null,
+        checkOutDate: null,
         moreLen: 0,
         star: [
           {
@@ -344,13 +352,44 @@
       }
     },
     mounted () {
-      this.ItemArr()
+      this.ItemArr()            
+    },
+    onLoad() {
+      wx.setStorageSync(
+        'ROOM_SOURCE_DATE', {
+          checkInDate: Moment(new Date()).format('YYYY-MM-DD'),
+          checkOutDate: Moment(new Date()).add(1, 'day').format('YYYY-MM-DD')
+        }
+      )
+    },
+    onShow: function () {
+      let {
+          checkInDate,
+          checkOutDate
+        } = wx.getStorageSync('ROOM_SOURCE_DATE');
+      this.checkInDate = checkInDate.substr(5, 5)
+      this.checkOutDate = checkOutDate.substr(5, 5)
     },
     methods: {
       hotelDetail (id) {
         wx.navigateTo({
           url: '/pages/detail/main?id=' + id
         })
+      },
+      // 选择日期的
+      dateTap () {
+        wx.navigateTo({
+          url: '/pages/calendar/main'
+        })
+      },
+      // 这个是 选好日期渲染上去的
+      getdate () {
+        let {
+          checkInDate,
+          checkOutDate
+        } = wx.getStorageSync('ROOM_SOURCE_DATE');
+        this.checkInDate = checkInDate
+        this.checkOutDate = checkOutDate
       },
       ItemArr () {
         console.log('对数组进行处理')
@@ -441,6 +480,15 @@
     z-index: 99999999999999;
     background: rgba(15, 15, 26, 0.7)
   }
+  .placeMask {
+    width: 100%;
+    height: 80%;
+    bottom: 0;
+    position: fixed;
+    overflow: hidden;
+    z-index: 99999999999999;
+    background: rgba(15, 15, 26, 0.7)
+  }
   .sub_title{ 
     width: 100%;
     height: 100px;
@@ -457,11 +505,16 @@
   .input_sel {
     float: left;
     width: 80%;
+    font-size: 15px;
     /* height: 40px; */
     background: white;
     padding-left: 5px;
     box-sizing: border-box;
     border-radius: 10px 10px;
+  }
+  .input_sel_date {
+    float: left;
+    font-size: 13px;
   }
   /* .input_sel input::-webkit-input-placeholder {    
     color: #aab2bd;
@@ -569,7 +622,7 @@
   }
   .F_model_T {
     display: flex;
-    height: 380px;
+    height: 360px;
   }
   .F_model_T_L {
     display: flex;
@@ -612,11 +665,12 @@
 }
 .F_model_T_price {
   display: flex;
-  height: 380px;
+  height: 360px;
   flex-direction: column;
   padding:0 15px;
 }
 .F_model_B {
+  height: 40px;
   font-size: 15px;
 }
   .F_model_tlF {
@@ -639,5 +693,9 @@
   .star_choose {
     border: 1px solid green;
     color: green
+  }
+  .imgS {
+    width: 15px;
+    height: 15px;
   }
 </style>
