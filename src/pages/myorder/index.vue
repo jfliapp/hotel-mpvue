@@ -24,7 +24,7 @@
           </div>
           <div style="display: flex;justify-content: space-between;color: rgb(0, 126, 226);font-size: 13px;">
             <div style="display: felx;align-items: center">
-              <img src="../../../static/imgs/way.png" style="width: 15px;height: 15px;">
+              <img src="/static/imgs/way.png" style="width: 15px;height: 15px;">
               &nbsp;&nbsp;问路卡
             </div>
             <div style="display: flex;">
@@ -45,7 +45,7 @@
     </div>
     <div style="display: flex;height: 50px;background: white;align-items: center">
       <div style="width: 50%;display: flex;justify-content: center;">
-        <img src="../../../static/imgs/filter.png" style="width: 20px;height: 20px;margin-right: 10px">
+        <img src="/static/imgs/filter.png" style="width: 20px;height: 20px;margin-right: 10px">
         筛选
       </div>
       <div style="width: 50%;display: flex;justify-content: center">

@@ -20,7 +20,7 @@
       </div>
       <div style="display: flex;height: 22px;background: rgba(0, 126, 226, 0.05);justify-content: space-between;align-items: center;padding: 20px">
         <div style="color: rgb(0, 126, 226);font-size: 15px;">免费领取</div>
-        <div><img src="../../../static/imgs/right.png" style="width:15px;height: 15px;"></div>
+        <div><img src="/static/imgs/right.png" style="width:15px;height: 15px;"></div>
       </div>
     </div>
     <div v-if="login" style="display: flex;flex-direction:column;margin-top: 10px;font-size: 17px;height: 300px;">
@@ -55,8 +55,8 @@
     </div>
     <div v-else>
       <div style="margin-top: 10px;height: 80px;background: white;display: flex;flex-direction: column;justify-content: space-around;font-size: 15px;padding: 20px">
-        <div style="display: flex;align-items: center;color: rgb(255, 107, 20)"><img src="../../../static/imgs/great.png" style="width: 30px;height: 30px;">&nbsp;&nbsp;好赞！这么划算的房间都能给你挑到</div>
-        <div style="display: flex;align-items: center;color: rgb(0, 126, 226)"><img src="../../../static/imgs/help.png" style="width: 30px;height: 30px;">&nbsp;&nbsp;好赞！这么划算的房间都能给你挑到</div>
+        <div style="display: flex;align-items: center;color: rgb(255, 107, 20)"><img src="/static/imgs/great.png" style="width: 30px;height: 30px;">&nbsp;&nbsp;好赞！这么划算的房间都能给你挑到</div>
+        <div style="display: flex;align-items: center;color: rgb(0, 126, 226)"><img src="/static/imgs/help.png" style="width: 30px;height: 30px;">&nbsp;&nbsp;好赞！这么划算的房间都能给你挑到</div>
       </div>
       <div style="margin-top: 10px;height: 250px;background: white;padding: 0 20px;display: flex;flex-direction: column;justify-content: space-around">
         <div style="height: 30px;line-height: 30px;border-bottom: 1px solid #ccc;display: flex;justify-content: space-between;font-size: 15px">
@@ -64,35 +64,35 @@
             <div>房间数</div>
             <div>&nbsp;&nbsp;&nbsp;1间</div>
           </div>
-          <div style="display: flex;align-items: center"><img src="../../../static/imgs/down.png" style="width:20px;height: 20px;"></div>
+          <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" style="width:20px;height: 20px;"></div>
         </div>
         <div style="height: 30px;line-height: 30px;border-bottom: 1px solid #ccc;display: flex;justify-content: space-between;font-size: 15px">
           <div style="display: flex;">
             <div>房间数</div>
             <div>&nbsp;&nbsp;&nbsp;1间</div>
           </div>
-          <div style="display: flex;align-items: center"><img src="../../../static/imgs/down.png" style="width:20px;height: 20px;"></div>
+          <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" style="width:20px;height: 20px;"></div>
         </div>
         <div style="height: 30px;line-height: 30px;border-bottom: 1px solid #ccc;display: flex;justify-content: space-between;font-size: 15px">
           <div style="display: flex;">
             <div>房间数</div>
             <div>&nbsp;&nbsp;&nbsp;1间</div>
           </div>
-          <div style="display: flex;align-items: center"><img src="../../../static/imgs/down.png" style="width:20px;height: 20px;"></div>
+          <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" style="width:20px;height: 20px;"></div>
         </div>
         <div style="height: 30px;line-height: 30px;border-bottom: 1px solid #ccc;display: flex;justify-content: space-between;font-size: 15px">
           <div style="display: flex;">
             <div>房间数</div>
             <div>&nbsp;&nbsp;&nbsp;1间</div>
           </div>
-          <div style="display: flex;align-items: center"><img src="../../../static/imgs/down.png" style="width:20px;height: 20px;"></div>
+          <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" style="width:20px;height: 20px;"></div>
         </div>
         <div style="height: 30px;line-height: 30px;border-bottom: 1px solid #ccc;display: flex;justify-content: space-between;font-size: 15px">
           <div style="display: flex;">
             <div>房间数</div>
             <div>&nbsp;&nbsp;&nbsp;1间</div>
           </div>
-          <div style="display: flex;align-items: center"><img src="../../../static/imgs/down.png" style="width:20px;height: 20px;"></div>
+          <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" style="width:20px;height: 20px;"></div>
         </div>
       </div>
       <div style="margin-top: 10px;height: 100px;background: white;padding: 0 20px;display: flex;flex-direction: column;justify-content: space-around">
@@ -101,14 +101,14 @@
             <div>房间数</div>
             <div>&nbsp;&nbsp;&nbsp;1间</div>
           </div>
-          <div style="display: flex;align-items: center"><img src="../../../static/imgs/down.png" style="width:20px;height: 20px;"></div>
+          <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" style="width:20px;height: 20px;"></div>
         </div>
         <div style="height: 30px;line-height: 30px;border-bottom: 1px solid #ccc;display: flex;justify-content: space-between;font-size: 15px">
           <div style="display: flex;">
             <div>房间数</div>
             <div>&nbsp;&nbsp;&nbsp;1间</div>
           </div>
-          <div style="display: flex;align-items: center"><img src="../../../static/imgs/down.png" style="width:20px;height: 20px;"></div>
+          <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" style="width:20px;height: 20px;"></div>
         </div>
       </div>
       <div style="display: flex;height: 250px;font-size: 15px;padding: 20px;display: flex;flex-direction: column;justify-content: space-around">
@@ -119,7 +119,7 @@
           酒店提示：根据《上海市公共场所控制吸烟条例》，从2017年3月1日起，酒店不能安排吸烟房，并禁止室内吸烟。
         </div>
         <div class="hotel_foot_Bottom">
-          <span><img style="width:10px ;height: 10px;margin-right: 5px;" src="../../../static/imgs/foot_icon.png" alt=""></span>专业服务 · 全程保障
+          <span><img style="width:10px ;height: 10px;margin-right: 5px;" src="/static/imgs/foot_icon.png" alt=""></span>专业服务 · 全程保障
         </div>
       </div>
       <div style="height: 20px;color: rgb(0, 126, 226);text-align: right;padding: 20px;background: white;line-height: 30px;">

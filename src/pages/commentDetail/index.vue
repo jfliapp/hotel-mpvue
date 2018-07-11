@@ -28,7 +28,7 @@
       </div>
     </div>
     <div style="height: 400px;position: relative;">
-      <div style="position: absolute;top: 0;right: 0;"><img src="../../../static/imgs/grade.png" style="width: 30px;height: 30px;"></div>
+      <div style="position: absolute;top: 0;right: 0;"><img src="/static/imgs/grade.png" style="width: 30px;height: 30px;"></div>
       <div style="height: 60px;padding: 20px;display: flex;align-items: center">
         <div><imgupdate></imgupdate></div>
         <div style="width: 250px;font-size: 13px;padding-left: 20px">上传图片可抽奖哦！建议上传设施、周围环境、、外观等细节照片，最多9张</div>

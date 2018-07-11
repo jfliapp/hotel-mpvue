@@ -3,13 +3,13 @@
     <div style="display: flex;justify-content: space-between;padding: 10px;height: 20px;background: white;align-items: center">
       <div>订单号：1651568515</div>
       <div style="display: flex;align-items: center;color: rgb(0, 126, 226)">
-        <img src="../../../static/imgs/customer.png" style="width: 15px;height: 15px;">
+        <img src="/static/imgs/customer.png" style="width: 15px;height: 15px;">
         &nbsp;&nbsp;客服
       </div>
     </div>
     <div style="display: flex;flex-direction: column;height: 80px;background: white;justify-content: space-around;padding: 10px">
       <div style="display: flex;align-items: center;font-size: 17px">
-        <img src="../../../static/imgs/sure.png" style="width:30px;height: 30px">
+        <img src="/static/imgs/sure.png" style="width:30px;height: 30px">
         &nbsp;&nbsp;确认中
       </div>
       <div class="orderDetail_wait">
@@ -29,10 +29,10 @@
     <div style="height: 140px;background: white;display: flex;flex-direction: column;padding: 10px">
       <div style="width: 100%;height: 30px;text-align: center;line-height: 30px;color: rgb(0, 126, 226);border: 1px solid #ccc;border-radius: 5px 5px;position: relative;">
         我要点评
-        <div style="position: absolute;top:0;right: 0;"><img src="../../../static/imgs/gradesmall.png" class="orderDetail_comment"></div>
+        <div style="position: absolute;top:0;right: 0;"><img src="/static/imgs/gradesmall.png" class="orderDetail_comment"></div>
       </div>
       <div class="orderDetail_rule">
-        3天内点评积分+50，点评传图还可抽奖！<span style="color: black;">积分规则&nbsp;&nbsp;</span><img src="../../../static/imgs/rule.png" class="orderDetail_rule_img">
+        3天内点评积分+50，点评传图还可抽奖！<span style="color: black;">积分规则&nbsp;&nbsp;</span><img src="/static/imgs/rule.png" class="orderDetail_rule_img">
       </div>
       <div style="text-align: center;color: rgb(0, 126, 226);height: 50px;line-height: 50px">晚些到店</div>
     </div>

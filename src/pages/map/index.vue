@@ -5,10 +5,12 @@
     <div @click="mapClick">
       mapLocation: 地址
     </div>
-    <search></search>
+    <!-- <search></search> -->
+    <navigator url="/pages/calendar/main">日历</navigator>
   </div>
 </template>
 <script>
+  import clendar from '@/components/clend'
   // import search from '@/components/search'
   // import QQMapWx from '@/utils/qqmap-wx-jssdk.js';
   // var qqmapsdk;
@@ -18,7 +20,9 @@
         name: 'xxx'
       }
     },
-    components: {},
+    components: {
+      clendar
+    },
     created () {},
     mounted () {},
     methods: {

@@ -1,7 +1,7 @@
 <template>
   <div style="position: relative;background: rgb(245, 245, 245);">
     <div>
-      <img src="../../../static/imgs/hotel.png" alt="" style="width: 100%">
+      <img src="/static/imgs/hotel.png" alt="" style="width: 100%">
     </div>    
     <div style="position: absolute;top: 150px;width:95%;color: white;left: 2.5%;">
       <div style="padding-left: 10px;">
@@ -125,7 +125,7 @@
       <div>酒店详情<span style="font-size: 13px;">(1325)条</span></div>
       <div style="display: flex;flex-direction: column;font-size: 15px;height: 120px;justify-content: space-around;margin-top: 10px">
         <div style="height: 20px;line-height: 20px">
-          <img src="../../../static/imgs/hotel_detail_icon.png" style="width: 15px;height: 15px">
+          <img src="/static/imgs/hotel_detail_icon.png" style="width: 15px;height: 15px">
           <span>&nbsp;酒店政策</span>
         </div>
         <div style="color: #ccc">入住时间：14:00以后    离店时间：12:00以前</div>
@@ -135,32 +135,32 @@
       </div>
       <div style="display: flex;flex-direction: column;font-size: 15px;height: 100px;justify-content: space-around;margin-top: 10px">
         <div style="height: 20px;line-height: 20px">
-          <img src="../../../static/imgs/hotel_detail_icon.png" style="width: 15px;height: 15px">
+          <img src="/static/imgs/hotel_detail_icon.png" style="width: 15px;height: 15px">
           <span>&nbsp;酒店设施</span>
         </div>
         <div style="height: 50px;display: flex;justify-content: space-between;align-items: center">
           <div style="display: flex;justify-content: space-around">
             <div style="display: flex;flex-direction: column;width: 60px;height: 50px;text-align: center;">
               <div>
-                <img src="../../../static/imgs/wifi.png" alt="" style="width: 40px;height: 40px;">
+                <img src="/static/imgs/wifi.png" alt="" style="width: 40px;height: 40px;">
               </div>
               <div style="font-size: 12px">免费WIFI</div>
             </div>
             <div style="display: flex;flex-direction: column;width: 60px;height: 50px;text-align: center;">
               <div>
-                <img src="../../../static/imgs/wifi.png" alt="" style="width: 40px;height: 40px;">
+                <img src="/static/imgs/wifi.png" alt="" style="width: 40px;height: 40px;">
               </div>
               <div style="font-size: 12px">免费停车场</div>
             </div>
             <div style="display: flex;flex-direction: column;width: 60px;height: 50px;text-align: center;">
               <div>
-                <img src="../../../static/imgs/wifi.png" alt="" style="width: 40px;height: 40px;">
+                <img src="/static/imgs/wifi.png" alt="" style="width: 40px;height: 40px;">
               </div>
               <div style="font-size: 12px">接机服务</div>
             </div>
             <div style="display: flex;flex-direction: column;width: 60px;height: 50px;text-align: center;">
               <div>
-                <img src="../../../static/imgs/wifi.png" alt="" style="width: 40px;height: 40px;">
+                <img src="/static/imgs/wifi.png" alt="" style="width: 40px;height: 40px;">
               </div>
               <div style="font-size: 12px">餐厅</div>
             </div>
@@ -170,12 +170,12 @@
       </div>
       <div style="display: flex;flex-direction: column;font-size: 15px;height: 400px;justify-content: space-around;margin-top: 10px">
         <div style="height: 20px;line-height: 20px">
-          <img src="../../../static/imgs/hotel_detail_icon.png" style="width: 15px;height: 15px">
+          <img src="/static/imgs/hotel_detail_icon.png" style="width: 15px;height: 15px">
           <span>&nbsp;酒店设施</span>
         </div>        
         <div style="display: flex;height: 90px;">
           <div style="margin-right: 5px;">
-            <img src="../../../static/imgs/fly.png" style="width: 15px;height: 15px;">
+            <img src="/static/imgs/fly.png" style="width: 15px;height: 15px;">
           </div>
           <div style="display: flex;flex-direction: column;height: 90px;justify-content: space-between">
             <div style="display: flex;flex-direction: column;height: 45px;justify-content: space-around">
@@ -190,7 +190,7 @@
         </div>
         <div style="display: flex;height: 90px;">
           <div style="margin-right: 5px;">
-            <img src="../../../static/imgs/fly.png" style="width: 15px;height: 15px;">
+            <img src="/static/imgs/fly.png" style="width: 15px;height: 15px;">
           </div>
           <div style="display: flex;flex-direction: column;height: 90px;justify-content: space-between">
             <div style="display: flex;flex-direction: column;height: 45px;justify-content: space-around">
@@ -205,7 +205,7 @@
         </div>
         <div style="display: flex;height: 90px;">
           <div style="margin-right: 5px;">
-            <img src="../../../static/imgs/fly.png" style="width: 15px;height: 15px;">
+            <img src="/static/imgs/fly.png" style="width: 15px;height: 15px;">
           </div>
           <div style="display: flex;flex-direction: column;height: 90px;justify-content: space-between">
             <div style="display: flex;flex-direction: column;height: 45px;justify-content: space-around">
@@ -248,13 +248,13 @@
     </div>
     <div style="margin-top:10px;">
       <div class="hotel_foot_Bottom">
-        <span><img style="width:10px ;height: 10px;margin-right: 5px;" src="../../../static/imgs/foot_icon.png" alt=""></span>专业服务 · 全程保障
+        <span><img style="width:10px ;height: 10px;margin-right: 5px;" src="/static/imgs/foot_icon.png" alt=""></span>专业服务 · 全程保障
       </div>
     </div>
     <div style="height: 50px;background: white;display: flex;justify-content: space-between;padding: 10px;align-items: center">
       <div>最新预定：5小时</div>
       <div style="color:rgb(254, 105, 19);display: flex;align-items: center">
-        <img src="../../../static/imgs/room.png" alt="" style="width: 30px;height: 30px;">
+        <img src="/static/imgs/room.png" alt="" style="width: 30px;height: 30px;">
         <span>&nbsp;查看房型</span>
       </div>
     </div>
@@ -262,7 +262,7 @@
 </template>
 
 <script>
-import img from '../../../static/imgs/hotel_item.png'
+import img from '@/../static/imgs/hotel_item.png'
 export default {
   data () {
     return {

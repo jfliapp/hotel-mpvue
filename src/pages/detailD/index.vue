@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style="width: 100%">
-      <img src="../../../static/imgs/hotelDetail.png" alt="" style="width:100%">
+      <img src="/static/imgs/hotelDetail.png" alt="" style="width:100%">
     </div>
     <div style="padding: 10px;font-size: 15px;">
       <div style="display: flex;padding-bottom: 10px;flex-direction: column;justify-content: space-around;height: 180px;border-bottom: .1px solid #ccc">
@@ -9,7 +9,7 @@
       </div>
       <div style="display: flex;justify-content: space-between;height: 60px;line-height: 60px">
         <div>更多房型设施</div>
-        <div style="display: flex;align-items: center">更多设施<img src="../../../static/imgs/down.png" style="width: 20px;height: 20px"></div>
+        <div style="display: flex;align-items: center">更多设施<img src="/static/imgs/down.png" style="width: 20px;height: 20px"></div>
       </div>
       <div style="height: 100px;background: rgb(246, 246, 246)"></div>
       <div style="display: flex;justify-content: space-between;align-items: center;font-size: 15px;height: 60px">

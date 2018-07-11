@@ -2,7 +2,7 @@
   <div class="mask" @touchstart="touchStart" @touchend="touchEnd">
     <div class="sub_title ">
       <div style="float: right;" @click="menu">
-        <img class="img_sub" src="../../../static/imgs/avatar.png" alt="图片丢失">
+        <img class="img_sub" src="/static/imgs/avatar.png" alt="图片丢失">
       </div>  
     </div>
     <div class="meun" :class="meunShow ? 'annimalMeun' : ''" v-if="meunShow">
@@ -20,7 +20,7 @@
       </div>
     </div>
     <div>
-      <img src="../../../static/imgs/hotel.png" style="width: 100%;height: 150px" mode="aspectFill">
+      <img src="/static/imgs/hotel.png" style="width: 100%;height: 150px" mode="aspectFill">
     </div>
     <div class="input_all">
       <form>
@@ -29,8 +29,8 @@
             <span style="font-size: 13px;color: #ccc">目的地</span>
             <p>上海</p>
           </div>
-          <div style="float: left;line-height: 50px;margin-top: 5px;margin-left: 200px"><img style="width: 20px;height:20px;" src="../../../static/imgs/right.png" alt=""></div>
-          <div style="float: right;line-height: 50px"><img style="width: 50px;height:50px;" src="../../../static/imgs/map_now.png" alt=""></div>
+          <div style="float: left;line-height: 50px;margin-top: 5px;margin-left: 200px"><img style="width: 20px;height:20px;" src="/static/imgs/right.png" alt=""></div>
+          <div style="float: right;line-height: 50px"><img style="width: 50px;height:50px;" src="/static/imgs/map_now.png" alt=""></div>
         </div>
         <div class="input_item">
           <div style="float: left;">
@@ -75,7 +75,7 @@
         我的订单
       </div>
       <div class="hotel_foot_Bottom">
-        <span><img style="width:10px ;height: 10px;margin-right: 5px;" src="../../../static/imgs/foot_icon.png" alt=""></span>专业服务 · 全程保障
+        <span><img style="width:10px ;height: 10px;margin-right: 5px;" src="/static/imgs/foot_icon.png" alt=""></span>专业服务 · 全程保障
       </div>
     </div>
   </div>

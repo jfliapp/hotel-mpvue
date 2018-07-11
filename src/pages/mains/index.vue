@@ -13,7 +13,7 @@
                   <img v-else class="img_class" src="/static/imgs/up_san.png"/> |
                 </div>
               </div>
-              <div style="color: #1296db" @click="likeFli">&nbsp;欢迎度排序<img class="img_class" src="../../../static/imgs/down_san.png"/></div>
+              <div style="color: #1296db" @click="likeFli">&nbsp;欢迎度排序<img class="img_class" src="/static/imgs/down_san.png"/></div>
             </div>
         </div>
         <div v-if="tapState == 'filter'" class="F_model">
@@ -100,8 +100,8 @@
     </div>
     <div class="sub_title">
       <div style="width: 100%;height: 20px;display: flex;justify-content: flex-end">
-        <div style="display: flex;align-items: center;margin-right: 30%">上海<img src="../../../static/imgs/down.png" alt="" style="width: 15px;height: 15px;margin-left: 5px"></div>
-        <div style="display: flex;align-items: center"><img src="../../../static/imgs/map_icon.png" style="width: 15px;height: 15px;"/><span style="margin-left: 5px;">附近</span></div>
+        <div style="display: flex;align-items: center;margin-right: 30%">上海<img src="/static/imgs/down.png" alt="" style="width: 15px;height: 15px;margin-left: 5px"></div>
+        <div style="display: flex;align-items: center"><img src="/static/imgs/map_icon.png" style="width: 15px;height: 15px;"/><span style="margin-left: 5px;">附近</span></div>
       </div>
       <div style="margin-top: 10px;">
         <div class="input_sel">
@@ -110,12 +110,12 @@
               <p>住<span style="color: #ccc;margin-left: 5px;">06-11</span></p>
               <p>离<span style="color: #ccc;margin-left: 5px;">06-11</span></p>
             </div>
-            <div style="float: left;margin-top: 8px;"><img src="../../../static/imgs/down.png" alt="" style="width: 15px;height: 15px;"></div>
+            <div style="float: left;margin-top: 8px;"><img src="/static/imgs/down.png" alt="" style="width: 15px;height: 15px;"></div>
             <div style="margin-top: 3px;float: left;color: #ccc;font-size: 19px;">|</div>
-            <!-- <div style="float: left;"><img src="../../../static/imgs/filter_line.png" alt="" style="width: 15px;height: 40px;"></div> -->
+            <!-- <div style="float: left;"><img src="/static/imgs/filter_line.png" alt="" style="width: 15px;height: 40px;"></div> -->
           </div>
           <div>
-            <div style="float: left;margin-left: 5px;margin-top: 9px;"><img src="../../../static/imgs/search.png" style="width: 15px;height: 15px;"></div>
+            <div style="float: left;margin-left: 5px;margin-top: 9px;"><img src="/static/imgs/search.png" style="width: 15px;height: 15px;"></div>
             <div><input style="height: 40px;padding-left: 3px" type="text" placeholder="关键字/位置/品牌/酒店名"></div>
           </div>          
         </div>
@@ -126,17 +126,17 @@
       <div @click="filterItem(item)" v-for="(item, index) in filter_item" :key="index">
         <div>
           <span :class="{click_change: item.active}">{{item.name}}&nbsp;&nbsp;</span>
-          <img v-if="!item.active" class="img_class" src="../../../static/imgs/down_san1.png"/>
-          <img v-else class="img_class" src="../../../static/imgs/up_san.png"/> |
+          <img v-if="!item.active" class="img_class" src="/static/imgs/down_san1.png"/>
+          <img v-else class="img_class" src="/static/imgs/up_san.png"/> |
         </div>
       </div>
-      <div style="color: #1296db">&nbsp;欢迎度排序<img class="img_class" src="../../../static/imgs/down_san.png"/></div>
+      <div style="color: #1296db">&nbsp;欢迎度排序<img class="img_class" src="/static/imgs/down_san.png"/></div>
     </div>
     <div class="filter_item" style="background: rgb(244, 244, 246);margin-top: 8px;padding: 10px 0">
       <div class="filter_li">低价好评</div>
       <div class="filter_li">位置距离</div>
-      <div class="filter_li">酒店类型<img src="../../../static/imgs/down.png" alt="" class="img_class"></div>
-      <div class="filter_li">热门品牌<img src="../../../static/imgs/down.png" alt="" class="img_class"></div>
+      <div class="filter_li">酒店类型<img src="/static/imgs/down.png" alt="" class="img_class"></div>
+      <div class="filter_li">热门品牌<img src="/static/imgs/down.png" alt="" class="img_class"></div>
     </div>
     <div>
       <div class="hotel_item" v-for="(item, id) in hotel_item" :key="id" @click="hotelDetail(item.id)">
