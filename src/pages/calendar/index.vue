@@ -28,7 +28,7 @@
   </div>
 </template>
 <script>
-  var Moment = require('../../utils/moment.js')
+  var Moment = require('@/utils/moment.js')
   var DATE_LIST = [] // 放干净数据
   var DATE_YEAR = new Date().getFullYear()
   var DATE_MONTH = new Date().getMonth() + 1

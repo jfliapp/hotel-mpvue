@@ -19,11 +19,11 @@
         <div><star/></div>
       </div>
     </div>
-    <div style="margin-top: 10px;height: 70px;background: white;padding: 20px">
+    <div class="commentsTypes">
       <div style="display: flex;">
-        <div style="width:50px;font-size: 11px;height: 30px;line-height: 30px">出游类型</div>
-        <div style="width: 300px;display: flex;flex-wrap: wrap;justify-content: flex-start;font-size: 13px;">
-          <div v-for="(item,idex) in typeArr" :key="idex" style="background: rgb(237, 245, 251);width: 66px;height: 20px;text-align: center;line-height: 20px;margin: 5px 5px 5px 0;">{{item}}</div>
+        <div class="commentsType_L">出游类型</div>
+        <div class="commentsType_R">
+          <div class="commentsItem" v-for="(item,idex) in typeArr" :key="idex">{{item}}</div>
         </div>
       </div>
     </div>
@@ -47,6 +47,7 @@
 <script>
   import star from '@/components/star'
   import imgupdate from '@/components/imgupdate'
+
   export default {
     data () {
       return {
@@ -61,3 +62,34 @@
     }
   }
 </script>
+<style>
+  .commentsTypes {
+    margin-top: 10px;
+    /* height: 70px; */
+    background: white;
+    padding: 20px
+  }
+  .commentsType_L {
+    width:85px;
+    /* flex: 1; */
+    font-size: 11px;
+    height: 30px;
+    line-height: 30px
+  }
+  .commentsType_R {
+    /* width: 300px; */
+    /* flex: 4; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    font-size: 13px;
+  }
+  .commentsItem{
+    background: rgb(237, 245, 251);
+    width: 66px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    margin: 5px 5px 5px 0;
+  }
+</style>

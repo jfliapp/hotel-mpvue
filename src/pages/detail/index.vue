@@ -1,7 +1,7 @@
 <template>
   <div style="position: relative;background: rgb(245, 245, 245);">
     <div>
-      <img src="/static/imgs/hotel.png" alt="" style="width: 100%">
+      <img src="/static/imgs/hotelDetail.png" alt="" style="width: 100%">
     </div>    
     <div style="position: absolute;top: 150px;width:95%;color: white;left: 2.5%;">
       <div style="padding-left: 10px;">
@@ -45,7 +45,9 @@
             <div style="margin-left: 15%;font-size: 15px;color: #ccc;">离店</div>
             <div>6月11日<span style="font-size: 15px">今天</span></div>
           </div>
-          <div><img src="/static/imgs/right.png" style="width: 20px;height: 20px;"></div>
+          <div>
+            <img src="/static/imgs/right.png" style="width: 20px;height: 20px;">
+          </div>
         </div>
         <div style="display: flex;justify-content: space-around;font-size: 13px;padding: 10px 0 5px 0">
           <div style="background:rgb(240, 240, 240);height: 30px;line-height: 30px;text-align: center;border-radius:30px 30px;width: 25%">含早餐</div>
@@ -57,9 +59,11 @@
       </div>
     </div>
     <div style="width: 100%;">
-      <div v-for="item in hotel_item" :key="item.id" @click="hotelDetai(item)" class="hotel_Detai">
-        <div>
+      <div v-for="item in hotel_item" :key="item.id" @click="hotelDetai(item)"
+       class="hotel_Detai">
+        <div style="position: relative;">
           <img :src="item.img" class="hotel_Detail_img">
+          <div v-show="item.popular" class="popular">人气</div>
         </div>
         <div class="hotel_Detai_R">
           <div style="display: flex;align-items: center">{{item.name}} <img src="/static/imgs/right.png" class="hotel_Detai_R_img"></div>
@@ -262,7 +266,7 @@
 </template>
 
 <script>
-import img from '@/../static/imgs/hotel_item.png'
+import img from '@/../static/imgs/hotelDetail.png'
 export default {
   data () {
     return {
@@ -274,7 +278,8 @@ export default {
           name: '创客房 (开业特惠)',
           attr: ['25 - 28', '大床', '双早'],
           old_price: 120,
-          new_price: 99
+          new_price: 99,
+          popular: 1
         },
         {
           id: 2,
@@ -287,7 +292,7 @@ export default {
       ]
     }
   },
-  components: {},
+  components: {}, 
   methods: {
     Get () {
       console.log(123)
@@ -341,9 +346,23 @@ export default {
   width: 95%;
   margin: 2.5%
 }
+.popular {
+    width: 48px;
+    height: 23px;
+    text-align: center;
+    line-height: 23px;
+    position: absolute;
+    top:0;
+    left: 0;
+    border-radius: 10px 0 0 0;
+    background: rgb(254, 105,19);
+    color: white;
+    font-size: 15px;
+  }
 .hotel_Detail_img {
   width: 113px;
   height: 119px;
+  border-radius: 10px 0 0 0;
 }
 .hotel_Detai_R{
   display: flex;

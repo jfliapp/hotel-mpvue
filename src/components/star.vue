@@ -45,9 +45,7 @@
       }
     },
     mounted () {
-      console.log('this.value;出来吧 我传夏里埃的值')
       this.score = this.value
-      console.log(this.value)
     },
     methods: {
       clickImg (num) {
