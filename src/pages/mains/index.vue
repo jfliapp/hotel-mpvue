@@ -338,15 +338,7 @@
     },
     mounted () {
       this.ItemArr()            
-    },
-    onLoad() {
-      wx.setStorageSync(
-        'ROOM_SOURCE_DATE', {
-          checkInDate: Moment(new Date()).format('YYYY-MM-DD'),
-          checkOutDate: Moment(new Date()).add(1, 'day').format('YYYY-MM-DD')
-        }
-      )
-    },
+    },    
     onShow: function () {
       let {
           checkInDate,

@@ -132,7 +132,6 @@
   </div>
 </template>
 <script>
-  import order from '@/components/order'
   export default {
     name: 'order',
     data () {
@@ -142,9 +141,7 @@
         login: true
       }
     },
-    components: {
-      order
-    },
+    components: {},
     mounted () {
       console.log('order')
       wx.setNavigationBarTitle({

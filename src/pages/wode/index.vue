@@ -1,11 +1,7 @@
 <template>
-  <div class="mask" @touchstart="touchStart" @touchend="touchEnd">
-    <div class="sub_title ">
-      <div style="float: right;" @click="menu">
-        <img class="img_sub" src="/static/imgs/avatar.png" alt="图片丢失">
-      </div>  
-    </div>
-    <div class="meun" :class="meunShow ? 'annimalMeun' : ''" v-if="meunShow">
+  <div class="mask">
+    <!-- <div class="meun" :class="{meunShow: meunShow}"> -->
+    <div class="meun" :class="{meunShow: isLeft}" :style="{right: left + 'px'}" >
       <div style="text-align: center">  
         <div style="margin-top: 10px">M20135****95</div>
         <div class="logout" @click="logout">退出</div>
@@ -19,30 +15,45 @@
       </ul>
       </div>
     </div>
-    <div>
-      <img src="/static/imgs/hotel.png" style="width: 100%;height: 150px" mode="aspectFill">
+    <div class="sub_title" @touchstart.stop="touchStart" @touchend.stop="touchEnd" @touchmove.stop="touchmove">
+      <div style="float: right;" @click="menu">
+        <img class="img_sub" src="/static/imgs/avatar.png" alt="图片丢失">
+      </div>  
+    </div>    
+    <div @touchstart.stop="touchStart" @touchend.stop="touchEnd" @touchmove.stop="touchmove">
+      <img src="/static/imgs/hotelDetail.png" style="width: 100%;height: 150px" mode="aspectFill">
     </div>
     <div class="input_all">
       <form>
         <div class="input_item">
-          <div style="float: left;">
-            <span style="font-size: 13px;color: #ccc">目的地</span>
-            <p>上海</p>
+          <div class="input_place_all">
+            <div class="input_place">
+              <span class="input_place_distance">目的地</span>
+              <p>上海</p>
+            </div>
+            <div class="input_place_R"><img style="width: 20px;height:20px;" src="/static/imgs/right.png"></div>
+            <div class="input_place_R_distance"><img style="width: 50px;height:50px;" src="/static/imgs/map_now.png" alt=""></div>
           </div>
-          <div style="float: left;line-height: 50px;margin-top: 5px;margin-left: 200px"><img style="width: 20px;height:20px;" src="/static/imgs/right.png" alt=""></div>
-          <div style="float: right;line-height: 50px"><img style="width: 50px;height:50px;" src="/static/imgs/map_now.png" alt=""></div>
         </div>
         <div class="input_item">
-          <div style="float: left;">
-            <span style="font-size: 13px;color: #ccc">入住</span>
-            <p>6月11日<span style="font-size: 11px;color: #ccc">周一</span></p>
-          </div>
-          <div class="input_item_M">一晚</div>
-          <div style="float: left;margin-left: 20px;">
-            <span style="font-size: 13px;color: #ccc">离店</span>
-            <p>6月11日<span style="font-size: 11px;color: #ccc">周一</span></p>
-          </div>
-          <div style="float: right;line-height: 50px">></div>
+          <div class="dateChoose" @click="dateChoose">
+            <div class="dateDetail_L">
+              <div style="display: flex;flex-direction: column;">
+                <div class="outIn">入住</div>
+                <!-- <div>6月11日<span class="dateDay">今天</span></div> -->
+                <div>{{checkInDate}}日<span class="dateDay">今天</span></div>
+              </div>
+              <div class="days">一晚</div>
+              <div style="display: flex;flex-direction: column;">
+                <div class="outIn">离店</div>
+                <!-- <div>6月12日<span class="dateDay">明天</span></div> -->
+                <div>{{checkOutDate}}日<span class="dateDay">明天</span></div>
+              </div>
+              <div>
+                <img src="/static/imgs/right.png" style="width: 20px;height: 20px;">
+              </div>
+            </div>
+         </div>
         </div>
         <div class="input_item" style="line-height: 50px;">
           <div style="float: left;color: #ccc">关键字/位置/品牌/酒店名</div>
@@ -65,8 +76,8 @@
           <!-- <div style="float: right;line-height: 50px">></div> -->
         </div>
         <div style="display: flex;justify-content: space-between;margin-top: 10px;">
-          <div class="button buttonL">查询</div>
-          <div class="button buttonR">查找附近酒店</div>
+          <div class="button buttonL" @click="searchHotel">查询</div>
+          <div class="button buttonR" @click="searchHotel">查找附近酒店</div>
         </div>          
       </form>
     </div>
@@ -75,7 +86,7 @@
         我的订单
       </div>
       <div class="hotel_foot_Bottom">
-        <span><img style="width:10px ;height: 10px;margin-right: 5px;" src="/static/imgs/foot_icon.png" alt=""></span>专业服务 · 全程保障
+        <span><img class="iconTip" src="/static/imgs/foot_icon.png" alt=""></span>专业服务 · 全程保障
       </div>
     </div>
   </div>
@@ -87,11 +98,17 @@
   import sidebaricon4 from '../../../static/imgs/sidebar4.png'
   import sidebaricon5 from '../../../static/imgs/sidebar5.png'
 
+  var Moment = require('@/utils/moment.js')
   export default {
     name: 'wode',
     data () {
       return {
-        meunShow: false,
+        isLeft: false,
+        left: -170,
+        mark: 0,
+        newmark: 0,
+        checkInDate: null,
+        checkOutDate: null,
         li_meun: [
           {
             icon: sidebaricon1,
@@ -132,18 +149,82 @@
     mounted () {
       console.log('mounted')
     },
+    onLoad() {
+      wx.setStorageSync(
+        'ROOM_SOURCE_DATE', {
+          checkInDate: Moment(new Date()).format('YYYY-MM-DD'),
+          checkOutDate: Moment(new Date()).add(1, 'day').format('YYYY-MM-DD')
+        }
+      )
+    },
+    onShow () {
+      let {
+          checkInDate,
+          checkOutDate
+        } = wx.getStorageSync('ROOM_SOURCE_DATE');
+      this.checkInDate = checkInDate.substr(5, 5).replace('-', '月')
+      this.checkOutDate = checkOutDate.substr(5, 5).replace('-', '月')
+    },
     methods: {
       menu () {
         console.log('侧边栏')
-        this.meunShow = !this.meunShow
+        this.isLeft = true
       },
       touchStart (e) {
-        // console.log(e)
-        // touchStartPoint = e.changedTouches[0].pageX
+        this.mark = this.newmark = e.pageX
+      },
+      touchmove(e) {
+        this.newmark = e.pageX
+        if(this.mark > (this.newmark + 20)) {
+          if (!this.isLeft) {
+            let rtl = this.mark - this.newmark
+            if(rtl > 100) {
+              this.left = 0
+              this.isLeft = true
+            } else {
+              this.left = rtl-170
+            }
+          }  
+        }
+        if((this.mark + 20) < this.newmark) {
+          let ltr = this.newmark - this.mark
+          if(this.isLeft) {
+            if(ltr > 100) {
+              this.left = -170
+              this.isLeft = false
+            } else {
+              this.left = -ltr
+            }
+          }          
+        }
       },
       touchEnd (e) {
-        // console.log(e)
+        let rtl = this.mark - this.newmark
+        let ltr = this.newmark - this.mark
+        if(rtl < 100) {
+          this.left = -170
+          this.isLeft = false
+        }
+        if(ltr < 100) {
+          this.left = 0
+          this.isLeft = true
+        }
+        this.mark = 0
+        this.newmark = 0
       },
+      // 页面跳转到日历
+      dateChoose () {
+        wx.navigateTo({
+          url: '/pages/calendar/main'
+        })
+      },
+      // 查询
+      searchHotel () {
+        wx.navigateTo({
+          url: '/pages/mains/main'
+        })
+      },
+      // 退出
       logout () {
         console.log('退出成功')
         wx.showToast({
@@ -164,6 +245,7 @@
 <style>
   .mask {
     width: 100%;
+    height: auto;
   }
   .sub_title {
     width: 100%;
@@ -184,10 +266,13 @@
     top: 0;
     color: white;
     padding: 5px;
-    background: black;
-    
+    background: black;    
     /* display: flex;
     justify-content: center */
+  }
+  .meunShow {
+    right: 0px;
+    top: 0;
   }
   .annimalMeun {
     transform: translate(-170px);
@@ -225,6 +310,7 @@
   .input_item {
     width: 100%;
     padding: 5px;
+    font-size: 17px;
     height: 50px;
     border-bottom: 0.5px solid #ccc; 
   }
@@ -239,6 +325,7 @@
   .buttonL {    
     color: white;
     background: orangered;
+    font-size: 15px;
   }
   .buttonR {    
     color: rgb(0, 126, 226);
@@ -255,11 +342,12 @@
     border-radius:10px 10px;
     color: rgb(0, 126, 226);
     margin:0px auto;
-    width: 80%;
+    width: 90%;
     height: 40px;
     border: 0.5px solid #ccc;
     text-align: center;
     line-height: 40px;
+    font-size: 15px;
     background: white
   }
   .hotel_foot_Bottom {
@@ -270,4 +358,56 @@
     height: 50px;
     line-height: 50px;
   }
+  .iconTip {
+    width:10px ;
+    height: 10px;
+    margin-right: 5px;
+  }
+  .input_place_all{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .input_place {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
+  }
+  .input_place_distance {
+    font-size: 13px;
+    color: #ccc
+  }
+  .input_place_R {
+    margin: 6% 0 0 60%;
+  }
+  .dateChoose {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 17px;
+  }
+  .dateDetail_L {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center
+  }
+.days {
+  justify-self: center;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  width: 50px;
+  text-align: center;
+  height: 20px;
+  border-radius: 10px 10px;
+}
+.outIn {
+  /* margin-left: 15%; */
+  font-size: 15px;
+  color: #ccc;
+}
+.dateDay {
+  font-size: 13px
+}
+
 </style>

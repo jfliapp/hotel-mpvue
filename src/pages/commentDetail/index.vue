@@ -23,15 +23,18 @@
       <div style="display: flex;">
         <div class="commentsType_L">出游类型</div>
         <div class="commentsType_R">
-          <div class="commentsItem" v-for="(item,idex) in typeArr" :key="idex">{{item}}</div>
+          <div class="commentsItem" :class="{commentsChoose: item.state}" v-for="(item,index) in typeArr" :key="item.id"
+           @click="commentsType(item)">{{item.type}}</div>
         </div>
       </div>
     </div>
     <div style="height: 400px;position: relative;">
       <div style="position: absolute;top: 0;right: 0;"><img src="/static/imgs/grade.png" style="width: 30px;height: 30px;"></div>
-      <div style="height: 60px;padding: 20px;display: flex;align-items: center">
-        <div><imgupdate></imgupdate></div>
-        <div style="width: 250px;font-size: 13px;padding-left: 20px">上传图片可抽奖哦！建议上传设施、周围环境、、外观等细节照片，最多9张</div>
+      <div style="padding: 20px;display: flex;align-items: center">
+        <div>
+          <imgupdate @imgsUp="imgsGet"></imgupdate>
+        </div>
+        <div v-show="!(imgUp.length > 0)" class="imgTip">上传图片可抽奖哦！建议上传设施、周围环境、、外观等细节照片，最多9张</div>
       </div>
       <div style="padding: 20px;">
         <textarea v-model.lazy="textValue" style="background: white;width: 100%;padding: 20px;box-sizing: border-box" placeholder="写点评赚积分免房！您可分享对酒店环境、服务、设施和价格的评论"></textarea>
@@ -40,7 +43,7 @@
         <div style="color: #ccc;">至少5个字</div>
         <div style="color: rgb(0, 126, 226)">点评积分规则></div>
       </div>
-      <div style="width: 90%;margin: 20px auto;height: 60px;text-align: center;line-height: 60px;color: white;background: rgb(254, 105, 19)">提交</div>
+      <div class="submite" @click="submit">提交</div>
     </div>
   </div>
 </template>
@@ -53,12 +56,76 @@
       return {
         homeStar: 3,
         textValue: '',
-        typeArr: ['商业出差', '朋友出游', '朋友出游', '朋友出游', '朋友出游', '朋友出游', '其他']
+        imgUp: [],
+        typeArr: [
+          {
+            id: 1,
+            type: '商业出差',
+            state: true  
+          },
+          {
+            id: 2,
+            type: '商业出差',
+            state: false  
+          },
+          {
+            id: 3,
+            type: '商业出差',
+            state: false  
+          },
+          {
+            id: 4,
+            type: '商业出差',
+            state: false  
+          },
+          {
+            id: 5,
+            type: '商业出差',
+            state: false  
+          },
+          {
+            id: 6,
+            type: '商业出差',
+            state: false  
+          },
+          {
+            id: 7,
+            type: '其他',
+            state: false  
+          }
+        ]  
       }
     },
     components: {
       star,
       imgupdate
+    },
+    computed: {
+      
+    },
+    mounted() {
+
+    },
+    methods: {
+      // z这个是 下面传上来的图片
+      imgsGet (val) {
+        this.imgUp = val
+      },
+      // 选择的类型
+      commentsType (val) {
+        console.log(val)
+        let id = val.id
+        this.typeArr = this.typeArr.map((item) => {
+          if (id == item.id) {
+            item.state = !item.state
+          }
+          return item
+        })
+      },
+      // 提交全部的数据
+      submit() {
+        console.log(this.imgGet)
+      }
     }
   }
 </script>
@@ -91,5 +158,22 @@
     text-align: center;
     line-height: 20px;
     margin: 5px 5px 5px 0;
+  }
+  .commentsChoose {
+    background: red  
+  }
+  .submite {
+    width: 90%;
+    margin: 20px auto;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    color: white;
+    background: rgb(254, 105, 19)
+  }
+  .imgTip {
+    width: 250px;
+    font-size: 13px;
+    padding-left: 20px
   }
 </style>

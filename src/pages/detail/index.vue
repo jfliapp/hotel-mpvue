@@ -26,35 +26,35 @@
         </div>
       </div>
     </div>
-    <div style="width: 100%;background: white;margin-top: 100px;">
-      <div style="padding: 0 15px;display: flex;align-items: center;justify-content: space-between;font-size: 13px;height: 60px;border-bottom: 1.5px solid rgb(235, 235, 235)">
-        <div style="display: flex;flex-direction: column;justify-content: space-around">
+    <div class="dateChooseDetail">
+      <div class="noLogin">
+        <div class="loginValue">
           <div style="color:rgb(254, 105, 19)">新客首次下单,享满减优惠,上限￥30</div>
-          <div>带有&nbsp;<span style="font-size: 11px;color:rgb(254, 105, 19);width: 80px;height:13px;border: 1px solid rgb(254, 105, 19)">送好礼</span>&nbsp;酒店均可使用</div>
+          <div>带有&nbsp;<span class="logingift">送好礼</span>&nbsp;酒店均可使用</div>
         </div>
-        <div style="width: 87px;height: 30px;line-height: 30px;text-align: center;border: 1px solid #ccc;border-radius: 20px 20px">登录领取</div>
+        <div class="login">登录领取</div>
       </div>
-      <div style="height:80px;display: flex;flex-direction: column;padding: 10px;">
-        <div style="display: flex;justify-content: space-around;align-items: center">
+      <div class="dateDetail">
+        <div class="dateDetail_L">
           <div style="display: flex;flex-direction: column;">
-            <div style="margin-left: 15%;font-size: 15px;color: #ccc;">入住</div>
-            <div>6月11日<span style="font-size: 15px">今天</span></div>
+            <div class="outIn">入住</div>
+            <div>6月11日<span class="dateDay">今天</span></div>
           </div>
-          <div style="justify-self: center;font-size: 15px;border: 1px solid #ccc;width: 50px;text-align: center;height: 20px;border-radius: 10px 10px;">一晚</div>
+          <div class="days">一晚</div>
           <div style="display: flex;flex-direction: column;">
-            <div style="margin-left: 15%;font-size: 15px;color: #ccc;">离店</div>
-            <div>6月11日<span style="font-size: 15px">今天</span></div>
+            <div class="outIn">离店</div>
+            <div>6月12日<span class="dateDay">明天</span></div>
           </div>
           <div>
             <img src="/static/imgs/right.png" style="width: 20px;height: 20px;">
           </div>
         </div>
-        <div style="display: flex;justify-content: space-around;font-size: 13px;padding: 10px 0 5px 0">
-          <div style="background:rgb(240, 240, 240);height: 30px;line-height: 30px;text-align: center;border-radius:30px 30px;width: 25%">含早餐</div>
-          <div style="background:rgb(240, 240, 240);height: 30px;line-height: 30px;text-align: center;border-radius:30px 30px;width: 25%">含早餐</div>
-          <div style="background:rgb(240, 240, 240);height: 30px;line-height: 30px;text-align: center;border-radius:30px 30px;width: 25%">含早餐</div>
-          <div style="background:rgb(240, 240, 240);height: 30px;line-height: 30px;text-align: center;border-radius:30px 30px;width: 25%">含早餐</div>
-          <div style="background:rgb(240, 240, 240);height: 30px;line-height: 30px;text-align: center;border-radius:30px 30px;width: 25%">筛选</div>
+        <div class="detailShow">
+          <div class="detailShowItem">含早餐</div>
+          <div class="detailShowItem">含早餐</div>
+          <div class="detailShowItem">含早餐</div>
+          <div class="detailShowItem">含早餐</div>
+          <div class="detailShowItem">筛选</div>
         </div>
       </div>
     </div>
@@ -437,5 +437,83 @@ export default {
   display: flex;
   flex-direction: column;
   text-align: right
+}
+.dateChooseDetail {
+  width: 100%;
+  background: white;
+  font-size: 15px;
+  margin-top: 100px;
+}
+.noLogin {
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  height: 60px;
+  border-bottom: 1.5px solid rgb(235, 235, 235)
+}
+.loginValue {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around
+}
+.logingift {
+  font-size: 11px;
+  color:rgb(254, 105, 19);
+  width: 80px;
+  height:13px;
+  border: 1px solid rgb(254, 105, 19)
+}
+.login {
+  width: 87px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 20px 20px
+}
+.dateDetail {
+  height:80px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  justify-content: space-between
+}
+.dateDetail_L {
+  display: flex;
+  justify-content: space-around;
+  align-items: center
+}
+.days {
+  justify-self: center;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  width: 50px;
+  text-align: center;
+  height: 20px;
+  border-radius: 10px 10px;
+}
+.outIn {
+  margin-left: 15%;
+  font-size: 15px;
+  color: #ccc;
+}
+.dateDay {
+  font-size: 13px
+}
+.detailShow {
+  display: flex;
+  justify-content: space-around;
+  font-size: 13px;
+  padding: 10px 0 5px 0
+}
+.detailShowItem {
+  background:rgb(240, 240, 240);
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  border-radius:30px 30px;
+  width: 60px
 }
 </style>
