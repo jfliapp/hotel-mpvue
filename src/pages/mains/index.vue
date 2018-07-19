@@ -99,13 +99,12 @@
       </div>      
     </div>
     <!-- 酒店类型 人们品牌 -->
-    <div class="placeMask"  v-show="hotel_type" @click="hotel_type = !hotel_type">
-      <div style="background: white;height: 80%;position: absolute;width: 100%;bottom: 0;">
-         <div>xxx</div>
-         <div>xxx</div>
-         <div>xxx</div>
-         <div>xxx</div>
-      </div>
+    <div class="placeMask"  v-show="hotel_type" @click="hotel_type = !hotel_type"></div>
+    <div style="background: white;height: 80%;position: absolute;width: 100%;bottom: 0;z-index: 25" v-show="hotel_type">
+      <div>xxx</div>
+      <div>xxx</div>
+      <div>xxx</div>
+      <div>xxx</div>
     </div>
     <div class="sub_title">
       <div style="width: 100%;height: 20px;display: flex;justify-content: flex-end">
@@ -469,7 +468,7 @@
     bottom: 0;
     position: fixed;
     overflow: hidden;
-    z-index: 99999999999999;
+    z-index: 20;
     background: rgba(15, 15, 26, 0.7)
   }
   .sub_title{ 

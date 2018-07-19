@@ -1,6 +1,20 @@
 <template>
-  <div style="background: rgb(246, 246, 246);">
-    <div v-if="login" style="font-size: 13px;height: 15px;line-height: 15px;padding: 20px;background: white">登录后有意想不到事情<span style="color:rgb(0, 126, 226);">更多优惠</span></div>
+  <div style="background: rgb(246, 246, 246);width: 100%;height: 100%;">
+    <div class="mask" v-show="room_show" @click.stop="room_show = !room_show"></div>
+    <div class="maskRoom" v-show="room_show">
+      <div class="Room_title">
+        房间数选择
+      </div>
+      <div class="Room_num">
+        <div class="Room_num_item" :class="{roomColor: roomNum === item.id}" v-for="(item, index) in room" :key="item.id" @click="chooseRoom(item.room)">
+          <div class="Room_num_item_choose">✔</div>
+          <div class="Room_num_item_detail">{{item.room}}间</div>
+        </div>
+      </div>
+    </div>
+    <div v-if="login" class="loginTip">
+      登录后有意想不到事情<span style="color:rgb(0, 126, 226);">更多优惠</span>
+    </div>
     <div class="hotel_order">
       <div class="hotel_order_Detail">
         <div class="hotel_order_Detail_name">上海Pagoda君亭设计酒店</div>
@@ -59,7 +73,7 @@
         <div style="display: flex;align-items: center;color: rgb(0, 126, 226)"><img src="/static/imgs/help.png" style="width: 30px;height: 30px;">&nbsp;&nbsp;好赞！这么划算的房间都能给你挑到</div>
       </div>
       <div style="margin-top: 10px;height: 250px;background: white;padding: 0 20px;display: flex;flex-direction: column;justify-content: space-around">
-        <div style="height: 30px;line-height: 30px;border-bottom: 1px solid #ccc;display: flex;justify-content: space-between;font-size: 15px">
+        <div style="height: 30px;line-height: 30px;border-bottom: 1px solid #ccc;display: flex;justify-content: space-between;font-size: 15px"  @click="roomChoose">
           <div style="display: flex;">
             <div>房间数</div>
             <div>&nbsp;&nbsp;&nbsp;1间</div>
@@ -138,9 +152,52 @@
     data () {
       return {
         data: 'xx',
-        nameLogin: '',
         phone: true,
-        login: true
+        login: true,
+        roomNum: 1,
+        room_show: false,
+        room: [
+          {
+            id: 1,
+            room: 1,
+            state: false
+          },
+          {
+            id: 2,
+            room: 2,
+            state: false
+          },
+          {
+            id: 3,
+            room: 3,
+            state: false
+          },
+          {
+            id: 4,
+            room: 4,
+            state: false
+          },
+          {
+            id: 5,
+            room: 5,
+            state: false
+          },
+          {
+            id: 6,
+            room: 6,
+            state: false
+          },
+          {
+            id: 7,
+            room: 7,
+            state: false
+          },
+          {
+            id: 8,
+            room: 8,
+            state: false
+          }
+        ]
       }
     },
     components: {},
@@ -169,6 +226,18 @@
         }
         console.log('get')
       },
+      // 点击时弹出
+      roomChoose() {
+        this.room_show = true
+      },
+      // 房间数选择
+      chooseRoom(num) {
+        this.roomNum = num
+        setTimeout(()=> {
+          this.room_show = false
+        }, 1000)
+        console.log(num)
+      },
       loginT () {
         this.saveLogin('名字')
         this.login = false
@@ -178,6 +247,56 @@
 </script>
 
 <style>
+  .mask {
+    font-size: 15px;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    background: rgba(15, 15, 26, 0.7)
+  }
+  .maskRoom {
+    width: 100%;
+    height: 250px;
+    position: fixed;
+    bottom: 0;
+    z-index: 30;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+  }
+  .Room_title {
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #ccc;
+    padding-left: 15px; 
+  }
+  .Room_num {
+    /* display: flex; */
+    /* flex-direction: column; */
+    margin-left: 15px;
+    height: 200px;
+    overflow-y: scroll;
+  }
+  .Room_num_item {
+    display: flex;
+    height: 40px;
+    /* line-height: 35px; */
+    align-items: center;
+  }
+  .Room_num_item_choose {
+    padding: 5px;
+  }
+  .Room_num_item_detail {
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    padding: 5px;
+  }
+  .roomColor{
+    color: blue
+  }
   .loginChang {
     color: rgb(0, 126, 226);
     border-bottom: 2px solid rgb(0, 126, 226);
@@ -286,5 +405,12 @@
     line-height: 30px;
     border:1px solid rgb(0, 126, 226) ;
     color: rgb(0, 126, 226)
+  }
+  .loginTip {
+    font-size: 13px;
+    height: 15px;
+    line-height: 15px;
+    padding: 20px;
+    background: white
   }
 </style>

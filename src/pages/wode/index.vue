@@ -158,7 +158,6 @@
       this.getUserInfo()
     },
     onLoad() {
-      console.log(this, "我需要看看我的fly挂载上去了没")
       wx.setStorageSync(
         'ROOM_SOURCE_DATE', {
           checkInDate: Moment(new Date()).format('YYYY-MM-DD'),
