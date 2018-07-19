@@ -29,10 +29,12 @@
           <div class="input_place_all">
             <div class="input_place">
               <span class="input_place_distance">目的地</span>
-              <p>上海</p>
+              <p>{{city}}</p>
             </div>
             <div class="input_place_R"><img style="width: 20px;height:20px;" src="/static/imgs/right.png"></div>
-            <div class="input_place_R_distance"><img style="width: 50px;height:50px;" src="/static/imgs/map_now.png" alt=""></div>
+            <div class="input_place_R_distance" @click="getLocation">
+              <img style="width: 40px;height:40px;" src="/static/imgs/map_now.png" alt="">
+            </div>
           </div>
         </div>
         <div class="input_item">
@@ -89,14 +91,17 @@
         <span><img class="iconTip" src="/static/imgs/foot_icon.png" alt=""></span>专业服务 · 全程保障
       </div>
     </div>
+    <div>
+        <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">获取用户信息</button>
+    </div>
   </div>
 </template>
 <script>
-  import sidebaricon1 from '../../../static/imgs/sidebar1.png'
-  import sidebaricon2 from '../../../static/imgs/sidebar2.png'
-  import sidebaricon3 from '../../../static/imgs/sidebar3.png'
-  import sidebaricon4 from '../../../static/imgs/sidebar4.png'
-  import sidebaricon5 from '../../../static/imgs/sidebar5.png'
+  import QQMapWx from '@/utils/qqmap-wx-jssdk.js'
+  var qqmapsdk
+  qqmapsdk = new QQMapWx({
+    key: 'LFGBZ-GEDW6-MYNSF-M5FTZ-KPBF5-USB2Q'
+  })
 
   var Moment = require('@/utils/moment.js')
   export default {
@@ -104,30 +109,32 @@
     data () {
       return {
         isLeft: false,
-        left: -170,
+        left: -190,
         mark: 0,
         newmark: 0,
+        city: '北京', //地址默认
+        userInfo: {}, // 个人用户信息
         checkInDate: null,
         checkOutDate: null,
         li_meun: [
           {
-            icon: sidebaricon1,
+            icon: '/static/imgs/sidebar1.png',
             name: '收藏酒店'
           },
           {
-            icon: sidebaricon2,
+            icon: '/static/imgs/sidebar2.png',
             name: '浏览历史'
           },
           {
-            icon: sidebaricon3,
+            icon: '/static/imgs/sidebar3.png',
             name: '我的优惠券'
           },
           {
-            icon: sidebaricon4,
+            icon: '/static/imgs/sidebar4.png',
             name: '我的订单'
           },
           {
-            icon: sidebaricon5,
+            icon: '/static/imgs/sidebar5.png',
             name: '我的点评'
           }
         ],
@@ -141,15 +148,17 @@
             value: '休闲',
             checked: 'true'
           }
-        ],
-        msg: 'xxx'
-        // img: require('static/imgs/avatar.png')
+        ]
       }
     },
     mounted () {
       console.log('mounted')
     },
+    created() {
+      this.getUserInfo()
+    },
     onLoad() {
+      console.log(this, "我需要看看我的fly挂载上去了没")
       wx.setStorageSync(
         'ROOM_SOURCE_DATE', {
           checkInDate: Moment(new Date()).format('YYYY-MM-DD'),
@@ -202,7 +211,7 @@
         let rtl = this.mark - this.newmark
         let ltr = this.newmark - this.mark
         if(rtl < 100) {
-          this.left = -170
+          this.left = -190
           this.isLeft = false
         }
         if(ltr < 100) {
@@ -222,6 +231,42 @@
       searchHotel () {
         wx.navigateTo({
           url: '/pages/mains/main'
+        })
+      },
+      // 获取附近的地址
+      getLocation() {
+        const _that = this
+        wx.getLocation({
+          type: 'gcj02',
+          success (res) {
+            qqmapsdk.reverseGeocoder({
+              location: {
+                latitude: res.latitude,
+                longitude: res.longitude
+              },
+              success (res) {
+                console.log(res, '获取附近地址')
+                _that.city = res.result.address_component.city
+              }
+            })
+          }
+        })
+      },
+      // 登录授权的一些东西
+      onGotUserInfo(e) {
+        console.log(e, "用户授权")
+      },
+      // 测试没有授权看看登录
+      getUserInfo() {
+        wx.login({
+          success: function(res) {
+            console.log(res, "登录进来成功")
+            wx.getUserInfo({
+              success: function(res) {
+                console.log(res, "获取基本信息")
+              }
+            })
+          }
         })
       },
       // 退出
@@ -378,7 +423,7 @@
     color: #ccc
   }
   .input_place_R {
-    margin: 6% 0 0 60%;
+    margin: 4% 0 0 50%;
   }
   .dateChoose {
     width: 100%;

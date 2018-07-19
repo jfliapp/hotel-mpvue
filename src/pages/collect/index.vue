@@ -31,14 +31,13 @@
   </div>
 </template>
 <script>
-  import img from '../../../static/imgs/hotel_item.png'
   export default {
     data () {
       return {
         arrCollect: [
           {
             id: 1,
-            img: img,
+            img: '/static/imgs/hotel_item.png',
             name: '上海市小南国花园酒店',
             type: '五星级',
             score: 4.9,
@@ -51,7 +50,7 @@
           },
           {
             id: 2,
-            img: img,
+            img: '/static/imgs/hotel_item.png',
             name: '上海市小南国花园酒店',
             type: '五星级',
             score: 4.9,

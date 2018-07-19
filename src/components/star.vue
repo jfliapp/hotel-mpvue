@@ -11,7 +11,6 @@
   </div>
 </template>
 <script>
-  import img from '../../static/imgs/star.png'
   export default {
     props: {
       value: {
@@ -23,7 +22,7 @@
       return {
         // starT: 3,
         score: 0,
-        img: img
+        img: '/static/imgs/star.png'
       }
     },
     computed: {

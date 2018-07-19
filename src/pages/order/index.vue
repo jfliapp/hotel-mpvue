@@ -132,23 +132,35 @@
   </div>
 </template>
 <script>
+  import { mapState, mapMutations } from 'vuex'
   export default {
     name: 'order',
     data () {
       return {
         data: 'xx',
+        nameLogin: '',
         phone: true,
         login: true
       }
     },
     components: {},
+    computed: {
+      ...mapState([
+        'name'
+      ])
+    },
     mounted () {
+      console.log(this.name, "我看看拿得到name值吗")
       console.log('order')
       wx.setNavigationBarTitle({
         title: '预定房间'
       })
     },
     methods: {
+      // 获取vuex 里面的方法
+      ...mapMutations({
+        saveLogin: 'SET_LOGIN'
+      }),
       changeLogin (id) {
         if (id === 1) {
           this.phone = true
@@ -158,6 +170,7 @@
         console.log('get')
       },
       loginT () {
+        this.saveLogin('名字')
         this.login = false
       }
     }

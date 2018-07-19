@@ -266,7 +266,6 @@
 </template>
 
 <script>
-import img from '@/../static/imgs/hotelDetail.png'
 export default {
   data () {
     return {
@@ -274,7 +273,7 @@ export default {
       hotel_item: [
         {
           id: 1,
-          img: img,
+          img: '/static/imgs/hotelDetail.png',
           name: '创客房 (开业特惠)',
           attr: ['25 - 28', '大床', '双早'],
           old_price: 120,
@@ -283,7 +282,7 @@ export default {
         },
         {
           id: 2,
-          img: img,
+          img: '/static/imgs/hotelDetail.png',
           name: '总统套房 (尊贵vip)',
           attr: ['225 - 328', '大床', '随便'],
           old_price: 1120,

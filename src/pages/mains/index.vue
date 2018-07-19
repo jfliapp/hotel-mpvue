@@ -98,30 +98,33 @@
         <div v-else></div>
       </div>      
     </div>
-    <!-- 地点弹框 -->
-    <!-- <div class="placeMask">
-      <div style="background: white;height: 80%">
-        城市
+    <!-- 酒店类型 人们品牌 -->
+    <div class="placeMask"  v-show="hotel_type" @click="hotel_type = !hotel_type">
+      <div style="background: white;height: 80%;position: absolute;width: 100%;bottom: 0;">
+         <div>xxx</div>
+         <div>xxx</div>
+         <div>xxx</div>
+         <div>xxx</div>
       </div>
-    </div> -->
+    </div>
     <div class="sub_title">
       <div style="width: 100%;height: 20px;display: flex;justify-content: flex-end">
         <div style="display: flex;align-items: center;margin-right: 30%">上海<img src="/static/imgs/down.png" class="imgS" style="margin-left: 5px"></div>
         <div style="display: flex;align-items: center"><img src="/static/imgs/map_icon.png" class="imgS"/><span style="margin-left: 5px;">附近</span></div>
       </div>
-      <div style="margin-top: 10px;">
+      <div class="input_all">
         <div class="input_sel">
-          <div>
+          <div style="display: flex;">
             <div class="input_sel_date" @click="dateTap">
               <p>住<span style="color: #ccc;margin-left: 5px;">{{checkInDate}}</span></p>
               <p>离<span style="color: #ccc;margin-left: 5px;">{{checkOutDate}}</span></p>
             </div>
-            <div style="float: left;margin-top: 8px ;"><img src="/static/imgs/down.png" class="imgS"></div>
-            <div style="margin: 3px 5px;float: left;color: #ccc;font-size: 19px;">|</div>
-            <!-- <div style="float: left;"><img src="/static/imgs/filter_line.png" alt="" style="width: 15px;height: 40px;"></div> -->
+            <div class="filter_down"><img src="/static/imgs/down.png" class="imgS"></div>
+            <div class="filter_line"></div>
+            <!-- <div><img src="/static/imgs/filter_line.png" alt="" style="width:2px;height: 30px;"></div> -->
           </div>
-          <div>
-            <div style="float: left;margin-left: 5px;margin-top: 9px;"><img src="/static/imgs/search.png" class="imgS"></div>
+          <div style="display: flex;">
+            <div class="filter_down"><img src="/static/imgs/search.png" class="imgS"></div>
             <div><input style="height: 40px;padding-left: 3px" type="text" placeholder="关键字/位置/品牌/酒店名" @change="searchHotel"></div>
           </div>          
         </div>
@@ -141,8 +144,8 @@
     <div class="filter_item" style="background: rgb(244, 244, 246);margin-top: 8px;padding: 10px 0">
       <div class="filter_li">低价好评</div>
       <div class="filter_li">位置距离</div>
-      <div class="filter_li">酒店类型<img src="/static/imgs/down.png" alt="" class="img_class"></div>
-      <div class="filter_li">热门品牌<img src="/static/imgs/down.png" alt="" class="img_class"></div>
+      <div class="filter_li" @click="hotelType">酒店类型<img src="/static/imgs/down.png" alt="" class="img_class"></div>
+      <div class="filter_li" @click="hotelType">热门品牌<img src="/static/imgs/down.png" alt="" class="img_class"></div>
     </div>
     <div>
       <!-- 这里可能要放一个新的组件 因为要根据后台能的数据筛选出来的 -->
@@ -153,7 +156,6 @@
 </template>
 <script>
   import HotelList from '@/components/hotelList'
-  import img from '@/../static/imgs/hotel_item.png'
   var Moment = require('@/utils/moment.js')
   export default {
     name: 'main',
@@ -162,6 +164,7 @@
         F_item: false,
         color_change: true,
         hasmore: false,
+        hotel_type: false,
         checkInDate: null,
         checkOutDate: null,
         moreLen: 0,
@@ -297,7 +300,7 @@
         hotel_item: [
           {
             id: 1,
-            img: img,
+            img: '/static/imgs/hotel_item.png',
             name: 'xx酒店(上海店)',
             type: '高档行',
             score: 4.8,
@@ -309,7 +312,7 @@
           },
           {
             id: 2,
-            img: img,
+            img: '/static/imgs/hotel_item.png',
             name: 'xx酒店(上海店)',
             type: '高档行',
             score: 4.9,
@@ -432,10 +435,14 @@
           }
         })
       },
-      sureF () {
+      sureF () {        
         this.filter_item.map((item1) => {
           item1.active = false
         })
+      },
+      //酒店类型 热门品牌的弹框
+      hotelType() {
+        this.hotel_type = true
       }
     }
   }
@@ -458,7 +465,7 @@
   }
   .placeMask {
     width: 100%;
-    height: 80%;
+    height: 100%;
     bottom: 0;
     position: fixed;
     overflow: hidden;
@@ -468,7 +475,7 @@
   .sub_title{ 
     width: 100%;
     height: 100px;
-    padding: 15px;
+    padding: 10px;
     /* text-align: center; */
     font-size: 15px;
     box-sizing: border-box;
@@ -478,24 +485,40 @@
     width: 10px;
     height: 10px;
   }
-  .input_sel {
-    float: left;
-    width: 80%;
+  .input_all {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
     font-size: 15px;
-    /* height: 40px; */
+  }
+  .input_sel {
+    display: flex;
+    /* float: left; */
+    width: 300px;
+    height: 40px;
     background: white;
     padding-left: 5px;
     box-sizing: border-box;
     border-radius: 10px 10px;
   }
   .input_sel_date {
-    float: left;
+    /* float: left; */
     font-size: 13px;
   }
   /* .input_sel input::-webkit-input-placeholder {    
     color: #aab2bd;
     font-size: 12px;
   } */
+  .filter_down {
+    display: flex;
+    align-items: center;
+    margin-left: 3px;
+  }
+  .filter_line {
+    margin: 5px;
+    height: 25px;
+    border: 0.5px solid rgb(207, 207, 207);
+  }
   .filter_item {
     border-bottom: 1px solid #ccc;
     padding-bottom: 2px;
@@ -508,8 +531,8 @@
     line-height: 30px;
   }
   .input_map {
-    float: right;
-    width: 15%;
+    /* float: right; */
+    width: 40px;
     height: 40px;
     text-align: center;
     line-height: 40px;
