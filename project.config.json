@@ -29,12 +29,24 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
 					"name": "mains",
 					"pathName": "pages/mains/main",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "hotelImg",
+					"pathName": "pages/hotelImg/main",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "wode",
+					"pathName": "pages/wode/main",
 					"query": ""
 				}
 			]

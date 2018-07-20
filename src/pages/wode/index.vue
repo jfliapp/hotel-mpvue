@@ -396,8 +396,9 @@
   }
   .hotel_foot_Bottom {
     width: 100%;
-    text-align: center;
-    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    font-size: 13px;
     color: #ccc;
     height: 50px;
     line-height: 50px;

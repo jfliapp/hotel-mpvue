@@ -3,7 +3,12 @@
     <!-- 这里筛选弹框 -->
     <div class="mask" v-show="tapState">
       <div style="display: flex; flex-direction: column;">
-        <div style="display:flex;align-items:center;justify-content:center;height:50px;background: rgb(0, 126, 226)">上海<img src="/static/imgs/down.png" style="width: 15px;height: 15px;"></div>
+        <navigator url="/pages/city/main">
+          <div class="mask_place_distan">
+            上海
+            <img src="/static/imgs/down.png" style="width: 15px;height: 15px;margin-left: 10px;">
+          </div>
+        </navigator>
         <div>
           <div class="filter_item">
               <div @click="filterItem(item)" v-for="(item, index) in filter_item" :key="index">
@@ -107,9 +112,15 @@
       <div>xxx</div>
     </div>
     <div class="sub_title">
-      <div style="width: 100%;height: 20px;display: flex;justify-content: flex-end">
-        <div style="display: flex;align-items: center;margin-right: 30%">上海<img src="/static/imgs/down.png" class="imgS" style="margin-left: 5px"></div>
-        <div style="display: flex;align-items: center"><img src="/static/imgs/map_icon.png" class="imgS"/><span style="margin-left: 5px;">附近</span></div>
+      <div class="sub_title_place">
+        <div class="sub_title_place_ditance" @click="palce">
+        上海
+        <img src="/static/imgs/down.png" class="imgS" style="margin-left: 5px">
+        </div>
+        <div style="display: flex;align-items: center">
+          <img src="/static/imgs/map_icon.png" class="imgS"/>
+          <span style="margin-left: 5px;">附近</span>
+        </div>
       </div>
       <div class="input_all">
         <div class="input_sel">
@@ -442,6 +453,12 @@
       //酒店类型 热门品牌的弹框
       hotelType() {
         this.hotel_type = true
+      },
+      // 城市选择
+      palce() {
+        wx.navigateTo({
+          url: '/pages/city/main'
+        })
       }
     }
   }
@@ -462,6 +479,13 @@
     z-index: 99999999999999;
     background: rgba(15, 15, 26, 0.7)
   }
+  .mask_place_distan {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:50px;
+    background: rgb(0, 126, 226)
+  }
   .placeMask {
     width: 100%;
     height: 100%;
@@ -479,6 +503,17 @@
     font-size: 15px;
     box-sizing: border-box;
     background: rgb(0,126,226)
+  }
+  .sub_title_place {
+    width: 100%;
+    height: 20px;
+    display: flex;
+    justify-content: flex-end
+  }
+  .sub_title_place_ditance {
+    display: flex;
+    align-items: center;
+    margin-right: 30%
   }
   .img_class {
     width: 10px;
@@ -531,7 +566,7 @@
   }
   .input_map {
     /* float: right; */
-    width: 40px;
+    width: 48px;
     height: 40px;
     text-align: center;
     line-height: 40px;

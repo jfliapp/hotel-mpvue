@@ -32,12 +32,12 @@
           <div class="hotel_order_Detail_date_fix">修改&nbsp;&nbsp;<img class="hotel_order_Detail_date_fix_img" src="/static/imgs/right.png"></div>
         </div>      
       </div>
-      <div style="display: flex;height: 22px;background: rgba(0, 126, 226, 0.05);justify-content: space-between;align-items: center;padding: 20px">
-        <div style="color: rgb(0, 126, 226);font-size: 15px;">免费领取</div>
+      <div class="free_get">
+        <div style="color: rgb(0, 126, 226);">免费领取</div>
         <div><img src="/static/imgs/right.png" style="width:15px;height: 15px;"></div>
       </div>
     </div>
-    <div v-if="login" style="display: flex;flex-direction:column;margin-top: 10px;font-size: 17px;height: 300px;">
+    <div v-if="login" class="login_first">
       <div style="display: flex;">
         <div :class="{loginChang: phone}" style="width: 50%;text-align: center;height:50px;line-height: 50px;" @click="changeLogin(1)">手机动态验证登录</div>
         <div :class="{loginChang: !phone}" style="width: 50%;text-align: center;height:50px;line-height: 50px;" @click="changeLogin(2)">普通登录</div>
@@ -64,76 +64,66 @@
           <div class="phone_psw_input"><input type="text" placeholder="密码"></div>
         </div>
       </div>
-      <div style="font-size: 20px;color: white;width: 95%;height: 50px;text-align: center;line-height: 56px;margin: 0 auto;border-radius: 8px 8px;background: rgb(255, 107, 20)"
-      @click="loginT">登录</div>
+      <div class="login"@click="loginT">登录</div>
     </div>
     <div v-else>
-      <div style="margin-top: 10px;height: 80px;background: white;display: flex;flex-direction: column;justify-content: space-around;font-size: 15px;padding: 20px">
-        <div style="display: flex;align-items: center;color: rgb(255, 107, 20)"><img src="/static/imgs/great.png" style="width: 30px;height: 30px;">&nbsp;&nbsp;好赞！这么划算的房间都能给你挑到</div>
-        <div style="display: flex;align-items: center;color: rgb(0, 126, 226)"><img src="/static/imgs/help.png" style="width: 30px;height: 30px;">&nbsp;&nbsp;好赞！这么划算的房间都能给你挑到</div>
+      <div class="reward_all">
+        <div class="reward_item"><img src="/static/imgs/great.png" style="width: 30px;height: 30px;">&nbsp;&nbsp;好赞！这么划算的房间都能给你挑到</div>
+        <div class="reward_item"><img src="/static/imgs/help.png" style="width: 30px;height: 30px;">&nbsp;&nbsp;好赞！这么划算的房间都能给你挑到</div>
       </div>
-      <div style="margin-top: 10px;height: 250px;background: white;padding: 0 20px;display: flex;flex-direction: column;justify-content: space-around">
-        <div style="height: 30px;line-height: 30px;border-bottom: 1px solid #ccc;display: flex;justify-content: space-between;font-size: 15px"  @click="roomChoose">
+      <div class="Room_from">
+        <div class="Room_from_item" @click="roomChoose">
           <div style="display: flex;">
-            <div>房间数</div>
-            <div>&nbsp;&nbsp;&nbsp;1间</div>
+            <div class="Room_from_item_num">房间数</div>
+            <div class="Room_from_item_Detail">{{roomNum}}间</div>
           </div>
           <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" style="width:20px;height: 20px;"></div>
         </div>
-        <div style="height: 30px;line-height: 30px;border-bottom: 1px solid #ccc;display: flex;justify-content: space-between;font-size: 15px">
-          <div style="display: flex;">
-            <div>房间数</div>
-            <div>&nbsp;&nbsp;&nbsp;1间</div>
-          </div>
-          <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" style="width:20px;height: 20px;"></div>
+        <div>
+          <div class="Room_from_item" v-for="(item, index) in roomNum" :key="index">
+            <div style="display: flex;">
+              <div class="Room_from_item_num" :style="{visibility: item == '0' ? '' : 'hidden'}">入住人</div>
+              <div class="Room_from_item_Detail"><input type="text" placeholder="一间填一个人的姓名"></div>
+            </div>
+            <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" style="width:20px;height: 20px;"></div>
+          </div>          
         </div>
-        <div style="height: 30px;line-height: 30px;border-bottom: 1px solid #ccc;display: flex;justify-content: space-between;font-size: 15px">
+        <div class="Room_from_item">
           <div style="display: flex;">
-            <div>房间数</div>
-            <div>&nbsp;&nbsp;&nbsp;1间</div>
-          </div>
-          <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" style="width:20px;height: 20px;"></div>
-        </div>
-        <div style="height: 30px;line-height: 30px;border-bottom: 1px solid #ccc;display: flex;justify-content: space-between;font-size: 15px">
-          <div style="display: flex;">
-            <div>房间数</div>
-            <div>&nbsp;&nbsp;&nbsp;1间</div>
-          </div>
-          <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" style="width:20px;height: 20px;"></div>
-        </div>
-        <div style="height: 30px;line-height: 30px;border-bottom: 1px solid #ccc;display: flex;justify-content: space-between;font-size: 15px">
-          <div style="display: flex;">
-            <div>房间数</div>
-            <div>&nbsp;&nbsp;&nbsp;1间</div>
+            <div class="Room_from_item_num">电话号码</div>
+            <div class="Room_from_item_Detail"><input type="text" placeholder="电话"></div>
           </div>
           <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" style="width:20px;height: 20px;"></div>
         </div>
       </div>
-      <div style="margin-top: 10px;height: 100px;background: white;padding: 0 20px;display: flex;flex-direction: column;justify-content: space-around">
-        <div style="height: 30px;line-height: 30px;border-bottom: 1px solid #ccc;display: flex;justify-content: space-between;font-size: 15px">
+      <div class="Room_from">
+        <div class="Room_from_item">
           <div style="display: flex;">
-            <div>房间数</div>
-            <div>&nbsp;&nbsp;&nbsp;1间</div>
+            <div class="Room_from_item_num">特殊要求</div>
+            <div class="Room_from_item_Detail"><input type="text" placeholder="电话"></div>
           </div>
           <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" style="width:20px;height: 20px;"></div>
         </div>
-        <div style="height: 30px;line-height: 30px;border-bottom: 1px solid #ccc;display: flex;justify-content: space-between;font-size: 15px">
+        <div class="Room_from_item">
           <div style="display: flex;">
-            <div>房间数</div>
-            <div>&nbsp;&nbsp;&nbsp;1间</div>
+            <div class="Room_from_item_num">发票</div>
+            <div class="Room_from_item_Detail">如需发票，可向酒店索取</div>
           </div>
-          <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" style="width:20px;height: 20px;"></div>
+          <!-- <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" style="width:20px;height: 20px;"></div> -->
         </div>
       </div>
-      <div style="display: flex;height: 250px;font-size: 15px;padding: 20px;display: flex;flex-direction: column;justify-content: space-around">
-        <div style="color: #ccc;height: 80px;border-bottom:1px solid #ccc; ">
-          酒店提示：根据《上海市公共场所控制吸烟条例》，从2017年3月1日起，酒店不能安排吸烟房，并禁止室内吸烟。
+      <div class="hotel_atention">
+        <div class="hotel_atention1">
+          酒店提示：根据《上海市公共场所控制吸烟条例》，从2017年3月1日起，并禁止室内吸烟。
         </div>
-        <div style="color: #ccc;height: 60px;">
-          酒店提示：根据《上海市公共场所控制吸烟条例》，从2017年3月1日起，酒店不能安排吸烟房，并禁止室内吸烟。
+        <div class="hotel_atention2">
+          酒店提示：根据《上海市公共场所控制吸烟条例》，从2017年3月1日起，并禁止室内吸烟。
         </div>
         <div class="hotel_foot_Bottom">
-          <span><img style="width:10px ;height: 10px;margin-right: 5px;" src="/static/imgs/foot_icon.png" alt=""></span>专业服务 · 全程保障
+          <span>
+            <img style="width:10px ;height: 10px;margin-right: 5px;" src="/static/imgs/foot_icon.png" alt="">
+          </span>
+          专业服务 · 全程保障
         </div>
       </div>
       <div style="height: 20px;color: rgb(0, 126, 226);text-align: right;padding: 20px;background: white;line-height: 30px;">
@@ -302,9 +292,11 @@
     border-bottom: 2px solid rgb(0, 126, 226);
   }
   .hotel_foot_Bottom {
+    display: flex;
     width: 100%;
-    text-align: center;
-    font-size: 12px;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
     color: rgb(0, 126, 226);
     height: 50px;
     line-height: 50px;
@@ -360,14 +352,14 @@
   .phone {
     display: flex;
     flex-direction: column;
-    height: 180px;
+    height: 150px;
     justify-content: space-around;
     font-size: 15px;
   }
   .phone_tel {
     display: flex;
     width: 95%;
-    height: 56px;
+    height: 40px;
     align-items: center;
     margin: 0 auto;
     border: 1px solid rgb(190, 190, 190);
@@ -375,7 +367,7 @@
   }
   .phone_tel_lable {
     margin-left: 10px;
-    width:75px;
+    width:100px;
   }
   .phone_tel_input {
     margin-left: 20px
@@ -383,7 +375,7 @@
   .phone_psw {
     display: flex;
     width: 95%;
-    height: 56px;
+    height: 40px;
     align-items: center;
     margin: 0 auto;
     border: 1px solid rgb(190, 190, 190);
@@ -391,7 +383,7 @@
   }
   .phone_psw_label {
     margin-left: 10px;
-    width: 100px;
+    flex: 0 0 100px;
   }
   .phone_psw_input {
     margin-left: 20px;
@@ -412,5 +404,93 @@
     line-height: 15px;
     padding: 20px;
     background: white
+  }
+  .Room_from {
+    margin-top: 10px;
+    /* height: 250px; */
+    background: white;
+    padding: 5px 0 5px 20px;
+    /* display: flex;
+    flex-direction: column; */
+    /* justify-content: space-around */
+  }
+  .Room_from_item {
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    padding: 5px;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px
+  }
+  .Room_from_item_Detail {
+    margin-left: 10px;
+  }
+  .Room_from_item_num {
+    color: #ccc;
+    width: 80px;
+  }
+  .hotel_atention {
+    display: flex;
+    /* height: 250px; */
+    font-size: 13px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around */
+  }
+  .hotel_atention1 {
+    color: #ccc;
+    /* height: 50px; */
+    padding: 10px 0;
+    border-bottom:1px solid #ccc;
+  }
+  .hotel_atention2 {
+    color: #ccc;
+    padding: 10px 0;
+    /* height: 60px; */
+  }
+  .reward_all {
+    margin-top: 10px;
+    height: 70px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 13px;
+    padding: 20px
+  }
+  .reward_item {
+    display: flex;
+    align-items: center;
+    color: rgb(0, 126, 226)
+  }
+  .login {
+    font-size: 20px;
+    color: white;
+    width: 95%;
+    height: 50px;
+    text-align: center;
+    line-height: 56px;
+    margin: 0 auto;
+    border-radius: 8px 8px;
+    background: rgb(255, 107, 20)
+  }
+  .free_get {
+    display: flex;
+    height: 22px;
+    background: rgba(0, 126, 226, 0.05);
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    font-size: 15px;
+  }
+  .login_first {
+    display: flex;
+    flex-direction:column;
+    margin-top: 10px;
+    font-size: 15px;
+    height: 300px;
   }
 </style>
