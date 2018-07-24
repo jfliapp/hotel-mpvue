@@ -50,7 +50,8 @@
         <div class="phone_psw">
           <div class="phone_psw_label">动态密码</div>
           <div class="phone_psw_input"><input type="text" placeholder="动态密码"></div>
-          <div class="phone_psw_psw">获取动态密码</div>
+          <div class="phone_psw_psw" v-show="code" @click="getCode">获取动态密码</div>
+          <div class="phone_psw_psw" v-show="!code">倒计时{{count}}</div>
         </div>
         <!-- <div style="font-size: 20px;color: white;width: 95%;height: 50px;text-align: center;line-height: 56px;margin: 0 auto;border-radius: 8px 8px;background: rgb(255, 107, 20)">登录</div> -->
       </div>
@@ -144,6 +145,9 @@
         data: 'xx',
         phone: true,
         login: true,
+        code: true,
+        count: null,
+        timer: null,
         roomNum: 1,
         room_show: false,
         room: [
@@ -228,6 +232,24 @@
         }, 1000)
         console.log(num)
       },
+      // 验证码获取
+      getCode() {
+        const TIME = 60
+        if(!this.timer) {
+          this.code = false
+          this.count = TIME
+          this.timer = setInterval(()=> {
+            if(this.count > 0) {
+              this.count--
+            }else {
+              this.code = true
+              clearInterval(this.timer)
+              this.timer= null 
+            }
+          }, 1000)
+        }
+      },
+      // 登录 
       loginT () {
         this.saveLogin('名字')
         this.login = false

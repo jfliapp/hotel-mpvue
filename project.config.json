@@ -39,8 +39,8 @@
 				},
 				{
 					"id": 1,
-					"name": "hotelImg",
-					"pathName": "pages/hotelImg/main",
+					"name": "orderDetail",
+					"pathName": "pages/orderDetail/main",
 					"query": ""
 				},
 				{

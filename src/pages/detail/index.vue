@@ -51,10 +51,10 @@
         </div>
         <div class="detailShow">
           <div class="detailShowItem">含早餐</div>
-          <div class="detailShowItem">含早餐</div>
-          <div class="detailShowItem">含早餐</div>
-          <div class="detailShowItem">含早餐</div>
-          <div class="detailShowItem">筛选</div>
+          <div class="detailShowItem">大床</div>
+          <div class="detailShowItem">双床</div>
+          <div class="detailShowItem">免费取消</div>
+          <div class="detailShowItem">筛选<img src="/static/imgs/down.png" style="width: 10px;height: 10px;margin-left: 3px;"></div>
         </div>
       </div>
     </div>
@@ -82,53 +82,51 @@
         </div>
       </div>
     </div>
-    <div style="display: flex;flex-direction:column;background: white;height: 250px;padding: 10px">
-      <div>往客评价<span style="font-size: 13px;">(1325)条</span></div>
-      <div style="display: flex;justify-content: space-between;font-size: 11px;margin: 10px 0;">
-        <div style="width: 70px;height: 20px;border-radius:20px 20px;background: rgb(237, 245, 251);text-align: center;line-height: 20px">房间很好<span>85</span></div>
-        <div style="width: 70px;height: 20px;border-radius:20px 20px;background: rgb(237, 245, 251);text-align: center;line-height: 20px">房间很好<span>85</span></div>
-        <div style="width: 70px;height: 20px;border-radius:20px 20px;background: rgb(237, 245, 251);text-align: center;line-height: 20px">房间很好<span>85</span></div>
-        <div style="width: 70px;height: 20px;border-radius:20px 20px;background: rgb(237, 245, 251);text-align: center;line-height: 20px">房间很好<span>85</span></div>
+    <div class="guest_evaluation_all">
+      <div>往客评价<span class="guest_evaluation_num">(1325)条</span></div>
+      <div class="guest_evaluation_comments">
+        <div class="guest_evaluation_comments_item" @click="guestEvaluation(item.id)"
+         v-for="(item, index) in guest_evaluation_comments" :key="item.id">
+         {{item.name}}&nbsp;{{item.comments}}
+        </div>
       </div>
-      <div style="height: 120px;display: flex;flex-direction: column;justify-content: space-around;">
+      <div class="guest_evaluation_item">
         <div style="display: flex;align-items: center;">
-          <div style="width: 40px;height: 40px;border-radius: 50% 50%;background: rgb(0, 126, 226);text-align: center;line-height: 40px">5.0</div>
+          <div class="guest_evaluation_item_grade">5.0</div>
           <div style="margin-left:10px">1352854***</div>
-          <div style="width: 80px;margin-left:10px;text-align: center;height: 20px;line-height: 20px;color: rgb(0, 126, 226);font-size: 13px;border: 1px solid #ccc;;">点评新星</div>
+          <div class="guest_evaluation_item_star">点评新星</div>
         </div>
-        <div style="color: #ccc;font-size: 11px">2018-04入住 和式家庭居</div>
-        <div style="font-size: 15px">房间设计花心思有亮点，整洁干、大气明朗、咖啡机可爱，服务人员态度和善，很有耐心，早餐丰富。</div>
-      </div>  
-      <div style="width: 136px;height: 30px;color: rgb(0, 126, 226);border: 1px solid rgb(0, 126, 226);text-align: center;line-height: 30px;margin: 20px auto 0;font-size: 15px" @click="comment(1)">查看全部点评</div>
+        <div class="guest_evaluation_item_title">2018-04入住 和式家庭居</div>
+        <div>房间设计花心思有亮点，整洁干、大气明朗、咖啡机可爱，服务人员态度和善，很有耐心，早餐丰富。</div>
+      </div>
+      <div class="all_comments" @click="comment(1)">查看全部点评</div>
     </div>
-    <div style="display: flex;flex-direction:column;background: white;height: 180px;padding: 10px;margin-top: 10px">
-      <div>酒店问答<span style="font-size: 13px;">(1325)条</span></div>
-      <div style="display: flex;flex-direction: column;font-size: 13px;margin: 10px 0;">
-        <div style="display: flex;justify-content: space-around;height: 60px;">
-          <div style="width: 15px;height: 15px;text-align: center;line-height: 15px;background:rgb(0, 126, 226);color: white">问</div>
-          <div style="width: 75%;">
-            请问十七岁人员没有两名监护人员陪同的情况下可以申请入住吗？
-          </div>
-          <div style="font-size: 11px;color: #ccc;">
-            3个回答
-          </div>
+    <div class="hotel_QuestionAnswer">
+      <div>酒店问答<span class="guest_evaluation_num">(1325)条</span></div>
+      <div class="hotel_QuestionAnswer_item">
+        <div class="hotel_QuestionAnswer_item_ask">问</div>
+        <div style="width: 75%;margin-left: 3%">
+          请问十七岁人员没有两名监护人员陪同的情况下可以申请入住吗？
         </div>
-        <div style="display: flex;justify-content: space-around;height: 60px;">
-          <div style="width: 15px;height: 15px;text-align: center;line-height: 15px;background:rgb(0, 126, 226);color: white">问</div>
-          <div style="width: 75%;">
-            请问十七岁人员没有两名监护人员陪同的情况下可以申请入住吗？
-          </div>
-          <div style="font-size: 11px;color: #ccc;">
-            3个回答
-          </div>
+        <div class="hotel_QuestionAnswer_item_answer">
+          3个回答
         </div>
       </div>
-      <div style="width: 136px;height: 30px;color: rgb(0, 126, 226);border: 1px solid rgb(0, 126, 226);text-align: center;line-height: 30px;margin: 20px auto 0;font-size: 15px" @click="comment(1)">查看全部点评</div>
+      <div class="hotel_QuestionAnswer_item">
+        <div class="hotel_QuestionAnswer_item_ask">问</div>
+        <div style="width: 75%;margin-left: 3%">
+          请问十七岁人员没有两名监护人员陪同的情况下可以申请入住吗？
+        </div>
+        <div class="hotel_QuestionAnswer_item_answer">
+          3个回答
+        </div>
+      </div>
+      <div class="all_comments" @click="comment(1)">查看全部点评</div>
     </div>
-    <div style="display: flex;flex-direction:column;background: white;height: 700px;padding: 10px;margin-top: 10px">
-      <div>酒店详情<span style="font-size: 13px;">(1325)条</span></div>
-      <div style="display: flex;flex-direction: column;font-size: 15px;height: 120px;justify-content: space-around;margin-top: 10px">
-        <div style="height: 20px;line-height: 20px">
+    <div class="hotel_information">
+      <div>酒店详情<span class="guest_evaluation_num">(1325)条</span></div>
+      <div class="hotel_information_policy">
+        <div class="hotel_information_policy_img">
           <img src="/static/imgs/hotel_detail_icon.png" style="width: 15px;height: 15px">
           <span>&nbsp;酒店政策</span>
         </div>
@@ -137,96 +135,79 @@
           酒店提示：根据《上海市公共场所控制吸烟条例》，从2017年3月1日起，酒店不能安排吸烟房，并禁止室内吸烟。
         </div>
       </div>
-      <div style="display: flex;flex-direction: column;font-size: 15px;height: 100px;justify-content: space-around;margin-top: 10px">
-        <div style="height: 20px;line-height: 20px">
+      <div class="hotel_information_institutions">
+        <div class="hotel_information_policy_img">
           <img src="/static/imgs/hotel_detail_icon.png" style="width: 15px;height: 15px">
           <span>&nbsp;酒店设施</span>
         </div>
-        <div style="height: 50px;display: flex;justify-content: space-between;align-items: center">
+        <div class="hotel_information_institutions_pic">
           <div style="display: flex;justify-content: space-around">
-            <div style="display: flex;flex-direction: column;width: 60px;height: 50px;text-align: center;">
+            <div class="hotel_information_institutions_pic_item"
+              v-for="(item, index) in hotel_information_institutions_pic_item" :key="item.id">
               <div>
-                <img src="/static/imgs/wifi.png" alt="" style="width: 40px;height: 40px;">
+                <img src="/static/imgs/wifi.png" alt="" style="width: 26px;height: 20px;">
               </div>
-              <div style="font-size: 12px">免费WIFI</div>
-            </div>
-            <div style="display: flex;flex-direction: column;width: 60px;height: 50px;text-align: center;">
-              <div>
-                <img src="/static/imgs/wifi.png" alt="" style="width: 40px;height: 40px;">
-              </div>
-              <div style="font-size: 12px">免费停车场</div>
-            </div>
-            <div style="display: flex;flex-direction: column;width: 60px;height: 50px;text-align: center;">
-              <div>
-                <img src="/static/imgs/wifi.png" alt="" style="width: 40px;height: 40px;">
-              </div>
-              <div style="font-size: 12px">接机服务</div>
-            </div>
-            <div style="display: flex;flex-direction: column;width: 60px;height: 50px;text-align: center;">
-              <div>
-                <img src="/static/imgs/wifi.png" alt="" style="width: 40px;height: 40px;">
-              </div>
-              <div style="font-size: 12px">餐厅</div>
-            </div>
+              <div style="color: #ccc">{{item.name}}</div>
+            </div>            
           </div>
-          <div>></div>
+          <div><img src="/static/imgs/right.png" style="width: 10px;height: 10px;"></div>
         </div>
       </div>
-      <div style="display: flex;flex-direction: column;font-size: 15px;height: 400px;justify-content: space-around;margin-top: 10px">
-        <div style="height: 20px;line-height: 20px">
+      <div class="hotel_information_way">
+        <div class="hotel_information_policy_img">
           <img src="/static/imgs/hotel_detail_icon.png" style="width: 15px;height: 15px">
           <span>&nbsp;酒店设施</span>
         </div>        
-        <div style="display: flex;height: 90px;">
-          <div style="margin-right: 5px;">
-            <img src="/static/imgs/fly.png" style="width: 15px;height: 15px;">
+        <div class="hotel_information_way_details">
+          <div>
+            <img src="/static/imgs/fly.png" class="hotel_information_way_details_img">
           </div>
-          <div style="display: flex;flex-direction: column;height: 90px;justify-content: space-between">
-            <div style="display: flex;flex-direction: column;height: 45px;justify-content: space-around">
+          <div class="hotel_information_way_details_D">
+            <div class="hotel_information_way_details_D_item">
               <div>上海是虹桥国际jic</div>
               <div style="color:#ccc;">27.4公里，驾车约49分钟</div>
             </div>
-            <div style="display: flex;flex-direction: column;height: 45px;justify-content: space-around">
-              <div>上海是虹桥国际jic</div>
-              <div style="color:#ccc;">27.4公里，驾车约49分钟</div>
-            </div>
-          </div>
-        </div>
-        <div style="display: flex;height: 90px;">
-          <div style="margin-right: 5px;">
-            <img src="/static/imgs/fly.png" style="width: 15px;height: 15px;">
-          </div>
-          <div style="display: flex;flex-direction: column;height: 90px;justify-content: space-between">
-            <div style="display: flex;flex-direction: column;height: 45px;justify-content: space-around">
-              <div>上海是虹桥国际jic</div>
-              <div style="color:#ccc;">27.4公里，驾车约49分钟</div>
-            </div>
-            <div style="display: flex;flex-direction: column;height: 45px;justify-content: space-around">
+            <div class="hotel_information_way_details_D_item">
               <div>上海是虹桥国际jic</div>
               <div style="color:#ccc;">27.4公里，驾车约49分钟</div>
             </div>
           </div>
         </div>
-        <div style="display: flex;height: 90px;">
-          <div style="margin-right: 5px;">
-            <img src="/static/imgs/fly.png" style="width: 15px;height: 15px;">
+        <div class="hotel_information_way_details">
+          <div>
+            <img src="/static/imgs/fly.png" class="hotel_information_way_details_img">
           </div>
-          <div style="display: flex;flex-direction: column;height: 90px;justify-content: space-between">
-            <div style="display: flex;flex-direction: column;height: 45px;justify-content: space-around">
+          <div class="hotel_information_way_details_D">
+            <div class="hotel_information_way_details_D_item">
               <div>上海是虹桥国际jic</div>
               <div style="color:#ccc;">27.4公里，驾车约49分钟</div>
             </div>
-            <div style="display: flex;flex-direction: column;height: 45px;justify-content: space-around">
+            <div class="hotel_information_way_details_D_item">
               <div>上海是虹桥国际jic</div>
               <div style="color:#ccc;">27.4公里，驾车约49分钟</div>
             </div>
           </div>
         </div>
-        <div style="width: 136px;height: 30px;color: rgb(0, 126, 226);border: 1px solid rgb(0, 126, 226);text-align: center;line-height: 30px;margin: 20px auto 0;font-size: 15px" @click="comment(1)">查看全部点评</div>
+        <div class="hotel_information_way_details">
+          <div>
+            <img src="/static/imgs/fly.png" class="hotel_information_way_details_img">
+          </div>
+          <div class="hotel_information_way_details_D">
+            <div class="hotel_information_way_details_D_item">
+              <div>上海是虹桥国际jic</div>
+              <div style="color:#ccc;">27.4公里，驾车约49分钟</div>
+            </div>
+            <div class="hotel_information_way_details_D_item">
+              <div>上海是虹桥国际jic</div>
+              <div style="color:#ccc;">27.4公里，驾车约49分钟</div>
+            </div>
+          </div>
+        </div>
+        <div class="all_comments" @click="comment(1)">查看全部点评</div>
       </div>
     </div>
-    <div style="display: flex;flex-direction:column;background: white;height: 250px;padding: 10px;margin-top: 10px">
-      <div style="border-bottom: 1px solid #ccc;height: 40px;padding-top:10px;">附近同类型酒店</div>
+    <div class="nearby_type_hotel">
+      <div class="nearby_type_hotel_title">附近同类型酒店</div>
       <div class="nearby_hotel">
         <div class="nearby_hotel_item">
           <div>
@@ -248,17 +229,17 @@
           </div>
         </div>
       </div>
-      <div style="width: 136px;height: 30px;color: rgb(0, 126, 226);border: 1px solid rgb(0, 126, 226);text-align: center;line-height: 30px;margin: 20px auto 0;font-size: 15px" @click="comment(1)">查看全部点评</div>
+      <div class="all_comments" @click="comment(1)">查看全部点评</div>
     </div>
-    <div style="margin-top:10px;">
+    <div style="">
       <div class="hotel_foot_Bottom">
         <span><img style="width:10px ;height: 10px;margin-right: 5px;" src="/static/imgs/foot_icon.png" alt=""></span>专业服务 · 全程保障
       </div>
     </div>
-    <div style="height: 50px;background: white;display: flex;justify-content: space-between;padding: 10px;align-items: center">
+    <div class="order_check_hotel">
       <div>最新预定：5小时</div>
       <div style="color:rgb(254, 105, 19);display: flex;align-items: center">
-        <img src="/static/imgs/room.png" alt="" style="width: 30px;height: 30px;">
+        <img src="/static/imgs/room.png" style="width: 20px;height: 20px;">
         <span>&nbsp;查看房型</span>
       </div>
     </div>
@@ -288,6 +269,50 @@ export default {
           old_price: 1120,
           new_price: 90
         }
+      ],
+      guest_evaluation_comments: [
+        {
+          id: 1,
+          name: '房间很好',
+          comments: 85,
+        },
+        {
+          id: 2,
+          name: '早餐丰富',
+          comments: 8,
+        },
+        {
+          id: 3,
+          name: '设计不错',
+          comments: 855,
+        },
+        {
+          id: 4,
+          name: '服务周到',
+          comments: 815,
+        }
+      ],
+      hotel_information_institutions_pic_item: [
+        {
+          id: 1,
+          img: '',
+          name: '免费WiFi'
+        },
+        {
+          id: 2,
+          img: '',
+          name: '免费停车场'
+        },
+        {
+          id: 3,
+          img: '',
+          name: '接机服务'
+        },
+        {
+          id: 4,
+          img: '',
+          name: '餐厅'
+        }
       ]
     }
   },
@@ -296,7 +321,7 @@ export default {
     Get () {
       console.log(123)
     },
-    // 跳到详情野蛮
+    // 跳到详情页面
     hotelDetai (item) {
       console.log(item)
       let id = item.id
@@ -304,11 +329,15 @@ export default {
         url: '/pages/detailD/main?id=' + id
       })
     },
-    // 跳到点评野蛮
+    // 跳到点评页面
     comment (id) {
       wx.navigateTo({
         url: '/pages/comment/main?id=' + id
       })
+    },
+    // 跳到评级类型 好 早餐 设计 服务
+    guestEvaluation(id) {
+      console.log(id)
     }
   },
   mounted () {
@@ -334,7 +363,7 @@ export default {
     display: flex;
     justify-content: center;
     font-size: 13px;
-    color: #ccc;
+    color: rgb(0, 126, 226);
     height: 50px;
     line-height: 50px;
   }
@@ -401,6 +430,20 @@ export default {
   display: flex;
   flex-direction: column;
   text-align: right
+}
+.nearby_type_hotel {
+  display: flex;
+  font-size: 15px;
+  flex-direction:column;
+  background: white;
+  /* height: 250px; */
+  padding: 10px;
+  margin-top: 10px
+}
+.nearby_type_hotel_title {
+  border-bottom: 1px solid #ccc;
+  height: 40px;
+  padding-top:10px;
 }
 .nearby_hotel {
   display: flex;
@@ -506,15 +549,202 @@ export default {
 .detailShow {
   display: flex;
   justify-content: space-around;
-  font-size: 13px;
+  font-size: 11px;
   padding: 10px 0 5px 0
 }
 .detailShowItem {
+  display: flex;
   background:rgb(240, 240, 240);
   height: 20px;
-  line-height: 20px;
-  text-align: center;
   border-radius:30px 30px;
-  width: 60px
+  width: 60px;
+  justify-content: center;
+  align-items: center;
+}
+.guest_evaluation_all {
+  display: flex;
+  flex-direction:column;
+  background: white;
+  /* height: 250px; */
+  padding: 10px;
+  font-size: 15px;
+}
+.guest_evaluation_num {
+  font-size: 13px;
+  color: #ccc;
+}
+.guest_evaluation_comments {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin: 10px 0;
+}
+.guest_evaluation_comments_item {
+  width: 80px;
+  height: 20px;
+  border-radius:20px 20px;
+  background: rgb(237, 245, 251);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 20px
+}
+.guest_evaluation_item {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+.guest_evaluation_item_grade {
+  width: 30px;
+  height: 30px;
+  border-radius: 50% 50%;
+  background: rgb(0, 126, 226);
+  text-align: center;
+  line-height: 30px;
+  color: #fff;
+}
+.guest_evaluation_item_star {
+  width: 50px;
+  margin-left:10px;
+  text-align: center;
+  height: 16px;
+  line-height: 16px;
+  color: rgb(0, 126, 226);
+  border: 1px solid #ccc;
+  font-size: 11px;
+}
+.guest_evaluation_item_title {
+  color: #ccc;
+  font-size: 11px
+}
+.hotel_QuestionAnswer {
+  display: flex;
+  flex-direction:column;
+  background: white;
+  /* height: 180px; */
+  padding: 10px;
+  font-size: 15px;
+  margin-top: 10px
+}
+.hotel_QuestionAnswer_item {
+  display: flex;
+  /* justify-content: space-around; */
+  /* align-content: flex-start; */
+  height: 40px;
+  font-size: 13px;
+  margin-top: 10px;
+}
+.hotel_QuestionAnswer_item_ask {
+  width: 14px;
+  height: 14px;
+  font-size: 7px;
+  text-align: center;
+  line-height: 14px;
+  background:rgb(0, 126, 226);
+  color: white;
+  margin-top: 1%;
+}
+.hotel_QuestionAnswer_item_answer {
+  font-size: 11px;
+  color: #ccc;
+  margin-left: 5%;
+}
+.hotel_information {
+  display: flex;
+  flex-direction:column;
+  background: white;
+  font-size: 15px;
+  height: 600px;
+  padding: 10px;
+  margin-top: 10px
+}
+.hotel_information_policy {
+  display: flex;
+  flex-direction: column;
+  height: 90px;
+  font-size: 13px;
+  justify-content: space-around;
+  margin-top: 10px
+}
+.hotel_information_policy_img {
+  display: flex;
+  align-items: center;
+  height: 20px;
+}
+.hotel_information_institutions {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  height: 100px;
+  justify-content: space-around;
+  margin-top: 10px
+}
+.hotel_information_institutions_pic {
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center
+}
+.hotel_information_institutions_pic_item {
+  display: flex;
+  flex-direction: column;
+  width: 60px;
+  height: 40px;
+  font-size: 11px;
+  text-align: center;
+}
+.hotel_information_way {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  height: 400px;
+  justify-content: space-around;
+  margin-top: 10px
+}
+.hotel_information_way_details {
+  display: flex;
+  height: 90px;
+}
+.hotel_information_way_details_img {
+  width: 15px;
+  height: 15px;
+  margin-top: 25%;
+}
+.hotel_information_way_details_D {
+  display: flex;
+  flex-direction: column;
+  height: 90px;
+  margin-left: 5px;
+  justify-content: space-between
+}
+.hotel_information_way_details_D_item {
+  display: flex;
+  flex-direction: column;
+  height: 45px;
+  justify-content: space-around
+}
+.order_check_hotel {
+  height: 30px;
+  background: white;
+  display: flex;
+  font-size: 15px;
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center
+}
+.all_comments {
+  width: 136px;
+  height: 30px;
+  color: rgb(0, 126, 226);
+  border: 1px solid #ccc;
+  text-align: center;
+  line-height: 30px;
+  font-size: 13px;
+  margin: 10px auto 0;
+  border-radius: 10px 10px;
 }
 </style>
