@@ -119,7 +119,7 @@
     data() {
       return {
         isLeft: false,
-        left: -210,
+        left: -230,
         mark: 0,
         newmark: 0,
         city: '北京', //地址默认
@@ -225,7 +225,7 @@
         let rtl = this.mark - this.newmark
         let ltr = this.newmark - this.mark
         if (rtl < 100) {
-          this.left = -210
+          this.left = -220
           this.isLeft = false
         }
         if (ltr < 100) {
