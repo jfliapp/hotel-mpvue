@@ -7,6 +7,7 @@ fly.interceptors.request.use((req) => {
   console.log(req)
   wx.showLoading({title: '加载中...'})
   // wx.showNavigationBarLoading() // 显示导航条加载动画
+  // 这里可能要加入头部信息  
   req.headers['X-Tag'] = 'flyio'
   return req
 })

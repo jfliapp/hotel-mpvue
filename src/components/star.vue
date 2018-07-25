@@ -2,11 +2,7 @@
   <div>
     <div style="display: flex;width: 150px;justify-content: space-around">
       <div v-for="(item, id1) in itemStar" :key="id1" @click="clickImg(id1+1)" class="imgStar" :class="item">
-        <!-- <block>⭐</block> -->
-      </div>
-      <!-- <div v-for="(item, id2) in (5-starT)" :key="id" @click="clickImg(id2+1)" data-sr="starF">
-        <block><img :src="img" style="width: 20px;height: 20px;"></block>
-      </div> -->
+      </div>      
     </div>
   </div>
 </template>
@@ -29,7 +25,7 @@
       itemStar () {
         let result = []
         let score = Math.floor(this.score * 2) / 2
-        let hasDecimal = score % 1 !== 0
+        let hasDecimal = score % 1 !== 0 // 看余数是是否等于0
         let integer = Math.floor(score)
         for (let i = 0; i < integer; i++) {
           result.push('on')

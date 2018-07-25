@@ -1,7 +1,7 @@
 <template>
-  <div style="background:rgb(246, 246, 246);font-size: 15px">
-    <div style="height: 20px;line-height: 20px;padding: 20px">上海8090青年求职公寓</div>
-    <div style="display: flex;flex-direction: column;background: white;padding: 20px;height: 200px;justify-content: space-around">
+  <div class="commentsDetail">
+    <div class="commentsDetail_title">上海8090青年求职公寓</div>
+    <div class="commentsDetail_info">
       <div style="display: flex;justify-content: space-between;">
         <div>房间卫生</div>
         <div><star v-model.lazy="homeStar"/></div>
@@ -28,20 +28,25 @@
         </div>
       </div>
     </div>
-    <div style="height: 400px;position: relative;">
-      <div style="position: absolute;top: 0;right: 0;"><img src="/static/imgs/grade.png" style="width: 30px;height: 30px;"></div>
-      <div style="padding: 20px;display: flex;align-items: center">
+    <div class="commentsDetail_update">
+      <div style="position: absolute;top: 0;right: 0;">
+        <img src="/static/imgs/grade.png" style="width: 30px;height: 30px;">
+      </div>
+      <div class="commentsDetail_update_img">
         <div>
           <imgupdate @imgsUp="imgsGet"></imgupdate>
         </div>
         <div v-show="!(imgUp.length > 0)" class="imgTip">上传图片可抽奖哦！建议上传设施、周围环境、、外观等细节照片，最多9张</div>
       </div>
-      <div style="padding: 20px;">
-        <textarea v-model.lazy="textValue" style="background: white;width: 100%;padding: 20px;box-sizing: border-box" placeholder="写点评赚积分免房！您可分享对酒店环境、服务、设施和价格的评论"></textarea>
+      <div class="commentsDetail_update_text">
+        <textarea v-model.lazy="textValue" class="commentsDetail_update_text_area" placeholder="写点评赚积分免房！您可分享对酒店环境、服务、设施和价格的评论"></textarea>
       </div>
-      <div style="display: flex;flex-direction: column;text-align: right;height: 30px;padding-right: 20px;justify-content: space-around">
+      <div class="commentsDetail_rule">
         <div style="color: #ccc;">至少5个字</div>
-        <div style="color: rgb(0, 126, 226)">点评积分规则></div>
+        <div style="color: rgb(0, 126, 226)">
+          点评积分规则
+          <img src="/static/imgs/right.png" style="width: 10px;height: 10px;">
+        </div>
       </div>
       <div class="submite" @click="submit">提交</div>
     </div>
@@ -130,6 +135,23 @@
   }
 </script>
 <style>
+  .commentsDetail {
+    background:rgb(246, 246, 246);
+    font-size: 15px
+  }
+  .commentsDetail_title {
+    height: 20px;
+    line-height: 20px;
+    padding: 20px
+  }
+  .commentsDetail_info {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 20px;
+    height: 200px;
+    justify-content: space-around
+  }
   .commentsTypes {
     margin-top: 10px;
     /* height: 70px; */
@@ -165,9 +187,9 @@
   .submite {
     width: 90%;
     margin: 20px auto;
-    height: 60px;
+    height: 44px;
     text-align: center;
-    line-height: 60px;
+    line-height: 44px;
     color: white;
     background: rgb(254, 105, 19)
   }
@@ -175,5 +197,32 @@
     width: 250px;
     font-size: 13px;
     padding-left: 20px
+  }
+  .commentsDetail_update {
+    height: 350px;
+    position: relative;
+  }
+  .commentsDetail_update_img {
+    padding: 20px;
+    display: flex;
+    align-items: center
+  }
+  .commentsDetail_update_text {
+    padding: 20px;
+  }
+  .commentsDetail_update_text_area {
+    background: white;
+    width: 100%;
+    padding: 20px;
+    height: 90px;
+    box-sizing: border-box
+  }
+  .commentsDetail_rule {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    height: 30px;
+    padding-right: 20px;
+    justify-content: space-around
   }
 </style>

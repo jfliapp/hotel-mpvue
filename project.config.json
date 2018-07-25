@@ -39,8 +39,8 @@
 				},
 				{
 					"id": 1,
-					"name": "orderDetail",
-					"pathName": "pages/orderDetail/main",
+					"name": "comment",
+					"pathName": "pages/commentDetail/main",
 					"query": ""
 				},
 				{

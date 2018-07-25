@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div style="position: fixed;top:0;background: #f5f5f5;padding: 5px 0;width: 100%;">
+  <div class="calendar_all">
+    <div class="calendar_week">
       <div style="display: flex;">
         <div class="date-week" v-for="(week, weekI) in weeksStr" :key="weekI">
           <div v-if="week != '日' && week != '六'">{{week}}</div>
@@ -8,15 +8,16 @@
         </div>
       </div>
     </div>
-    <div style="margin-top: 30px;width: 100%">
-      <div v-for="(month, monthI) in dateList" :key="monthI" style="padding: 15px 0">
+    <div class="calendar_date">
+      <div v-for="(month, monthI) in dateList" :key="monthI" class="calendar_date_all">
         <div class="date-year-month" style="text-align: center;">{{month.year}}年{{month.month}}月</div>
-        <div style="display: flex;flex-wrap: wrap;margin-top: 15px;">
-          <div class="date-day" :class="day.day <= 0 ? 'bgwhite' : day.class" v-for="(day, dayI) in month.days" :key="dayI" @click=onPressDate(month.year,month.month,day.day)>
+        <div style="display: flex;flex-wrap: wrap;">
+          <div class="date-day" :class="day.day <= 0 ? 'bgwhite' : day.class" v-for="(day, dayI) in month.days" :key="dayI" 
+          @click=onPressDate(month.year,month.month,day.day)>
             <div class="item-days">
               <div style="display: flex;flex-direction: column;align-items: center;">
                 <div>{{day.day > 0 ? day.day : ''}}</div>
-                <div style="font-size: 9px;">{{day.daytext ? day.daytext : ''}}</div>
+                <div class="calendar_festival">{{day.daytext ? day.daytext : ''}}</div>
               </div>
               <div class="inout" v-if="day.inday">入店</div>
               <div class="inout" v-if="day.outday">离店</div>
@@ -400,22 +401,40 @@
 
 </script>
 <style scoped>
+  .calendar_all {
+    font-size: 15px;
+  }
+  .calendar_week {
+    position: fixed;
+    top:0;
+    background: #f5f5f5;
+    padding: 5px 0;
+    width: 100%;
+  }
+  .calendar_date {
+    margin-top: 30px;
+    width: 100%
+  }
+  .calendar_date_all {
+    padding: 15px 0
+  }
   .date-year-month {
     font-size: 20px;
   }
-
   .date-day {
-    width: 50px;
+    width: 51.3px;
     height: 60px;
     display: flex;
-    font-size: 17px;
-    padding: 5px 1.4px;
+    /* font-size: 17px; */
+    padding: 5px 1.9px;
     /* padding:5px; */
     justify-content: center;
     align-items: center;
     flex-direction: column;
   }
-
+  .calendar_festival {
+    font-size: 11px;
+  }
   .date-day.bgitem {
     background-color: #d8ecf9;
   }

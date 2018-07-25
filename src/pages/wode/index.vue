@@ -66,7 +66,7 @@
             </div>
           </div>
         </div>
-        <div class="input_item_form">
+        <div class="input_item_form" @click="showModel">
           <div style="color: #ccc">关键字/位置/品牌/酒店名</div>
           <div style="display: flex;align-items: center"><img src="/static/imgs/right.png" style="width: 20px;height: 20px;"></div>
         </div>
@@ -182,6 +182,13 @@
       this.checkOutDate = checkOutDate.substr(5, 5).replace('-', '月')
     },
     methods: {
+      //showModel 
+      showModel() {
+        wx.showModal({
+          title: 'showModal',
+          content: '这是一个模态弹窗'
+        })
+      },
       menu() {
         console.log('侧边栏')
         this.isLeft = true

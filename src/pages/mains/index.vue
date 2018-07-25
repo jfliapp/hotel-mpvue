@@ -44,9 +44,8 @@
               </div>
             </div>
             <div class="F_model_B" style="display: flex;">
-              <div style="width: 50%;text-align: center;height: 40px;line-height: 40px">清空</div>
-              <div style="width: 50%;text-align: center;height: 40px;line-height: 40px;background: rgb(254, 105, 19);"
-              @click="sureF">确定</div>
+              <div class="F_model_B_botton">清空</div>
+              <div class="F_model_B_botton F_model_B_botton_sure" @click="sureF">确定</div>
             </div>
         </div>
         <div v-else-if="tapState == 'map'" class="F_model">
@@ -68,9 +67,8 @@
             </div>
           </div>
           <div class="F_model_B" style="display: flex;">
-            <div style="width: 50%;text-align: center;height: 40px;line-height: 40px">清空</div>
-            <div style="width: 50%;text-align: center;height: 40px;line-height: 40px;background: rgb(254, 105, 19);"
-            @click="sureF">确定</div>
+              <div class="F_model_B_botton">清空</div>
+              <div class="F_model_B_botton F_model_B_botton_sure" @click="sureF">确定</div>
           </div>
         </div>
         <div v-else-if="tapState == 'price'" class="F_model">
@@ -95,9 +93,8 @@
             </div>
           </div>
           <div class="F_model_B" style="display: flex;">
-            <div style="width: 50%;text-align: center;height: 40px;line-height: 40px">清空</div>
-            <div style="width: 50%;text-align: center;height: 40px;line-height: 40px;background: rgb(254, 105, 19);"
-            @click="sureF">确定</div>
+            <div class="F_model_B_botton">清空</div>
+            <div class="F_model_B_botton F_model_B_botton_sure" @click="sureF">确定</div>
           </div>
         </div>
         <div v-else></div>
@@ -135,13 +132,13 @@
           </div>
           <div style="display: flex;">
             <div class="filter_down"><img src="/static/imgs/search.png" class="imgS"></div>
-            <div><input style="height: 40px;padding-left: 3px" type="text" placeholder="关键字/位置/品牌/酒店名" @change="searchHotel"></div>
+            <div><input class="input_search" type="text" placeholder="关键字/位置/品牌/酒店名" @change="searchHotel"></div>
           </div>          
         </div>
         <div class="input_map">地图</div>
       </div>
     </div>    
-    <div class="filter_item" style="border-bottom: 1px solid #ccc;padding-bottom: 2px">
+    <div class="filter_item">
       <div @click="filterItem(item)" v-for="(item, index) in filter_item" :key="index">
         <div>
           <span :class="{click_change: item.active}">{{item.name}}&nbsp;&nbsp;</span>
@@ -160,7 +157,6 @@
     <div>
       <!-- 这里可能要放一个新的组件 因为要根据后台能的数据筛选出来的 -->
       <hotel-list :hotels="hotel_item" :hasMore="hasmore"></hotel-list>
-      
     </div>
   </div>
 </template>
@@ -459,7 +455,22 @@
         wx.navigateTo({
           url: '/pages/city/main'
         })
+      },
+      // 是看拿取数据
+      async testAll() {
+        const accesstoken = wx.getStorageSync('token')
+        // 如果这里不能用 就直接在main.js 里面写 Vue.prototype.$http=new flyio()
+        // 这个就是要引入api这个api 文件
+        const res = await this.$http.post(`${api}/user/sd`, {accesstoken})
+        if(res.data.success) {
+          wx.showToast({
+            title: '成功',
+            icon: 'none',
+            duration: 2000
+          })
+        }
       }
+
     }
   }
 </script>
@@ -548,14 +559,18 @@
     align-items: center;
     margin-left: 3px;
   }
+  .input_search {
+    height: 40px;
+    padding-left: 3px
+  }
   .filter_line {
     margin: 5px;
     height: 25px;
     border: 0.5px solid rgb(207, 207, 207);
   }
   .filter_item {
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 2px;
+    /* border-bottom: 1px solid #ccc; */
+    /* padding-bottom: 2px; */
     display: flex; 
     justify-content: space-around;
     font-size: 14px;
@@ -650,7 +665,16 @@
   height: 40px;
   font-size: 15px;
 }
-  .F_model_tlF {
+.F_model_B_botton {
+  width: 50%;
+  text-align: center;
+  height: 40px;
+  line-height: 40px
+}
+.F_model_B_botton_sure {
+  background: rgb(254, 105, 19);
+}
+.F_model_tlF {
     border-left: 3px solid rgb(0, 72, 145);
     background: white    
   }
