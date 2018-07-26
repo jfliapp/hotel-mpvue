@@ -51,6 +51,9 @@
       // 点击了其中一个 地址
       placeItem(item) {
         console.log(item)
+        wx.navigateBack({
+          delta: -1
+        })
       },
       // 点击搜索提示的
       searchInput (item) {

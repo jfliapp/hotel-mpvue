@@ -30,7 +30,7 @@
     </div>
     <div class="commentsDetail_update">
       <div style="position: absolute;top: 0;right: 0;">
-        <img src="/static/imgs/grade.png" style="width: 30px;height: 30px;">
+        <img src="/static/imgs/grade.png" class="img_grade">
       </div>
       <div class="commentsDetail_update_img">
         <div>
@@ -45,7 +45,7 @@
         <div style="color: #ccc;">至少5个字</div>
         <div style="color: rgb(0, 126, 226)">
           点评积分规则
-          <img src="/static/imgs/right.png" style="width: 10px;height: 10px;">
+          <img src="/static/imgs/right.png" class="img_right">
         </div>
       </div>
       <div class="submite" @click="submit">提交</div>
@@ -224,5 +224,13 @@
     height: 30px;
     padding-right: 20px;
     justify-content: space-around
+  }
+  .img_grade {
+    width: 30px;
+    height: 30px;
+  }
+  .img_right {
+    width: 10px;
+    height: 10px;
   }
 </style>

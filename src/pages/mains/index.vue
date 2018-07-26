@@ -6,7 +6,7 @@
         <navigator url="/pages/city/main">
           <div class="mask_place_distan">
             上海
-            <img src="/static/imgs/down.png" style="width: 15px;height: 15px;margin-left: 10px;">
+            <img src="/static/imgs/down.png" class="img_map">
           </div>
         </navigator>
         <div>
@@ -57,8 +57,7 @@
               @click="clickL2(item)">{{item.name}}</div>
             </div>
             <div style="display: flex;flex-direction: column;flex: 4;overflow-y: scroll">
-              <div v-for="(arrI, idxDist) in arrDistance" :key="idxDist"
-              style="display: flex;justify-content: space-between;padding: 5px 10px;border-bottom: 1px solid rgb(235, 235, 235);font-size: 15px"
+              <div v-for="(arrI, idxDist) in arrDistance" :key="idxDist" class="F_model_choose_place"
               :class="{dist_color: arrI.checked}"
               @click="check(arrI)">
                 <div>{{arrI.value}}</div>
@@ -148,7 +147,7 @@
       </div>
       <div style="color: #1296db">&nbsp;欢迎度排序<img class="img_class" src="/static/imgs/down_san.png"/></div>
     </div>
-    <div class="filter_item" style="background: rgb(244, 244, 246);margin-top: 8px;padding: 10px 0">
+    <div class="filter_item filter_sub_item">
       <div class="filter_li">低价好评</div>
       <div class="filter_li">位置距离</div>
       <div class="filter_li" @click="hotelType">酒店类型<img src="/static/imgs/down.png" alt="" class="img_class"></div>
@@ -497,6 +496,11 @@
     height:50px;
     background: rgb(0, 126, 226)
   }
+  .img_map {
+    width: 15px;
+    height: 15px;
+    margin-left: 10px;
+  }
   .placeMask {
     width: 100%;
     height: 100%;
@@ -579,6 +583,11 @@
     background: white;
     line-height: 30px;
   }
+  .filter_sub_item {
+    background: rgb(244, 244, 246);
+    margin-top: 8px;
+    padding: 10px 0
+  }
   .input_map {
     /* float: right; */
     width: 48px;
@@ -628,6 +637,13 @@
     line-height: 40px;
     text-align: center;
     border-bottom: 2px solid rgb(236, 236, 236);
+  }
+  .F_model_choose_place {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    border-bottom: 1px solid rgb(235, 235, 235);
+    font-size: 15px
   }
 .F_model_T_R {
   display: flex;

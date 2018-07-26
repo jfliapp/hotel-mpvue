@@ -34,13 +34,13 @@
       </div>
       <div class="free_get">
         <div style="color: rgb(0, 126, 226);">免费领取</div>
-        <div><img src="/static/imgs/right.png" style="width:15px;height: 15px;"></div>
+        <div><img src="/static/imgs/right.png" class="hotel_order_Detail_date_fix_img"></div>
       </div>
     </div>
     <div v-if="login" class="login_first">
       <div style="display: flex;">
-        <div :class="{loginChang: phone}" style="width: 50%;text-align: center;height:50px;line-height: 50px;" @click="changeLogin(1)">手机动态验证登录</div>
-        <div :class="{loginChang: !phone}" style="width: 50%;text-align: center;height:50px;line-height: 50px;" @click="changeLogin(2)">普通登录</div>
+        <div :class="{loginChang: phone}" class="login_first_logintype" @click="changeLogin(1)">手机动态验证登录</div>
+        <div :class="{loginChang: !phone}" class="login_first_logintype" @click="changeLogin(2)">普通登录</div>
       </div>
       <div v-if="phone" class="phone">
         <div class="phone_tel">
@@ -69,8 +69,8 @@
     </div>
     <div v-else>
       <div class="reward_all">
-        <div class="reward_item"><img src="/static/imgs/great.png" style="width: 30px;height: 30px;">&nbsp;&nbsp;好赞！这么划算的房间都能给你挑到</div>
-        <div class="reward_item"><img src="/static/imgs/help.png" style="width: 30px;height: 30px;">&nbsp;&nbsp;好赞！这么划算的房间都能给你挑到</div>
+        <div class="reward_item"><img src="/static/imgs/great.png" class="img_reward">&nbsp;&nbsp;好赞！这么划算的房间都能给你挑到</div>
+        <div class="reward_item"><img src="/static/imgs/help.png" class="img_reward">&nbsp;&nbsp;好赞！这么划算的房间都能给你挑到</div>
       </div>
       <div class="Room_from">
         <div class="Room_from_item" @click="roomChoose">
@@ -78,7 +78,7 @@
             <div class="Room_from_item_num">房间数</div>
             <div class="Room_from_item_Detail">{{roomNum}}间</div>
           </div>
-          <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" style="width:20px;height: 20px;"></div>
+          <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" class="img_down"></div>
         </div>
         <div>
           <div class="Room_from_item" v-for="(item, index) in roomNum" :key="index">
@@ -86,7 +86,7 @@
               <div class="Room_from_item_num" :style="{visibility: item == '0' ? '' : 'hidden'}">入住人</div>
               <div class="Room_from_item_Detail"><input type="text" placeholder="一间填一个人的姓名"></div>
             </div>
-            <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" style="width:20px;height: 20px;"></div>
+            <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" class="img_down"></div>
           </div>          
         </div>
         <div class="Room_from_item">
@@ -94,7 +94,7 @@
             <div class="Room_from_item_num">电话号码</div>
             <div class="Room_from_item_Detail"><input type="text" placeholder="电话"></div>
           </div>
-          <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" style="width:20px;height: 20px;"></div>
+          <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" class="img_down"></div>
         </div>
       </div>
       <div class="Room_from">
@@ -103,14 +103,14 @@
             <div class="Room_from_item_num">特殊要求</div>
             <div class="Room_from_item_Detail"><input type="text" placeholder="电话"></div>
           </div>
-          <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" style="width:20px;height: 20px;"></div>
+          <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" class="img_down"></div>
         </div>
         <div class="Room_from_item">
           <div style="display: flex;">
             <div class="Room_from_item_num">发票</div>
             <div class="Room_from_item_Detail">如需发票，可向酒店索取</div>
           </div>
-          <!-- <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" style="width:20px;height: 20px;"></div> -->
+          <!-- <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" class="img_down"></div> -->
         </div>
       </div>
       <div class="hotel_atention">
@@ -122,15 +122,15 @@
         </div>
         <div class="hotel_foot_Bottom">
           <span>
-            <img style="width:10px ;height: 10px;margin-right: 5px;" src="/static/imgs/foot_icon.png" alt="">
+            <img class="iconTip" src="/static/imgs/foot_icon.png" alt="">
           </span>
           专业服务 · 全程保障
         </div>
       </div>
-      <div style="height: 20px;color: rgb(0, 126, 226);text-align: right;padding: 20px;background: white;line-height: 30px;">
+      <div class="total">
         总计： ￥129.99
       </div>
-      <div style="height: 20px;color: white;text-align: center;padding: 20px;background: rgb(9, 187, 7);line-height: 20px;">
+      <div class="pay">
         微信支付
       </div>
     </div>
@@ -142,7 +142,6 @@
     name: 'order',
     data () {
       return {
-        data: 'xx',
         phone: true,
         login: true,
         code: true,
@@ -323,6 +322,11 @@
     height: 50px;
     line-height: 50px;
   }
+  .iconTip {
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+  }
   .hotel_order{
     display: flex;
     flex-direction: column;
@@ -488,6 +492,10 @@
     align-items: center;
     color: rgb(0, 126, 226)
   }
+  .img_reward {
+    width: 30px;
+    height: 30px;
+  }
   .login {
     font-size: 20px;
     color: white;
@@ -514,5 +522,31 @@
     margin-top: 10px;
     font-size: 15px;
     height: 300px;
+  }
+  .login_first_logintype {
+    width: 50%;
+    text-align: center;
+    height:50px;
+    line-height: 50px;
+  }
+  .img_down {
+    width:20px;
+    height: 20px;
+  }
+  .total {
+    height: 20px;
+    color: rgb(0, 126, 226);
+    text-align: right;
+    padding: 20px;
+    background: white;
+    line-height: 30px;
+    font-size: 17px;
+  }
+  .pay {
+    height: 50px;
+    color: white;
+    text-align: center;
+    background: rgb(9, 187, 7);
+    line-height: 50px;
   }
 </style>

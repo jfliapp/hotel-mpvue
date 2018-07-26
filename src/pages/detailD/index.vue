@@ -28,7 +28,8 @@
       </div>
       <div class="detailD_facility_more">
         <div>更多房型设施</div>
-        <div style="display: flex;align-items: center;color:rgb(0, 126, 226)">更多设施<img src="/static/imgs/down.png" style="width: 20px;height: 20px"></div>
+        <div style="display: flex;align-items: center;color:rgb(0, 126, 226)">更多设施
+          <img src="/static/imgs/down.png" class="img_more_facility"></div>
       </div>
       <div style="height: 100px;background: rgb(246, 246, 246)"></div>
       <div class="detailD_facility_monney">
@@ -119,6 +120,10 @@
     justify-content: space-between;
     height: 50px;
     line-height: 50px
+  }
+  .img_more_facility {
+    width: 20px;
+    height: 20px
   }
   .detailD_facility_monney {
     display: flex;

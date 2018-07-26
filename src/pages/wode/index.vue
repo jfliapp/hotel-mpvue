@@ -24,18 +24,18 @@
       </div>
     </div>
     <div @touchstart.stop="touchStart" @touchend.stop="touchEnd" @touchmove.stop="touchmove">
-      <img src="/static/imgs/hotelDetail.png" style="width: 100%;height: 102px" mode="aspectFill">
+      <img src="/static/imgs/hotelDetail.png" class="img_tille" mode="aspectFill">
     </div>
     <div class="input_all">
       <form>
         <div class="input_item">
           <div class="input_place_all">
-            <div class="input_place">
+            <div class="input_place" @click="distance">
               <span class="input_place_distance">目的地</span>
               <p>{{city}}</p>
             </div>
             <div class="input_place_R">
-              <img style="width: 20px;height:20px;" src="/static/imgs/right.png">
+              <img class="img_item" src="/static/imgs/right.png">
             </div>
             <div class="input_place_R_distance" @click="getLocation">
               <img style="width: 40px;height:40px;" src="/static/imgs/map_now.png" alt="">
@@ -61,24 +61,28 @@
                 </div>
               </div>
               <div>
-                <img src="/static/imgs/right.png" style="width: 20px;height: 20px;">
+                <img src="/static/imgs/right.png" class="img_item">
               </div>
             </div>
           </div>
         </div>
         <div class="input_item_form" @click="showModel">
           <div style="color: #ccc">关键字/位置/品牌/酒店名</div>
-          <div style="display: flex;align-items: center"><img src="/static/imgs/right.png" style="width: 20px;height: 20px;"></div>
+          <div style="display: flex;align-items: center">
+            <img src="/static/imgs/right.png" class="img_item">
+          </div>
         </div>
         <!-- <div class="input_item"> -->
           <div class="input_item_form">
             <div style="color: #ccc">星级/价格</div>
-            <div style="display: flex;align-items: center"><img src="/static/imgs/right.png" style="width: 20px;height: 20px;"></div>
+            <div style="display: flex;align-items: center">
+              <img src="/static/imgs/right.png" class="img_item">
+            </div>
           </div>
         <!-- </div> -->
         <div class="input_item">
           <div class="input_item_radio">
-            <span style="font-size: 13px;color: #ccc">出行类型 · 帮您挑选心悦酒店</span>
+            <span class="input_item_radio_title">出行类型 · 帮您挑选心悦酒店</span>
             <radio-group class="radio-group" @change="radioChange">
               <label class="radio" v-for="(item,index) in radios" :key="index" style="margin-right: 15px;">
                 <radio :value="item.name" checked="item.checked"/>{{item.value}}
@@ -284,6 +288,13 @@
           url: '/pages/mains/main'
         })
       },
+      // 手动输入地址
+      distance() {
+        console.log("distance")
+        wx.navigateTo({
+          url: '/pages/city/main'
+        })
+      },
       // 获取附近的地址
       getLocation() {
         const _that = this
@@ -351,6 +362,10 @@
     padding: 10px;
     box-sizing: border-box;
     background: rgb(0, 126, 226)
+  }
+  .img_tille {
+    width: 100%;
+    height: 102px
   }
   .img_sub {
     width: 30px;
@@ -513,6 +528,10 @@
   .input_place_R {
     margin: 4% 0 0 50%;
   }
+  .img_item {
+    width: 20px;
+    height:20px;
+  }
   .dateChoose {
     width: 100%;
     display: flex;
@@ -548,6 +567,10 @@
     height: 50px;
     flex-direction: column;
     justify-content: space-around;
+  }
+  .input_item_radio_title {
+    color: #ccc;
+    font-size: 13px
   }
   radio .wx-radio-input{
     border-radius: 50%;/* 圆角 */

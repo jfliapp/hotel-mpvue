@@ -1,28 +1,28 @@
 <template>
   <div style="position: relative;background: rgb(245, 245, 245);">
     <div>
-      <img src="/static/imgs/hotelDetail.png" alt="" style="width: 100%">
+      <img src="/static/imgs/hotelDetail.png" style="width: 100%">
     </div>    
-    <div style="position: absolute;top: 150px;width:95%;color: white;left: 2.5%;">
-      <div style="padding-left: 10px;">
+    <div class="detail_all_position">
+      <div class="detail_all_position_top">
         <div>上海Pagoda君亭设计酒店</div>
-        <p style="font-size: 15px">2017年开业 - 豪华型</p>
+        <p class="detail_all_position_top_info">2017年开业 - 豪华型</p>
       </div>
-      <div style="height: 100px;background: white;border-radius: 15px 15px 0 0;padding: 10px 0;color:black;margin-top: 15px;">
-        <div style="height:50px;width:100%;border-bottom: 1.5px solid rgb(235, 235, 235);display: flex;justify-content: space-between;align-items: center;font-size: 14px;">
-          <div style="margin-left: 10px;width: 40px;height: 40px;border-radius: 50% 50%;background: rgb(0, 126, 226);text-align: center;line-height: 40px">4.2分</div>
+      <div class="detail_all_position_bottom">
+        <div class="detail_all_position_bottom_info">
+          <div class="detail_all_position_bottom_info_grade">4.2分</div>
           <span style="color:rgb(0, 126, 226)">很好</span>
           <div style="color:rgb(254, 105, 19)">设计不错  房间很好</div>
-          <div style="margin-right: 5px">
+          <div>
             1195条点评
-            <img src="/static/imgs/right.png" style="width: 15px;height: 15px;">
+            <img src="/static/imgs/right.png" class="img_right">
           </div>
         </div>
-        <div style="display: flex;justify-content: space-between;height: 50px;line-height: 50px;font-size: 16px;padding:0 15px;">
+        <div class="detail_place">
           <div>
             江湾五角场 证学路77好
           </div>
-          <div><img src="/static/imgs/map.png" alt="" style="width: 20px;height: 20px;"></div>
+          <div><img src="/static/imgs/map.png" class="img_date_right"></div>
         </div>
       </div>
     </div>
@@ -46,7 +46,7 @@
             <div>6月12日<span class="dateDay">明天</span></div>
           </div>
           <div>
-            <img src="/static/imgs/right.png" style="width: 20px;height: 20px;">
+            <img src="/static/imgs/right.png" class="img_date_right">
           </div>
         </div>
         <div class="detailShow">
@@ -54,7 +54,9 @@
           <div class="detailShowItem">大床</div>
           <div class="detailShowItem">双床</div>
           <div class="detailShowItem">免费取消</div>
-          <div class="detailShowItem">筛选<img src="/static/imgs/down.png" style="width: 10px;height: 10px;margin-left: 3px;"></div>
+          <div class="detailShowItem">筛选
+            <img src="/static/imgs/down.png" class="img_right">
+          </div>
         </div>
       </div>
     </div>
@@ -66,7 +68,8 @@
           <div v-show="item.popular" class="popular">人气</div>
         </div>
         <div class="hotel_Detai_R">
-          <div style="display: flex;align-items: center">{{item.name}} <img src="/static/imgs/right.png" class="hotel_Detai_R_img"></div>
+          <div style="display: flex;align-items: center">{{item.name}} 
+            <img src="/static/imgs/right.png" class="hotel_Detai_R_img"></div>
           <div>{{item.attr[0]}}m&sup2; {{item.attr[1]}} <span style="color:rgb(0, 126, 226)">{{item.attr[2]}}</span></div>
           <div class="hotel_Detai_R_gift">送好礼</div>
           <div class="hotel_Detai_R_Bottom">
@@ -74,7 +77,7 @@
               <div>免费取消 立即确认</div>
               <div>无需提前支付房费</div>
             </div>
-            <div class="hotel_Detai_R_Bottom_B" style="">
+            <div class="hotel_Detai_R_Bottom_B">
               <div style="color: #ccc">C-TRIP <span style="text-decoration:line-through;">${{item.old_price}}</span></div>
               <div>OUR PRICE ${{item.new_price}}</div>
             </div>
@@ -127,7 +130,7 @@
       <div>酒店详情<span class="guest_evaluation_num">(1325)条</span></div>
       <div class="hotel_information_policy">
         <div class="hotel_information_policy_img">
-          <img src="/static/imgs/hotel_detail_icon.png" style="width: 10px;height: 10px">
+          <img src="/static/imgs/hotel_detail_icon.png" class="img_hotel_detail_icon">
           <span>&nbsp;酒店政策</span>
         </div>
         <div style="color: #ccc">入住时间：14:00以后    离店时间：12:00以前</div>
@@ -137,7 +140,7 @@
       </div>
       <div class="hotel_information_institutions">
         <div class="hotel_information_policy_img">
-          <img src="/static/imgs/hotel_detail_icon.png" style="width: 10px;height: 10px">
+          <img src="/static/imgs/hotel_detail_icon.png" class="img_hotel_detail_icon">
           <span>&nbsp;酒店设施</span>
         </div>
         <div class="hotel_information_institutions_pic">
@@ -145,17 +148,17 @@
             <div class="hotel_information_institutions_pic_item"
               v-for="(item, index) in hotel_information_institutions_pic_item" :key="item.id">
               <div>
-                <img src="/static/imgs/wifi.png" alt="" style="width: 26px;height: 20px;">
+                <img src="/static/imgs/wifi.png" class="img_wifi">
               </div>
               <div style="color: #ccc">{{item.name}}</div>
             </div>            
           </div>
-          <div><img src="/static/imgs/right.png" style="width: 10px;height: 10px;"></div>
+          <div><img src="/static/imgs/right.png" class="img_right"></div>
         </div>
       </div>
       <div class="hotel_information_way">
         <div class="hotel_information_policy_img">
-          <img src="/static/imgs/hotel_detail_icon.png" style="width: 10px;height: 10px">
+          <img src="/static/imgs/hotel_detail_icon.png" class="img_hotel_detail_icon">
           <span>&nbsp;酒店设施</span>
         </div>        
         <div class="hotel_information_way_details">
@@ -231,9 +234,9 @@
       </div>
       <div class="all_comments" @click="comment(1)">查看全部点评</div>
     </div>
-    <div style="">
+    <div>
       <div class="hotel_foot_Bottom">
-        <span><img style="width:10px ;height: 10px;margin-right: 5px;" src="/static/imgs/foot_icon.png" alt=""></span>专业服务 · 全程保障
+        <span><img class="iconTip" src="/static/imgs/foot_icon.png" alt=""></span>专业服务 · 全程保障
       </div>
     </div>
     <div class="order_check_hotel">
@@ -357,6 +360,45 @@ export default {
     height: 0;
     color: transparent;   
   }
+  .detail_all_position {
+    position: absolute;
+    top: 150px;
+    width:95%;
+    color: white;
+    left: 2.5%;
+  }
+  .detail_all_position_top {
+    padding-left: 10px;
+  }
+  .detail_all_position_top_info {
+    font-size: 15px
+  }
+  .detail_all_position_bottom {
+    height: 100px;
+    background: white;
+    border-radius: 15px 15px 0 0;
+    padding: 10px 0;
+    color:black;
+    margin-top: 15px;
+  }
+  .detail_all_position_bottom_info {
+    height:50px;
+    width:100%;
+    border-bottom: 1.5px solid rgb(235, 235, 235);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+  }
+  .detail_all_position_bottom_info_grade {
+    margin-left: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50% 50%;
+    background: rgb(0, 126, 226);
+    text-align: center;
+    line-height: 40px
+  }
   .hotel_foot_Bottom {
     width: 100%;
     /* text-align: center; */
@@ -366,6 +408,11 @@ export default {
     color: rgb(0, 126, 226);
     height: 50px;
     line-height: 50px;
+  }
+  .iconTip {
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
   }
 .hotel_Detai {
   display: flex;
@@ -529,6 +576,18 @@ export default {
   justify-content: space-around;
   align-items: center
 }
+.detail_place {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+  padding:0 15px;
+}
+.img_date_right {
+  width: 20px;
+  height: 20px;
+}
 .days {
   justify-self: center;
   font-size: 15px;
@@ -675,6 +734,10 @@ export default {
   align-items: center;
   height: 20px;
 }
+.img_hotel_detail_icon {
+  width: 13px;
+  height: 13px
+}
 .hotel_information_institutions {
   display: flex;
   flex-direction: column;
@@ -696,6 +759,14 @@ export default {
   height: 40px;
   font-size: 11px;
   text-align: center;
+}
+.img_wifi {
+  width: 26px;
+  height: 20px;
+}
+.img_right {
+  width: 10px;
+  height: 10px;
 }
 .hotel_information_way {
   display: flex;

@@ -2,7 +2,7 @@
   <div class="comments">
     <div class="comments_integral">
       <div>3天内点评积分+50，传图还可抽奖！</div>
-      <div style="display: flex;align-items: center">积分规则<img src="/static/imgs/rule.png" style="width: 15px;height: 15px;margin-left: 10px"></div>
+      <div style="display: flex;align-items: center">积分规则<img src="/static/imgs/rule.png" class="img_comment"></div>
     </div>
     <div class="comments_details">
       <div class="comments_details_title">待点评 ({{len}})</div>
@@ -12,7 +12,7 @@
           <div>{{item.name}}</div>
           <div class="comments_details_item_top_R">
             写点评
-            <img src="/static/imgs/rule.png" style="width: 15px;height: 15px;margin-left: 10px">
+            <img src="/static/imgs/rule.png"  class="img_comment">
           </div>
         </div>
         <div class="comments_details_item_info">
@@ -111,5 +111,10 @@
   height: 60px;
   justify-content: space-around;
   font-size: 13px
+}
+.img_comment {
+  width: 15px;
+  height: 15px;
+  margin-left: 10px
 }
 </style>

@@ -24,7 +24,7 @@
           </div>
           <div style="display: flex;justify-content: space-between;color: rgb(0, 126, 226);">
             <div class="order_detail_info_way">
-              <img src="/static/imgs/way.png" style="width: 13px;height: 13px;">
+              <img src="/static/imgs/way.png" class="img_way_icon">
               &nbsp;&nbsp;问路卡
             </div>
             <div style="display: flex;">
@@ -41,13 +41,13 @@
       </div>
       <div class="order_show_check">
         <div class="order_show_check_detail">查看一年前订单
-          <img src="/static/imgs/right.png" style="width: 15px;height: 15px;margin-left: 10px">
+          <img src="/static/imgs/right.png" class="img_right">
         </div>
       </div>
     </div>
     <div class="order_filter">
       <div style="width: 50%;display: flex;justify-content: center;">
-        <img src="/static/imgs/filter.png" style="width: 20px;height: 20px;margin-right: 10px">
+        <img src="/static/imgs/filter.png" class="img_right">
         筛选
       </div>
       <div style="width: 50%;display: flex;justify-content: center">
@@ -168,6 +168,10 @@
     align-items: center;
     height: 20px;
   }
+  .img_way_icon {
+    width: 13px;
+    height: 13px;
+  }
   .order_show {
     height: 200px;
     display: flex;
@@ -200,5 +204,10 @@
     height: 50px;
     background: white;
     align-items: center
+  }
+  .img_right {
+    width: 15px;
+    height: 15px;
+    margin-left: 10px
   }
 </style>

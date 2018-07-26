@@ -1,8 +1,8 @@
 <template>
-  <div style="background: rgb(245, 245, 245);min-height: 500px;">
-    <div style="display: flex;justify-content: space-between;height:30px;background: white;padding: 20px;border-bottom: 1px solid #ccc;">
+  <div style="background: rgb(245, 245, 245);">
+    <div class="collect_all">
       <div>全部城市 (2)</div>
-      <div>></div>
+      <div><img src="/static/imgs/right.png" class="img_right"></div>
     </div>
     <div style="display: flex;flex-direction: column;">
       <div class="collect_item"
@@ -67,6 +67,19 @@
   }
 </script>
 <style>
+  .collect_all {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height:30px;
+    background: white;
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+  }
+  .img_right{
+    width: 15px;
+    height: 15px;
+  }
   .collect_item {
     display: flex;
     padding: 20px;
