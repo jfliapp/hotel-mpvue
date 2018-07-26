@@ -242,7 +242,7 @@
     <div class="order_check_hotel">
       <div>最新预定：5小时</div>
       <div style="color:rgb(254, 105, 19);display: flex;align-items: center">
-        <img src="/static/imgs/room.png" style="width: 20px;height: 20px;">
+        <img src="/static/imgs/room.png" class="img_date_right">
         <span>&nbsp;查看房型</span>
       </div>
     </div>
