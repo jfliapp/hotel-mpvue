@@ -662,14 +662,14 @@
   padding:0 15px;
 }
 .F_model_B {
-  height: 40px;
+  height: 41px;
   font-size: 15px;
 }
 .F_model_B_botton {
   width: 50%;
   text-align: center;
-  height: 40px;
-  line-height: 40px
+  height: 41px;
+  line-height: 41px
 }
 .F_model_B_botton_sure {
   background: rgb(254, 105, 19);

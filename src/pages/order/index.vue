@@ -25,8 +25,8 @@
         </div>
         <div class="hotel_order_Detail_date">
           <div style="display: flex;">
-            <div>入住： 6月11日</div>
-            <div>离店： 6月12日</div>
+            <div>入住：6月11日&nbsp;&nbsp;</div>
+            <div>离店：6月12日</div>
             <div>&nbsp;&nbsp;一晚</div>
           </div>
           <div class="hotel_order_Detail_date_fix">修改&nbsp;&nbsp;<img class="hotel_order_Detail_date_fix_img" src="/static/imgs/right.png"></div>

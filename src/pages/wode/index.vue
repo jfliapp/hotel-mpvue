@@ -49,15 +49,15 @@
                 <div class="outIn">入住</div>
                 <!-- <div>6月11日<span class="dateDay">今天</span></div> -->
                 <div>{{checkInDate}}日
-                  <span class="dateDay">今天</span>
+                  <span class="dateDay">{{indayweek}}</span>
                 </div>
               </div>
-              <div class="days">一晚</div>
+              <div class="days">{{days}}晚</div>
               <div style="display: flex;flex-direction: column;">
                 <div class="outIn">离店</div>
                 <!-- <div>6月12日<span class="dateDay">明天</span></div> -->
                 <div>{{checkOutDate}}日
-                  <span class="dateDay">明天</span>
+                  <span class="dateDay">{{outdayweek}}</span>
                 </div>
               </div>
               <div>
@@ -118,6 +118,9 @@
     name: 'wode',
     data() {
       return {
+        indayweek: '今天',
+        outdayweek: '明天',
+        days: 1,
         isLeft: false,
         left: -230,
         mark: 0,
@@ -174,14 +177,48 @@
       )
     },
     onShow() {
+      
       let {
         checkInDate,
         checkOutDate
       } = wx.getStorageSync('ROOM_SOURCE_DATE');
+      this.days = this.getdays(checkInDate, checkOutDate)
+      this.indayweek = this.getDayweek(checkInDate)
+      this.outdayweek = this.getDayweek(checkOutDate)
+
       this.checkInDate = checkInDate.substr(5, 5).replace('-', '月')
       this.checkOutDate = checkOutDate.substr(5, 5).replace('-', '月')
+
     },
     methods: {
+      // 日期主要是用来计算住离店的时候是星期几格式
+      getDayweek(val) {
+        let dayInOut = new Date(Date.parse(val.replace('/-/g', '/')))
+        let today = new Date()
+        var year = today.getFullYear()
+        var moment = today.getMonth()
+        var day = today.getDate()
+
+        var year1 = dayInOut.getFullYear()
+        var moment1 = dayInOut.getMonth()
+        var day1 = dayInOut.getDate()
+        if(year == year1 && moment == moment1 && day == day1) {
+          return '今天'
+        }else if(year == year1 && moment == moment1 && (day + 1)== day1) {
+          return '明天'
+        } else {
+          var dayWeek = ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
+          return dayWeek[dayInOut.getDay()]
+        }        
+      },
+      // 写一个来获取天数
+      getdays(day1, day2) {
+        var day1 = new Date(Date.parse(day1.replace('/-/g', '/')))
+        var day2 = new Date(Date.parse(day2.replace('/-/g', '/')))
+        let dayes = parseInt(Math.abs(day2-day1)/1000/60/60/24)
+        return dayes
+      },
+      // 
       //showModel 
       showModel() {
         wx.showModal({
@@ -401,6 +438,8 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #ccc;
+    padding: 5px;
+    width: 100%
   }
   .searchButton {
     display: flex;
@@ -501,6 +540,7 @@
     color: #ccc;
   }
   .dateDay {
+    color: #ccc;
     font-size: 13px
   }
   .input_item_radio {

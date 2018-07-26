@@ -127,7 +127,7 @@
       <div>酒店详情<span class="guest_evaluation_num">(1325)条</span></div>
       <div class="hotel_information_policy">
         <div class="hotel_information_policy_img">
-          <img src="/static/imgs/hotel_detail_icon.png" style="width: 15px;height: 15px">
+          <img src="/static/imgs/hotel_detail_icon.png" style="width: 10px;height: 10px">
           <span>&nbsp;酒店政策</span>
         </div>
         <div style="color: #ccc">入住时间：14:00以后    离店时间：12:00以前</div>
@@ -137,7 +137,7 @@
       </div>
       <div class="hotel_information_institutions">
         <div class="hotel_information_policy_img">
-          <img src="/static/imgs/hotel_detail_icon.png" style="width: 15px;height: 15px">
+          <img src="/static/imgs/hotel_detail_icon.png" style="width: 10px;height: 10px">
           <span>&nbsp;酒店设施</span>
         </div>
         <div class="hotel_information_institutions_pic">
@@ -155,7 +155,7 @@
       </div>
       <div class="hotel_information_way">
         <div class="hotel_information_policy_img">
-          <img src="/static/imgs/hotel_detail_icon.png" style="width: 15px;height: 15px">
+          <img src="/static/imgs/hotel_detail_icon.png" style="width: 10px;height: 10px">
           <span>&nbsp;酒店设施</span>
         </div>        
         <div class="hotel_information_way_details">

@@ -145,11 +145,9 @@
       }
     },
     mounted() {
-      console.log("mounted")
       // this.createDateListData()
     },
     onLoad() {
-      console.log("onLoad")
       // this.createDateListData()
       // let {
       //     checkInDate,
@@ -160,7 +158,6 @@
     },    
     onShow() {
       // debugger
-      console.log("onShow")
       this.createDateListData()
       this.selectDateMarkLine()
       this.markcheckInDate = false
@@ -177,8 +174,8 @@
           原因是由于2月份没有31号，顺推下去变成了了03-03
         */
         now = new Date(now.getFullYear(), now.getMonth(), 1) // 设置这个月的一号
-        for (var i = 0; i < this.maxMonth; i++) {
-          var momenthDate = Moment(now).add(i, 'month').date
+        for (var i = 0; i < this.maxMonth; i++) { // 0-6
+          var momenthDate = Moment(now).add(i, 'month').date // 这个是获取每个月的一号
           var year = momenthDate.getFullYear()
           var month = momenthDate.getMonth() + 1
 
@@ -229,10 +226,8 @@
             }
           }
         }
-        console.log(dateList, "dateList-这个才是干净的")
         DATE_LIST = JSON.parse(JSON.stringify(dateList))
         this.dateList = dateList;
-        console.log(DATE_LIST, "干净的数据")
       },
       // 获取月的总天数
       getTotalDayByMonth(year, month) {
@@ -276,7 +271,6 @@
           this.checkInDate = date
           this.markcheckInDate = true
           this.dateList = JSON.parse(JSON.stringify(DATE_LIST))
-          // console.log(DATE_LIST, "DATE_LIST.concat()")
         } else if (!this.markcheckOutDate) {
           // 点第二次
           this.checkOutDate = date
@@ -372,7 +366,7 @@
                   days[k].inday = true;
                 }
               }
-            } else { //入住跨月月份
+            } else {
               if (monthIn < dateList[j].month && dateList[j].month < monthOut) { //离店中间的月份
                 let days = dateList[j].days;
                 for (let k = 0; k < days.length; k++) {
@@ -392,8 +386,7 @@
               }
             }
           }
-        }
-
+        }        
         this.dateList = dateList
       }
     }
