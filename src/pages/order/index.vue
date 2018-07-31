@@ -72,67 +72,69 @@
         <div class="reward_item"><img src="/static/imgs/great.png" class="img_reward">&nbsp;&nbsp;好赞！这么划算的房间都能给你挑到</div>
         <div class="reward_item"><img src="/static/imgs/help.png" class="img_reward">&nbsp;&nbsp;好赞！这么划算的房间都能给你挑到</div>
       </div>
-      <div class="Room_from">
-        <div class="Room_from_item" @click="roomChoose">
-          <div style="display: flex;">
-            <div class="Room_from_item_num">房间数</div>
-            <div class="Room_from_item_Detail">{{roomNum}}间</div>
-          </div>
-          <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" class="img_down"></div>
-        </div>
-        <div>
-          <div class="Room_from_item" v-for="(item, index) in roomNum" :key="index">
+      <form @submit="formSubmit" @reset="formReset">
+        <div class="Room_from">
+          <div class="Room_from_item" @click="roomChoose">
             <div style="display: flex;">
-              <div class="Room_from_item_num" :style="{visibility: item == '0' ? '' : 'hidden'}">入住人</div>
-              <div class="Room_from_item_Detail"><input type="text" placeholder="一间填一个人的姓名"></div>
+              <div class="Room_from_item_num">房间数</div>
+              <div class="Room_from_item_Detail">{{roomNum}}间</div>
             </div>
             <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" class="img_down"></div>
-          </div>          
-        </div>
-        <div class="Room_from_item">
-          <div style="display: flex;">
-            <div class="Room_from_item_num">电话号码</div>
-            <div class="Room_from_item_Detail"><input type="text" placeholder="电话"></div>
           </div>
-          <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" class="img_down"></div>
-        </div>
-      </div>
-      <div class="Room_from">
-        <div class="Room_from_item">
-          <div style="display: flex;">
-            <div class="Room_from_item_num">特殊要求</div>
-            <div class="Room_from_item_Detail"><input type="text" placeholder="电话"></div>
+          <div>
+            <div class="Room_from_item" v-for="(item, index) in roomNum" :key="index">
+              <div style="display: flex;">
+                <div class="Room_from_item_num" :style="{visibility: item == '0' ? '' : 'hidden'}">入住人</div>
+                <div class="Room_from_item_Detail"><input type="text" placeholder="一间填一个人的姓名"></div>
+              </div>
+              <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" class="img_down"></div>
+            </div>          
           </div>
-          <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" class="img_down"></div>
-        </div>
-        <div class="Room_from_item">
-          <div style="display: flex;">
-            <div class="Room_from_item_num">发票</div>
-            <div class="Room_from_item_Detail">如需发票，可向酒店索取</div>
+          <div class="Room_from_item">
+            <div style="display: flex;">
+              <div class="Room_from_item_num">电话号码</div>
+              <div class="Room_from_item_Detail"><input type="text" placeholder="电话"></div>
+            </div>
+            <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" class="img_down"></div>
           </div>
-          <!-- <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" class="img_down"></div> -->
         </div>
-      </div>
-      <div class="hotel_atention">
-        <div class="hotel_atention1">
-          酒店提示：根据《上海市公共场所控制吸烟条例》，从2017年3月1日起，并禁止室内吸烟。
+        <div class="Room_from">
+          <div class="Room_from_item">
+            <div style="display: flex;">
+              <div class="Room_from_item_num">特殊要求</div>
+              <div class="Room_from_item_Detail"><input type="text" placeholder="电话"></div>
+            </div>
+            <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" class="img_down"></div>
+          </div>
+          <div class="Room_from_item">
+            <div style="display: flex;">
+              <div class="Room_from_item_num">发票</div>
+              <div class="Room_from_item_Detail">如需发票，可向酒店索取</div>
+            </div>
+            <!-- <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" class="img_down"></div> -->
+          </div>
         </div>
-        <div class="hotel_atention2">
-          酒店提示：根据《上海市公共场所控制吸烟条例》，从2017年3月1日起，并禁止室内吸烟。
+        <div class="hotel_atention">
+          <div class="hotel_atention1">
+            根据《上海市公共场所控制吸烟条例》，从2017年3月1日起，酒店不能安排吸烟房，并禁止室内吸烟。
+          </div>
+          <div class="hotel_atention2">
+            该酒店的入住时间为14:00，退房标准结算时间为12:00。如提前入住或推迟离店，均须酌情加收一定的费用。
+          </div>
+          <div class="hotel_foot_Bottom">
+            <span>
+              <img class="iconTip" src="/static/imgs/foot_icon.png" alt="">
+            </span>
+            专业服务 · 全程保障
+          </div>
         </div>
-        <div class="hotel_foot_Bottom">
-          <span>
-            <img class="iconTip" src="/static/imgs/foot_icon.png" alt="">
-          </span>
-          专业服务 · 全程保障
+        <div class="total">
+          总计： ￥129.99
         </div>
-      </div>
-      <div class="total">
-        总计： ￥129.99
-      </div>
-      <div class="pay">
-        微信支付
-      </div>
+        <div class="pay">
+          <button formType="submit">微信支付</button>
+        </div>
+      </form>
     </div>
   </div>
 </template>
@@ -232,7 +234,7 @@
         console.log(num)
       },
       // 验证码获取
-      getCode() {
+      getCode() {        
         const TIME = 60
         if(!this.timer) {
           this.code = false
@@ -247,11 +249,17 @@
             }
           }, 1000)
         }
-      },
+      },      
       // 登录 
       loginT () {
         this.saveLogin('名字')
         this.login = false
+        // 这个是你登陆之后再设置我的收藏 或者 我的任务之类的不起效果在wx.setTabBarBadge({})
+        // 只能在tarbar 页面上设置才有效果
+      },
+      // 添加了 from 表单为了拿到支付的 id
+      formSubmit: function(e) {
+        console.log('form发生了submit事件，携带数据为：', e)
       }
     }
   }

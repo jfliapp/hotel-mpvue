@@ -10,7 +10,7 @@
       </div>
       <div class="detail_all_position_bottom">
         <div class="detail_all_position_bottom_info">
-          <div class="detail_all_position_bottom_info_grade">4.2分</div>
+          <div class="detail_all_position_bottom_info_grade">4.2<span class="detail_all_position_bottom_info_grade_fen">分</span></div>
           <span style="color:rgb(0, 126, 226)">很好</span>
           <div style="color:rgb(254, 105, 19)">设计不错  房间很好</div>
           <div>
@@ -394,10 +394,14 @@ export default {
     margin-left: 10px;
     width: 40px;
     height: 40px;
+    color: #fff;
     border-radius: 50% 50%;
     background: rgb(0, 126, 226);
     text-align: center;
     line-height: 40px
+  }
+  .detail_all_position_bottom_info_grade_fen {
+    font-size: 9px;
   }
   .hotel_foot_Bottom {
     width: 100%;
@@ -533,7 +537,7 @@ export default {
   width: 100%;
   background: white;
   font-size: 15px;
-  margin-top: 100px;
+  margin-top: 95px;
 }
 .noLogin {
   padding: 0 15px;
@@ -790,7 +794,8 @@ export default {
   flex-direction: column;
   height: 90px;
   margin-left: 5px;
-  justify-content: space-between
+  width: 100%;
+  justify-content: space-between;
 }
 .hotel_information_way_details_D_item {
   display: flex;

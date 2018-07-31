@@ -11,83 +11,92 @@
         </navigator>
         <div>
           <div class="filter_item">
-              <div @click="filterItem(item)" v-for="(item, index) in filter_item" :key="index">
-                <div>
-                  <span :class="{click_change: item.active}">{{item.name}}&nbsp;&nbsp;</span>
-                  <img v-if="!item.active" class="img_class" src="/static/imgs/down_san1.png"/>
-                  <img v-else class="img_class" src="/static/imgs/up_san.png"/> |
-                </div>
+            <div @click="filterItem(item)" v-for="(item, index) in filter_item" :key="index">
+              <div>
+                <span :class="{click_change: item.active}">{{item.name}}&nbsp;&nbsp;</span>
+                <img v-if="!item.active" class="img_class" src="/static/imgs/down_san1.png" />
+                <img v-else class="img_class" src="/static/imgs/up_san.png" /> |
               </div>
-              <div style="color: #1296db" @click="likeFli">&nbsp;欢迎度排序<img class="img_class" src="/static/imgs/down_san.png"/></div>
             </div>
+            <div style="color: #1296db" @click="likeFli">&nbsp;欢迎度排序
+              <img class="img_class" src="/static/imgs/down_san.png" />
+            </div>
+          </div>
         </div>
+        <!-- 这里的筛选要不要分出来 -->
         <div v-if="tapState == 'filter'" class="F_model">
-            <div class="F_model_T">
-              <div class="F_model_T_L">
-                <div v-for="(item, iFilter) in arr1" :key="iFilter"
-                class="F_model_tl"
-                :class="{F_model_tlF: item.border}"
-                @click="clickL(item)">{{item.name}}</div>
+          <div class="F_model_T">
+            <div class="F_model_T_L">
+              <div v-for="(item, iFilter) in hotel_filter_more" :key="iFilter" class="F_model_tl"
+               :class="{F_model_tlF: whereId == item.sta}" @click="clickL(item)">
+                {{item.name}}
               </div>
-              <div class="F_model_T_R">
-                <div v-for="(arrI, idx) in arrItemL" :key="idx">
-                  <div style="padding: 5px;">{{arrI.name}}</div>
+            </div>
+            <div class="F_model_T_R">
+              <!-- 不起效果的scroll-view 点击 scroll-into-view 不随着滚动-->
+              <scroll-view :scroll-y="true" @scroll="ScrollY" :scroll-into-view="whereId" class="scrollViewL">
+                <div v-for="(arrI, idx) in hotel_filter_more" :key="idx" :id="arrI.sta">
+                  <div style="padding: 10rpx;">{{arrI.name}}</div>
                   <div style="display: flex;flex-wrap: wrap;">
-                    <div v-for="(item, index) in (arrI.tab ? arrI.arr : arrI.arrSlice)"
-                     :key="index"
-                     class="F_model_T_R_item">{{item}}</div>
-                    <div v-if="arrI.tab" @click="arrI.tab = !arrI.tab" class="F_model_T_R_item_more">收缩<img src="/static/imgs/up_san.png" style="width: 10px;height: 10px;margin-left: 10px;"></div>
-                    <div v-else class="F_model_T_R_item_more" @click="arrI.tab = !arrI.tab">更多<img src="/static/imgs/down.png" style="width: 10px;height: 10px;margin-left: 10px;"></div>
+                    <div v-for="(item, index) in (arrI.tab ? arrI.arr : arrI.arrSlice)" :key="index" class="F_model_T_R_item">{{item}}</div>
+                    <div v-if="arrI.tab" @click="arrI.tab = !arrI.tab" class="F_model_T_R_item_more">
+                      收缩
+                      <img src="/static/imgs/up_san.png" class="img_class" style="margin-left: 20rpx;">
+                    </div>
+                    <div v-else class="F_model_T_R_item_more" @click="arrI.tab = !arrI.tab">
+                      更多
+                      <img src="/static/imgs/down.png" class="img_class" style="margin-left: 20rpx;">
+                    </div>
                     <!-- <div v-if="arrI.arr.length === moreLen" style="width: 60px;height: 30px;background: yellow;text-align: center;line-height: 30px;margin:5px;" @click="ItemDiv(arrI.arr)">收缩</div> -->
                   </div>
-                </div>  
-              </div>
+                </div>
+              </scroll-view>
             </div>
-            <div class="F_model_B" style="display: flex;">
-              <div class="F_model_B_botton">清空</div>
-              <div class="F_model_B_botton F_model_B_botton_sure" @click="sureF">确定</div>
-            </div>
+          </div>
+          <div class="F_model_B" style="display: flex;">
+            <div class="F_model_B_botton">清空</div>
+            <div class="F_model_B_botton F_model_B_botton_sure" @click="sureF">确定</div>
+          </div>
         </div>
         <div v-else-if="tapState == 'map'" class="F_model">
           <div class="F_model_T">
             <div style="display: flex;flex-direction: column;flex: 1.5;background: rgb(245, 245, 245);overflow-y: scroll">
-              <div v-for="(item, iFilter1) in arr2" :key="iFilter1"
-              class="F_model_tl"
-              :class="{F_model_tlF: item.border}"
-              @click="clickL2(item)">{{item.name}}</div>
+              <div v-for="(item, iFilter1) in arr2" :key="iFilter1" class="F_model_tl" :class="{F_model_tlF: item.border}" @click="clickL2(item)">{{item.name}}</div>
             </div>
             <div style="display: flex;flex-direction: column;flex: 4;overflow-y: scroll">
-              <div v-for="(arrI, idxDist) in arrDistance" :key="idxDist" class="F_model_choose_place"
+              <div v-for="(arrI, idxDist) in arrDistance" :key="idxDist" class="F_model_choose_place" 
               :class="{dist_color: arrI.checked}"
-              @click="check(arrI)">
+                @click="check(arrI)">
                 <div>{{arrI.value}}</div>
                 <div :hidden="!arrI.checked">✔</div>
-              </div>  
+              </div>
             </div>
           </div>
           <div class="F_model_B" style="display: flex;">
-              <div class="F_model_B_botton">清空</div>
-              <div class="F_model_B_botton F_model_B_botton_sure" @click="sureF">确定</div>
+            <div class="F_model_B_botton">清空</div>
+            <div class="F_model_B_botton F_model_B_botton_sure" @click="sureF">确定</div>
           </div>
         </div>
         <div v-else-if="tapState == 'price'" class="F_model">
           <div class="F_model_T_price">
-            <div style="display: flex;flex-direction: column;margin-top: 15px;">
-              <div style="margin-bottom: 15px;">星级(可复选)</div> 
-              <div style="display: flex;justify-content: space-around">
-                <div v-for="(item, ind) in star" :key="ind" class="star" :class="{star_choose: item.state}" @click=starChoose(item)>
-                  {{item.name}}
+            <div class="starPrice">
+              <div class="starPriceBottom">星级(可复选)</div>
+              <div class="starHeight">
+                <div class="starTable" v-for="(item, ind) in star" :key="ind" :class="{star_choose: item.state}" @click=starChoose(item)>
+                  <div class="star">
+                    {{item.name}}
+                  </div>
                 </div>
               </div>
             </div>
-            <div style="display: flex;flex-direction: column;margin-top: 15px;">
-              <div style="margin-bottom: 15px;">价格</div> 
+            <div class="starPrice">
+              <div class="starPriceBottom">价格</div>
               <div style="display: flex;flex-direction: column">
                 <div style="display: flex;justify-content: space-between">
                   <div>￥0</div>
                   <div>￥10000</div>
                 </div>
-                <slider step="1" backgroundColor="rgb(0, 126, 226)" height="3px"></slider>
+                <slider step="1" backgroundColor="rgb(0, 126, 226)" height="6rpx"></slider>
               </div>
             </div>
           </div>
@@ -97,10 +106,10 @@
           </div>
         </div>
         <div v-else></div>
-      </div>      
+      </div>
     </div>
     <!-- 酒店类型 人们品牌 -->
-    <div class="placeMask"  v-show="hotel_type" @click="hotel_type = !hotel_type"></div>
+    <div class="placeMask" v-show="hotel_type" @click="hotel_type = !hotel_type"></div>
     <div style="background: white;height: 80%;position: absolute;width: 100%;bottom: 0;z-index: 25" v-show="hotel_type">
       <div>xxx</div>
       <div>xxx</div>
@@ -110,11 +119,11 @@
     <div class="sub_title">
       <div class="sub_title_place">
         <div class="sub_title_place_ditance" @click="palce">
-        上海
-        <img src="/static/imgs/down.png" class="imgS" style="margin-left: 5px">
+          上海
+          <img src="/static/imgs/down.png" class="imgS" style="margin-left: 10rpx">
         </div>
         <div style="display: flex;align-items: center">
-          <img src="/static/imgs/map_icon.png" class="imgS"/>
+          <img src="/static/imgs/map_icon.png" class="imgS" />
           <span style="margin-left: 5px;">附近</span>
         </div>
       </div>
@@ -122,40 +131,58 @@
         <div class="input_sel">
           <div style="display: flex;">
             <div class="input_sel_date" @click="dateTap">
-              <p>住<span style="color: #ccc;margin-left: 5px;">{{checkInDate}}</span></p>
-              <p>离<span style="color: #ccc;margin-left: 5px;">{{checkOutDate}}</span></p>
+              <p>住
+                <span style="color: #ccc;margin-left: 10rpx;">{{checkInDate}}</span>
+              </p>
+              <p>离
+                <span style="color: #ccc;margin-left: 10rpx;">{{checkOutDate}}</span>
+              </p>
             </div>
-            <div class="filter_down"><img src="/static/imgs/down.png" class="imgS"></div>
+            <div class="filter_down">
+              <img src="/static/imgs/down.png" class="imgS">
+            </div>
             <div class="filter_line"></div>
             <!-- <div><img src="/static/imgs/filter_line.png" alt="" style="width:2px;height: 30px;"></div> -->
           </div>
           <div style="display: flex;">
-            <div class="filter_down"><img src="/static/imgs/search.png" class="imgS"></div>
-            <div><input class="input_search" type="text" placeholder="关键字/位置/品牌/酒店名" @change="searchHotel"></div>
-          </div>          
+            <div class="filter_down">
+              <img src="/static/imgs/search.png" class="imgS">
+            </div>
+            <div>
+              <input class="input_search" type="text" placeholder="关键字/位置/品牌/酒店名" @change="searchHotel">
+            </div>
+          </div>
         </div>
         <div class="input_map">地图</div>
       </div>
-    </div>    
+    </div>
     <div class="filter_item">
       <div @click="filterItem(item)" v-for="(item, index) in filter_item" :key="index">
         <div>
           <span :class="{click_change: item.active}">{{item.name}}&nbsp;&nbsp;</span>
-          <img v-if="!item.active" class="img_class" src="/static/imgs/down_san1.png"/>
-          <img v-else class="img_class" src="/static/imgs/up_san.png"/> |
+          <img v-if="!item.active" class="img_class" src="/static/imgs/down_san1.png" />
+          <img v-else class="img_class" src="/static/imgs/up_san.png" /> |
         </div>
       </div>
-      <div style="color: #1296db">&nbsp;欢迎度排序<img class="img_class" src="/static/imgs/down_san.png"/></div>
+      <div style="color: #1296db">&nbsp;欢迎度排序
+        <img class="img_class" src="/static/imgs/down_san.png" />
+      </div>
     </div>
     <div class="filter_item filter_sub_item">
       <div class="filter_li">低价好评</div>
       <div class="filter_li">位置距离</div>
-      <div class="filter_li" @click="hotelType">酒店类型<img src="/static/imgs/down.png" alt="" class="img_class"></div>
-      <div class="filter_li" @click="hotelType">热门品牌<img src="/static/imgs/down.png" alt="" class="img_class"></div>
+      <div class="filter_li" @click="hotelType">酒店类型
+        <img src="/static/imgs/down.png" alt="" class="img_class">
+      </div>
+      <div class="filter_li" @click="hotelType">热门品牌
+        <img src="/static/imgs/down.png" alt="" class="img_class">
+      </div>
     </div>
     <div>
       <!-- 这里可能要放一个新的组件 因为要根据后台能的数据筛选出来的 -->
-      <hotel-list :hotels="hotel_item" :hasMore="hasmore"></hotel-list>
+      <scroll-view>
+        <hotel-list :hotels="hotel_item" :hasMore="hasmore"></hotel-list>
+      </scroll-view>
     </div>
   </div>
 </template>
@@ -164,11 +191,12 @@
   var Moment = require('@/utils/moment.js')
   export default {
     name: 'main',
-    data () {
+    data() {
       return {
+        whereId: 'two',
         F_item: false,
         color_change: true,
-        hasmore: false,
+        hasmore: true,
         hotel_type: false,
         checkInDate: null,
         checkOutDate: null,
@@ -199,6 +227,98 @@
             name: '五星/舒适'
           }
         ],
+        arrDistanceText: [
+          {
+            id: 1,
+            name: '距离',
+            arr: [
+              {
+                id: 1,
+                name: 'All',
+                value: '全城',
+                checked: false
+              },
+              {
+                id: 2,
+                name: 'CHN',
+                value: '中国',
+                checked: false
+              },
+              {
+                id: 3,
+                name: 'USA',
+                value: '美国',
+                checked: false
+              },
+              {
+                id: 4,
+                name: 'JPN',
+                value: '日本',
+                checked: false
+              }
+            ]
+          },
+          {
+            id: 2,
+            name: '商业区',
+            arr: [
+              {
+                id: 1,
+                name: 'All',
+                value: '全城商业区',
+                checked: false
+              },
+              {
+                id: 2,
+                name: 'CHN',
+                value: '中国商业区',
+                checked: false
+              },
+              {
+                id: 3,
+                name: 'USA',
+                value: '美国商业区',
+                checked: false
+              },
+              {
+                id: 4,
+                name: 'JPN',
+                value: '日本商业区',
+                checked: false
+              }
+            ]
+          },
+          {
+            id: 3,
+            name: '中国区',
+            arr: [
+              {
+                id: 1,
+                name: 'All',
+                value: '全城中国区',
+                checked: false
+              },
+              {
+                id: 2,
+                name: 'CHN',
+                value: '中国中国区',
+                checked: false
+              },
+              {
+                id: 3,
+                name: 'USA',
+                value: '美国中国区',
+                checked: false
+              },
+              {
+                id: 4,
+                name: 'JPN',
+                value: '日本中国区',
+                checked: false
+              }
+            ]
+          }
+        ],
         arrDistance: [
           {
             id: 1,
@@ -225,23 +345,6 @@
             checked: false
           }
         ],
-        arr1: [
-          {
-            id: 1,
-            name: '高端连锁',
-            border: true
-          },
-          {
-            id: 2,
-            name: '中端连锁',
-            border: false
-          },
-          {
-            id: 3,
-            name: '快捷连锁',
-            border: false
-          }
-        ],
         arr2: [
           {
             id: 1,
@@ -259,23 +362,27 @@
             border: false
           }
         ],
-        arrItemL: [
-          {
+        arrItemF: [{
             name: '高端连锁',
+            sta: 'one',
             idx: 0,
-            tab: false,
-            arrSlice: ['xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx'],
-            arr: ['xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx']
+            tab: false, // 这个后端是不会给你的
+            arrSlice: ['xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx'], // 这个后端是不会给你的
+            arr: ['xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx',
+              'xx', 'xx', 'xx', 'xx'
+            ]
           },
           {
             name: '中端连锁',
+            sta: 'two',
             idx: 1,
-            tab: true,
+            tab: false,
             arrSlice: ['xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx'],
             arr: ['xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx']
           },
           {
             name: '快捷连锁',
+            sta: 'three',
             idx: 2,
             tab: false,
             arrSlice: ['xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx', 'xx'],
@@ -302,8 +409,7 @@
             active: false
           }
         ],
-        hotel_item: [
-          {
+        hotel_item: [{
             id: 1,
             img: '/static/imgs/hotel_item.png',
             name: 'xx酒店(上海店)',
@@ -326,6 +432,54 @@
             distace: 2.7,
             old_prize: 120,
             new_prize: 80
+          },
+          {
+            id: 3,
+            img: '/static/imgs/hotel_item.png',
+            name: 'xx酒店(上海店)3',
+            type: '高档行',
+            score: 4.9,
+            comment: 11103,
+            grade: '优秀',
+            distace: 2.7,
+            old_prize: 120,
+            new_prize: 80
+          },
+          {
+            id: 4,
+            img: '/static/imgs/hotel_item.png',
+            name: 'xx酒店(上海店)4',
+            type: '高档行',
+            score: 4.9,
+            comment: 11103,
+            grade: '优秀',
+            distace: 2.7,
+            old_prize: 120,
+            new_prize: 80
+          },
+          {
+            id: 5,
+            img: '/static/imgs/hotel_item.png',
+            name: 'xx酒店(上海店)5',
+            type: '高档行',
+            score: 4.9,
+            comment: 11103,
+            grade: '优秀',
+            distace: 2.7,
+            old_prize: 120,
+            new_prize: 80
+          },
+          {
+            id: 6,
+            img: '/static/imgs/hotel_item.png',
+            name: 'xx酒店(上海店)6',
+            type: '高档行',
+            score: 4.9,
+            comment: 11103,
+            grade: '优秀',
+            distace: 2.7,
+            old_prize: 120,
+            new_prize: 80
           }
         ]
       }
@@ -334,7 +488,8 @@
       'hotel-list': HotelList
     },
     computed: {
-      tapState () {
+      // 这个是显示哪一个筛选
+      tapState() {
         let sta = this.filter_item.find((item) => {
           return item.active
         })
@@ -342,22 +497,35 @@
           return false
         }
         return sta.state
+      },
+      // 这个是拿到筛选的数据 主要是 收缩/更多 
+      hotel_filter_more() {
+        let hotel_filters = this.arrItemF.map((item, id) => {
+          item.tab = false
+          if (item.arr.length > 9) {
+            item.arrSlice = item.arr.slice(0, 8)
+          } else {
+            item.arrSlice = item.arr
+          }
+          return item
+        })
+        return hotel_filters
       }
     },
-    mounted () {
-      this.ItemArr()            
-    },    
+    mounted() {
+      // this.ItemArr()            
+    },
     onShow: function () {
       let {
-          checkInDate,
-          checkOutDate
-        } = wx.getStorageSync('ROOM_SOURCE_DATE');
+        checkInDate,
+        checkOutDate
+      } = wx.getStorageSync('ROOM_SOURCE_DATE');
       this.checkInDate = checkInDate.substr(5, 5)
       this.checkOutDate = checkOutDate.substr(5, 5)
     },
-    methods: {      
+    methods: {
       // 选择日期的
-      dateTap () {
+      dateTap() {
         wx.navigateTo({
           url: '/pages/calendar/main'
         })
@@ -368,7 +536,7 @@
         console.log('search')
       },
       // 这个是 选好日期渲染上去的
-      getdate () {
+      getdate() {
         let {
           checkInDate,
           checkOutDate
@@ -376,7 +544,7 @@
         this.checkInDate = checkInDate
         this.checkOutDate = checkOutDate
       },
-      ItemArr () {
+      ItemArr() {
         this.arrItemL.forEach((ele) => {
           console.log(ele.arr.length)
           if (ele.arr.length > 8) {
@@ -386,17 +554,11 @@
           console.log(ele)
         })
       },
-      clickL (item) {
+      clickL(item) {
         let id = item.id
-        this.arr1.map((item) => {
-          if (id === item.id) {
-            item.border = true
-          } else {
-            item.border = false
-          }
-        })
+        this.whereId = item.sta        
       },
-      clickL2 (item) {
+      clickL2(item) {
         let id = item.id
         this.arr2.map((item) => {
           if (id === item.id) {
@@ -405,8 +567,15 @@
             item.border = false
           }
         })
+        // debugger
+
+        let distanceItem = this.arrDistanceText.filter((item) => {
+          return item.id === id
+        })
+        console.log(distanceItem)
+        this.arrDistance = distanceItem[0].arr
       },
-      filterItem (item) {
+      filterItem(item) {
         let Index = item.idex
         this.filter_item.map((item1) => {
           if (Index === item1.idex) {
@@ -416,22 +585,22 @@
           }
         })
       },
-      likeFli () {
-        console.log('xxx')
+      likeFli() {
         this.sureF()
       },
-      check (item) {
+      check(item) {
         console.log(item)
         let distId = item.id
         this.arrDistance.map((item) => {
           if (distId === item.id) {
-            item.checked = !item.checked
+            item.checked = true
           } else {
             item.checked = false
           }
         })
       },
-      starChoose (item) {
+      // 星级选择
+      starChoose(item) {
         console.log(item)
         let distId = item.id
         this.star.map((item) => {
@@ -440,10 +609,14 @@
           }
         })
       },
-      sureF () {        
+      sureF() {
         this.filter_item.map((item1) => {
           item1.active = false
         })
+      },
+      // 这里是想做右边滚动 左边也跟着滚动 
+      ScrollY(e) {
+        console.log(e.target.scrollTop, "这里是想做右边滚动 左边也跟着滚动 ")
       },
       //酒店类型 热门品牌的弹框
       hotelType() {
@@ -460,8 +633,10 @@
         const accesstoken = wx.getStorageSync('token')
         // 如果这里不能用 就直接在main.js 里面写 Vue.prototype.$http=new flyio()
         // 这个就是要引入api这个api 文件
-        const res = await this.$http.post(`${api}/user/sd`, {accesstoken})
-        if(res.data.success) {
+        const res = await this.$http.post(`${api}/user/sd`, {
+          accesstoken
+        })
+        if (res.data.success) {
           wx.showToast({
             title: '成功',
             icon: 'none',
@@ -469,18 +644,39 @@
           })
         }
       }
-
+    },
+    // 到底部加载
+    onReachBottom() {
+      console.log("到达底部 然后刷新数据")
+      // 这里是到大底部之后重新page+1加载
+      // let nextPage = this.page + 1
+      // this.page = nextPage
+      // wx.showLoading({
+      //   title: '加载中'
+      // })
+      // this.$http.get('/sell').then((res) => {
+      //   if(res.data.data.hotel === []) {
+      //     this.hasmore = false
+      //   }
+      //   this.hotel_item = [...res.data.data.hotel, ...this.hotel_item]
+      //   wx.hiddLoading()
+      // }).catch((err) => {
+      //   console.log(err)
+      // })
     }
   }
+
 </script>
 <style scoped>
   /* $blue_color: rgb(0, 126, 226);
   $ccc_color: rgb(244, 244, 246); */
+
   ::-webkit-scrollbar {
     width: 0;
     height: 0;
-    color: transparent;   
+    color: transparent;
   }
+
   .mask {
     width: 100%;
     height: 100%;
@@ -489,18 +685,21 @@
     z-index: 99999999999999;
     background: rgba(15, 15, 26, 0.7)
   }
+
   .mask_place_distan {
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    height:50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
     background: rgb(0, 126, 226)
   }
+
   .img_map {
     width: 15px;
     height: 15px;
     margin-left: 10px;
   }
+
   .placeMask {
     width: 100%;
     height: 100%;
@@ -510,36 +709,42 @@
     z-index: 20;
     background: rgba(15, 15, 26, 0.7)
   }
-  .sub_title{ 
+
+  .sub_title {
     width: 100%;
     height: 100px;
     padding: 10px;
     /* text-align: center; */
     font-size: 15px;
     box-sizing: border-box;
-    background: rgb(0,126,226)
+    background: rgb(0, 126, 226)
   }
+
   .sub_title_place {
     width: 100%;
     height: 20px;
     display: flex;
     justify-content: flex-end
   }
+
   .sub_title_place_ditance {
     display: flex;
     align-items: center;
     margin-right: 30%
   }
+
   .img_class {
     width: 10px;
     height: 10px;
   }
+
   .input_all {
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
     font-size: 15px;
   }
+
   .input_sel {
     display: flex;
     /* float: left; */
@@ -550,44 +755,52 @@
     box-sizing: border-box;
     border-radius: 10px 10px;
   }
+
   .input_sel_date {
     /* float: left; */
     font-size: 13px;
   }
+
   /* .input_sel input::-webkit-input-placeholder {    
     color: #aab2bd;
     font-size: 12px;
   } */
+
   .filter_down {
     display: flex;
     align-items: center;
     margin-left: 3px;
   }
+
   .input_search {
     height: 40px;
     padding-left: 3px
   }
+
   .filter_line {
     margin: 5px;
     height: 25px;
     border: 0.5px solid rgb(207, 207, 207);
   }
+
   .filter_item {
     /* border-bottom: 1px solid #ccc; */
     /* padding-bottom: 2px; */
-    display: flex; 
+    display: flex;
     justify-content: space-around;
     font-size: 14px;
-    color: rgb(171,171,171);
+    color: rgb(171, 171, 171);
     height: 30px;
     background: white;
     line-height: 30px;
   }
+
   .filter_sub_item {
     background: rgb(244, 244, 246);
     margin-top: 8px;
     padding: 10px 0
   }
+
   .input_map {
     /* float: right; */
     width: 48px;
@@ -595,22 +808,25 @@
     text-align: center;
     line-height: 40px;
     color: rgb(0, 126, 226);
-    background: rgb(210,228,251);
+    background: rgb(210, 228, 251);
     border: 0.5px solid #ccc;
     border-radius: 10px 10px;
   }
+
   .filter_li {
-    background:white;
-    width:20%;
+    background: white;
+    width: 20%;
     height: 30px;
     text-align: center;
     color: black;
     line-height: 30px;
     border-radius: 20px 20px;
   }
+
   .click_change {
-    color: rgb(0,126,226);
+    color: rgb(0, 126, 226);
   }
+
   .F_model {
     height: 400px;
     display: flex;
@@ -620,11 +836,13 @@
     top: 22%;
     width: 100%; */
     background: white
-  }  
+  }
+
   .F_model_T {
     display: flex;
     height: 360px;
   }
+
   .F_model_T_L {
     display: flex;
     flex-direction: column;
@@ -632,12 +850,14 @@
     background: rgb(245, 245, 245);
     overflow-y: scroll
   }
+
   .F_model_tl {
     height: 40px;
     line-height: 40px;
     text-align: center;
     border-bottom: 2px solid rgb(236, 236, 236);
   }
+
   .F_model_choose_place {
     display: flex;
     justify-content: space-between;
@@ -645,74 +865,116 @@
     border-bottom: 1px solid rgb(235, 235, 235);
     font-size: 15px
   }
-.F_model_T_R {
-  display: flex;
-  flex-direction: column;
-  font-size: 13px;
-  flex: 4;
-  margin-left: 10px;
-  overflow-y: scroll
-}
-.F_model_T_R_item {
-  width: 80px;
-  height: 30px;
-  background:rgb(237, 245, 251);
-  text-align: center;
-  line-height: 30px;
-  margin:2px;
-}
-.F_model_T_R_item_more {
-  width: 80px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  background: yellow;
-  justify-content: center;
-  line-height: 30px;
-  margin:5px;
-}
-.F_model_T_price {
-  display: flex;
-  height: 360px;
-  flex-direction: column;
-  padding:0 15px;
-}
-.F_model_B {
-  height: 41px;
-  font-size: 15px;
-}
-.F_model_B_botton {
-  width: 50%;
-  text-align: center;
-  height: 41px;
-  line-height: 41px
-}
-.F_model_B_botton_sure {
-  background: rgb(254, 105, 19);
-}
-.F_model_tlF {
-    border-left: 3px solid rgb(0, 72, 145);
-    background: white    
+
+  .F_model_T_R {
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+    flex: 4;
+    margin-left: 10px;
+    overflow-y: scroll
   }
+
+  .F_model_T_R_item {
+    width: 80px;
+    height: 30px;
+    background: rgb(237, 245, 251);
+    text-align: center;
+    line-height: 30px;
+    margin: 2px;
+  }
+
+  .F_model_T_R_item_more {
+    width: 80px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    background: yellow;
+    justify-content: center;
+    line-height: 30px;
+    margin: 5px;
+  }
+
+  .F_model_T_price {
+    display: flex;
+    height: 360px;
+    flex-direction: column;
+    padding: 0 15px;
+  }
+
+  .F_model_B {
+    height: 41px;
+    font-size: 15px;
+  }
+
+  .F_model_B_botton {
+    width: 50%;
+    text-align: center;
+    height: 41px;
+    line-height: 41px
+  }
+
+  .F_model_B_botton_sure {
+    background: rgb(254, 105, 19);
+  }
+
+  .F_model_tlF {
+    border-left: 3px solid rgb(0, 72, 145);
+    background: white
+  }
+
   .dist_color {
     color: rgb(0, 126, 226);
   }
-  .star {
-    height: 43px;
-    width: 80px;
-    background:rgb(237, 245, 251);
+
+  .starPrice {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    /* padding: 3px auto; */
-    font-size: 13px;
+    flex-direction: column;
+    margin-top: 15px;
   }
+
+  .starPriceBottom {
+    margin-bottom: 15px;
+  }
+
+  .starHeight {
+    display: flex;
+    justify-content: space-around;
+    height: 50px;
+  }
+
+  .starTable {
+    display: table;
+    height: 43px;
+    width: 60px;
+    padding: 0 10px;
+    background: rgb(237, 245, 251);
+    line-height: 15px;
+  }
+
+  .star {
+    /* height: 43px;
+    width: 80px;
+    background:rgb(237, 245, 251); */
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 11px;
+  }
+
   .star_choose {
     border: 1px solid green;
     color: green
   }
+
   .imgS {
     width: 15px;
     height: 15px;
   }
+  .scrollViewL {
+    height: 350px;
+    white-space: nowrap;
+  } 
 </style>

@@ -181,7 +181,10 @@
       )
     },
     onShow() {
-      
+      wx.setTabBarBadge({
+        index: 2,
+        text: '12'
+      })
       let {
         checkInDate,
         checkOutDate
@@ -193,6 +196,12 @@
       this.checkInDate = checkInDate.substr(5, 5).replace('-', '月')
       this.checkOutDate = checkOutDate.substr(5, 5).replace('-', '月')
 
+    },
+    // 这个是获取tarbar上面的badage
+    onTabItemTap(item) {
+      console.log(item.index)
+      console.log(item.pagePath)
+      console.log(item.text)
     },
     methods: {
       // 日期主要是用来计算住离店的时候是星期几格式
@@ -222,13 +231,16 @@
         let dayes = parseInt(Math.abs(day2-day1)/1000/60/60/24)
         return dayes
       },
-      // 
       //showModel 
       showModel() {
-        wx.showModal({
-          title: 'showModal',
-          content: '这是一个模态弹窗'
-        })
+        // wx.showToast({
+        //   title: 'Toast',
+        //   icon: 'loading'
+        // })
+        // wx.showLoading({
+        //   title: '提示内容',
+        //   mask: true // 防止触摸穿透
+        // })        
       },
       menu() {
         console.log('侧边栏')
@@ -318,7 +330,7 @@
       onGotUserInfo(e) {
         console.log(e, "用户授权")
       },
-      // 测试没有授权看看登录
+      // 看看登录 登陆之后不会直接执行 wx.getUserInfo 来获取用户的基本信息
       getUserInfo() {
         wx.login({
           success: function (res) {
@@ -330,16 +342,16 @@
             })
           }
         })
-      },
+      },      
       // 退出
       logout() {
-        console.log('退出成功')
+        console.log('退出成功')        
         wx.showToast({
           title: '成功',
           icon: 'success',
           duration: 2000
         })
-      },
+      },      
       orderUrl() {
         wx.navigateTo({
           url: '/pages/mains/main'

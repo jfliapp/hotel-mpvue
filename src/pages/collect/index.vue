@@ -31,6 +31,7 @@
   </div>
 </template>
 <script>
+  // 这里怎么拿到你进来我怎么辨别
   export default {
     data () {
       return {
@@ -63,6 +64,22 @@
           }
         ]
       }
+    },
+    onShow() {
+      console.log('removeTabBarBadge')
+      wx.removeTabBarBadge({
+        index: 2,
+      })
+    },
+    // 这个是获取我点击的tab
+    onTabItemTap(item) {
+      console.log('onTabItemTap')
+      console.log(item.index)
+      console.log(item.pagePath)
+      console.log(item.text)
+    },
+    methods: {
+
     }
   }
 </script>
