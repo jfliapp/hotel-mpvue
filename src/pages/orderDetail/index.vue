@@ -3,13 +3,13 @@
     <div class="orderDetail_num">
       <div>订单号：1651568515</div>
       <div style="display: flex;align-items: center;color: rgb(0, 126, 226)">
-        <img src="/static/imgs/customer.png" style="width: 15px;height: 15px;">
+        <img src="/static/imgs/customer.png" class="img_custome">
         &nbsp;&nbsp;客服
       </div>
     </div>
     <div class="orderDetail_all">
       <div class="orderDetail_all_sure">
-        <img src="/static/imgs/sure.png" style="width:30px;height: 30px">
+        <img src="/static/imgs/sure.png" class="img_detail">
         &nbsp;&nbsp;确认中
       </div>
       <div class="orderDetail_wait">
@@ -32,7 +32,10 @@
         <div style="position: absolute;top:0;right: 0;"><img src="/static/imgs/gradesmall.png" class="orderDetail_comment"></div>
       </div>
       <div class="orderDetail_rule">
-        3天内点评积分+50，点评传图还可抽奖！<span style="color: black;">积分规则&nbsp;&nbsp;</span><img src="/static/imgs/rule.png" class="orderDetail_rule_img">
+        3天内点评积分+50，点评传图还可抽奖！
+        <span style="color: black;">
+          积分规则&nbsp;&nbsp;</span>
+          <img src="/static/imgs/rule.png" class="orderDetail_rule_img">
       </div>
       <div class="orderDetail_comeIn">晚些到店</div>
     </div>
@@ -40,9 +43,12 @@
       <div class="orderDetail_orderHotel_item">
         <div style="display: flex;justify-content: space-between;">
           <div class="orderDetail_orderHotel_name">上海8091青年求职公寓</div>
-          <div style="color: rgb(0, 126, 226);">酒店详情</div>
+          <div class="orderDetail_orderHotel_detail">酒店详情</div>
         </div>
-        <div><span style="color: #ccc;">地址</span>&nbsp;&nbsp;镇安路1051弄14号楼204室</div>
+        <div class="orderDetail_orderHotel_item_place">
+          <span style="color: rgb(136,136,136)">地址</span>
+          &nbsp;&nbsp;镇安路1051弄14号楼204室
+        </div>
       </div>  
       <div style="display: flex;color: rgb(0, 126, 226);">
         <div style="width: 50%;text-align: center">地图</div>
@@ -55,8 +61,8 @@
           <div class="orderDetail_detail_detail_Dlist">女生12人床位房&nbsp;&nbsp;(无窗)&nbsp;&nbsp;(一张床位)&nbsp;&nbsp;(女生入住)  (11天内预定)&nbsp;&nbsp;(内宾)&nbsp;&nbsp;(无窗)</div>
           <div style="color: rgb(0, 126, 226);">房型详情</div>
         </div>
-        <div style="color:rgb(230, 217, 217)">6月12日 - 6月13日 共1晚 1间</div>
-        <div style="color:rgb(230, 217, 217)">6月13日 无早餐</div>
+        <div>6月12日 - 6月13日 共1晚 1间</div>
+        <div>6月13日 无早餐</div>
       </div>
       <div class="orderDetail_detail_info">
         <div class="orderDetail_detail_info_person_Q">
@@ -98,8 +104,13 @@
   justify-content: space-between;
   padding: 10px;
   height: 20px;
+  font-size: 11px;
   background: white;
   align-items: center
+}
+.img_custome {
+  width: 15px;
+  height: 15px;
 }
 .orderDetail_all {
   display: flex;
@@ -112,12 +123,17 @@
 .orderDetail_all_sure {
   display: flex;
   align-items: center;
-  font-size: 17px
+  font-size: 18px
+}
+.img_detail {
+  width: 20px;
+  height: 20px;
 }
 .orderDetail_wait {
   display: flex;
   justify-content: space-between;
-  font-size: 13px;
+  font-size: 10px;
+  color: rgb(53, 53, 53);
 }
 .orderDetail_wait_img {
   width: 15px;
@@ -139,16 +155,16 @@
   color: rgb(0, 126, 226)
 }
 .orderDetail_order_item {
-  width: 30%;
+  width: 105px;
   height: 30px;
   text-align: center;
   line-height: 30px;
   border: 1px solid #ccc;
-  border-radius: 5px 5px;
+  border-radius: 4px 4px;
   background: white
 }
 .orderDetail_need_rule_come {
-  height: 140px;
+  /* height: 140px; */
   background: white;
   display: flex;
   flex-direction: column;
@@ -157,6 +173,7 @@
 .orderDetail_needComments {
   width: 100%;
   height: 30px;
+  font-size: 14px;
   text-align: center;
   line-height: 30px;
   color: rgb(0, 126, 226);
@@ -170,8 +187,8 @@
 }
 .orderDetail_rule {
   height: 60px;
-  border-bottom:1px solid #ccc;
-  font-size: 13px;
+  border-bottom:1px solid rgb(235, 235, 235);
+  font-size: 12px;
   color: rgb(0, 126, 226);
   display: flex;
   align-items: center;
@@ -180,8 +197,8 @@
 .orderDetail_comeIn {
   text-align: center;
   color: rgb(0, 126, 226);
-  height: 50px;
-  line-height: 50px
+  height: 40px;
+  line-height: 40px
 }
 .orderDetail_rule_img {
   width: 15px;
@@ -201,11 +218,19 @@
   flex-direction: column;
   justify-content: space-around;
   height:60px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid rgb(235, 235, 235);
   padding-bottom:10px;
 }
 .orderDetail_orderHotel_name {
-  font-size: 14px;
+  font-size: 15px;
+}
+.orderDetail_orderHotel_detail {
+  font-size: 12px;
+  color: rgb(0, 126, 226);
+}
+.orderDetail_orderHotel_item_place {
+  font-size: 12px;
+  color: rgb(53, 53, 53);
 }
 .orderDetail_detail {
   margin-top:10px;
@@ -218,9 +243,11 @@
   display: flex;
   flex-direction: column;
   height: 100px;
+  font-size: 12px;
   justify-content: space-around;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 10px
+  border-bottom: 1px solid rgb(235, 235, 235);
+  padding-bottom: 10px;
+  color: rgb(53, 53, 53);
 }
 .orderDetail_detail_detail_D {
   display: flex;
@@ -240,6 +267,7 @@
 .orderDetail_detail_info_person_Q {
   display: flex;
   flex: 2;
+  color: rgb(178, 178, 178);
   flex-direction: column;
   height: 200px;
   justify-content: space-around

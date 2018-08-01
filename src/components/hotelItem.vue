@@ -8,7 +8,7 @@
         <p>{{item.name}}
           <span class="hotel_item_R_name">{{item.type}}</span>
         </p>
-        <p style="color: #1296db;">{{item.score}}分
+        <p style="color: rgb(0, 126, 226);">{{item.score}}分
           <span>{{item.grade}}</span>
           <span class="hotel_item_R_comment"> {{item.comment}}条点评</span>
         </p>
@@ -49,12 +49,12 @@
   .hotel_item {
     display: flex;
     flex-direction: row;    
-    font-size: 15px;
+    font-size: 17px;
     border-bottom: 1px solid #ccc;    
     }
     .hotel_item_img {
-      width: 125px;
-      height: 125px;
+      width: 128px;
+      height: 118px;
     }
     .hotel_item_R {      
       display: flex;
@@ -64,39 +64,43 @@
       padding: 10px 0 10px 10px;     
   }
   .hotel_item_R_name {
-    font-size: 13px;
-    color: #ccc
+    font-size: 14px;
+    color: rgb(163, 163, 163)
   }
   .hotel_item_R_comment {
     font-size: 13px;
-    color: #ccc
+    color: rgb(163, 163, 163)
   }
 .hotel_item_R_Bottom {
   display: flex; 
-  align-items: flex-end
+  align-items: flex-end;
+  font-size: 13px;
+  color: rgb(163, 163, 163)
 }
 .hotel_item_R_Bottom_distance{
   font-size: 13px;
   color: #ccc
 }
 .item_type {
-        height: 20px;
-        width: 50px;
+        height: 16px;
+        width: 54px;
         border: 0.5px solid rgb(171,171,171);
-        border-radius: 5px;
-        line-height: 20px;
+        border-radius: 4px;
+        line-height: 16px;
         text-align: center;
         margin-top: 10px;
         margin-right: 10px;
-        font-size: 11px;
+        font-size: 10px;
         color: rgb(0, 126, 226);
       }
     .hotel_item_R_Bottom_R_T {
-      font-size: 12px;
-      color: #ccc
+      font-size: 10px;
+      color: rgb(178, 178, 178)
     }
     .hotel_item_R_Bottom_R_B{
-      font-size: 13px;
-      color: #1296db
+      margin-top: 3px;
+      font-weight: 600;
+      font-size: 12px;
+      color: rgb(0, 126, 226)
     } 
 </style>

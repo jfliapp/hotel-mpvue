@@ -15,7 +15,7 @@
             <div class="order_detail_name">{{item.name}}</div>
             <div style="color: rgb(0, 126, 226);">￥ {{item.price}}</div>
           </div>
-          <div style="display: flex;color: #ccc;justify-content: space-between;">
+          <div style="display: flex;color: rgb(102, 102, 102);justify-content: space-between;">
             <div class="order_detail_info">
               <div>{{item.distance}}</div>
               <div>{{item.timeStart}} {{item.timeEnd}} {{item.time}}晚/{{item.homeNum}}间</div>
@@ -28,7 +28,7 @@
               &nbsp;&nbsp;问路卡
             </div>
             <div style="display: flex;">
-              <div class="order_detail_sure" style="margin-right: 10px">催确认</div>
+              <div class="order_detail_sure" style="margin-right: 20rpx">催确认</div>
               <div class="order_detail_sure">取消</div>
             </div>
           </div>
@@ -46,11 +46,11 @@
       </div>
     </div>
     <div class="order_filter">
-      <div style="width: 50%;display: flex;justify-content: center;">
+      <div style="width: 50%;display: flex;justify-content: center;align-items: center;">
         <img src="/static/imgs/filter.png" class="img_right">
-        筛选
+        &nbsp;筛选
       </div>
-      <div style="width: 50%;display: flex;justify-content: center">
+      <div style="width: 50%;display: flex;justify-content: center;align-items: center;">
         有效订单
         <div style="margin-left: 10px">
           <checkbox></checkbox>
@@ -111,7 +111,7 @@
   }
   .myorder {
     background: rgb(246, 246, 246);
-    font-size: 15px;
+    font-size: 12px;
   }
   .order_type {
     display: flex;
@@ -128,14 +128,14 @@
     padding:10px;
   }
   .order_date_detail {
-    width: 150px;
+    width: 120px;
     text-align: center;
-    height: 30px;
-    line-height: 30px;
+    height: 22px;
+    line-height: 22px;
     background: rgb(0, 126, 226);
     color: white;
     font-size: 13px;
-    border-radius: 15px 15px
+    border-radius: 11px 11px
   }
   .order_detail_all {
     height: 120px;
@@ -144,24 +144,26 @@
     flex-direction: column;
     padding: 10px;
     justify-content: space-around;
-    font-size: 13px;
+    font-size: 12px;
   }
   .order_detail_name {
     font-size: 15px;
+    color: rgb(53, 53, 53);
   }
   .order_detail_info {
     display: flex;
     flex-direction: column;
+    color: rgb(136, 136, 136);
     justify-content: space-around;
     height: 50px;
   }
   .order_detail_sure {
-    width: 60px;
-    height: 20px;
+    width: 64px;
+    height: 22px;
     text-align: center;
-    line-height: 20px;
+    line-height: 22px;
     border: 1px solid #ccc;
-    border-radius: 5px 5px;    
+    border-radius: 3px 3px;    
   }
   .order_detail_info_way {
     display: flex;
@@ -173,7 +175,7 @@
     height: 13px;
   }
   .order_show {
-    height: 200px;
+    /* height: 200px; */
     display: flex;
     flex-direction: column;
   }
@@ -196,12 +198,14 @@
     align-items: center;
     justify-content: center;
     height:30px;
+    color: rgb(53, 53, 53);
     background: white;
-    border-radius: 30px 30px
+    border-radius: 15px 15px
   }
   .order_filter {
     display: flex;
     height: 50px;
+    font-size: 15px;
     background: white;
     align-items: center
   }

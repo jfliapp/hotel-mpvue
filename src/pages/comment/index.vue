@@ -19,7 +19,7 @@
           <div>{{item.timeStart}}至{{item.timeEnd}}</div>
           <div style="width: 85%">{{item.details}}</div>
         </div>
-        <div style="color: rgb(0, 126, 226);">写完本条评论最多可获得130积分</div>
+        <div class="commentDetail_reward">写完本条评论最多可获得130积分</div>
       </div>
     </div>
   </div>
@@ -68,7 +68,7 @@
   font-size: 15px;
 }
 .comments_integral {
-  font-size: 13px;
+  font-size: 12px;
   color: rgb(0, 126, 226);
   display: flex;
   align-items: center;
@@ -85,32 +85,38 @@
 }
 .comments_details_title {
   height: 30px;
+  font-size: 11px;
 }
 .comments_details_item {
   display: flex;
   flex-direction: column;
   height: 130px;
-  justify-content: space-around
+  padding: 10px;
+  justify-content: space-around;
 }
 .comments_details_item_top {
   display: flex;
   justify-content: space-between;
   align-items:center;
-  font-size: 17px;
+  font-size: 15px;
 }
 .comments_details_item_top_R {
   display: flex;
   align-items: center;
   color: rgb(0, 126, 226);
-  font-size: 13px
+  font-size: 12px
 }
 .comments_details_item_info {
-  color: #ccc;
+  color: rgb(136,136,136);
   display: flex;
   flex-direction: column;
   height: 60px;
   justify-content: space-around;
-  font-size: 13px
+  font-size: 12px
+}
+.commentDetail_reward {
+  font-size: 12px;
+  color: rgb(0, 126, 226);
 }
 .img_comment {
   width: 15px;

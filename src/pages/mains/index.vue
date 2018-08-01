@@ -18,7 +18,7 @@
                 <img v-else class="img_class" src="/static/imgs/up_san.png" /> |
               </div>
             </div>
-            <div style="color: #1296db" @click="likeFli">&nbsp;欢迎度排序
+            <div style="color: rgb(0, 126, 226)" @click="likeFli">&nbsp;欢迎度排序
               <img class="img_class" src="/static/imgs/down_san.png" />
             </div>
           </div>
@@ -36,7 +36,7 @@
               <!-- 不起效果的scroll-view 点击 scroll-into-view 不随着滚动-->
               <scroll-view :scroll-y="true" @scroll="ScrollY" :scroll-into-view="whereId" class="scrollViewL">
                 <div v-for="(arrI, idx) in hotel_filter_more" :key="idx" :id="arrI.sta">
-                  <div style="padding: 10rpx;">{{arrI.name}}</div>
+                  <div class="F_model_T_R_title">{{arrI.name}}</div>
                   <div style="display: flex;flex-wrap: wrap;">
                     <div v-for="(item, index) in (arrI.tab ? arrI.arr : arrI.arrSlice)" :key="index" class="F_model_T_R_item">{{item}}</div>
                     <div v-if="arrI.tab" @click="arrI.tab = !arrI.tab" class="F_model_T_R_item_more">
@@ -60,10 +60,10 @@
         </div>
         <div v-else-if="tapState == 'map'" class="F_model">
           <div class="F_model_T">
-            <div style="display: flex;flex-direction: column;flex: 1.5;background: rgb(245, 245, 245);overflow-y: scroll">
+            <div class="F_model_T_L">
               <div v-for="(item, iFilter1) in arr2" :key="iFilter1" class="F_model_tl" :class="{F_model_tlF: item.border}" @click="clickL2(item)">{{item.name}}</div>
             </div>
-            <div style="display: flex;flex-direction: column;flex: 4;overflow-y: scroll">
+            <div class="F_model_T_R">
               <div v-for="(arrI, idxDist) in arrDistance" :key="idxDist" class="F_model_choose_place" 
               :class="{dist_color: arrI.checked}"
                 @click="check(arrI)">
@@ -124,18 +124,18 @@
         </div>
         <div style="display: flex;align-items: center">
           <img src="/static/imgs/map_icon.png" class="imgS" />
-          <span style="margin-left: 5px;">附近</span>
+          <span style="margin-left: 10rpx;">附近</span>
         </div>
       </div>
       <div class="input_all">
         <div class="input_sel">
-          <div style="display: flex;">
+          <div style="display: flex;align-items: center">
             <div class="input_sel_date" @click="dateTap">
               <p>住
-                <span style="color: #ccc;margin-left: 10rpx;">{{checkInDate}}</span>
+                <span class="style_date_OutIn">{{checkInDate}}</span>
               </p>
               <p>离
-                <span style="color: #ccc;margin-left: 10rpx;">{{checkOutDate}}</span>
+                <span class="style_date_OutIn">{{checkOutDate}}</span>
               </p>
             </div>
             <div class="filter_down">
@@ -164,7 +164,7 @@
           <img v-else class="img_class" src="/static/imgs/up_san.png" /> |
         </div>
       </div>
-      <div style="color: #1296db">&nbsp;欢迎度排序
+      <div style="color: rgb(0, 126, 226)">&nbsp;欢迎度排序
         <img class="img_class" src="/static/imgs/down_san.png" />
       </div>
     </div>
@@ -685,7 +685,7 @@
     height: 100%;
     position: fixed;
     overflow: hidden;
-    z-index: 99999999999999;
+    z-index: 99;
     background: rgba(15, 15, 26, 0.7)
   }
 
@@ -694,6 +694,8 @@
     align-items: center;
     justify-content: center;
     height: 50px;
+    font-size: 16px;
+    color: #fff;
     background: rgb(0, 126, 226)
   }
 
@@ -718,7 +720,7 @@
     height: 100px;
     padding: 10px;
     /* text-align: center; */
-    font-size: 15px;
+    font-size: 13px;
     box-sizing: border-box;
     background: rgb(0, 126, 226)
   }
@@ -727,12 +729,14 @@
     width: 100%;
     height: 20px;
     display: flex;
+    color: #fff;
     justify-content: flex-end
   }
 
   .sub_title_place_ditance {
     display: flex;
     align-items: center;
+    font-size: 16px;
     margin-right: 30%
   }
 
@@ -745,25 +749,29 @@
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
-    font-size: 15px;
+    /* font-size: 15px; */
   }
 
   .input_sel {
     display: flex;
     /* float: left; */
-    width: 300px;
-    height: 40px;
+    width: 305px;
+    height: 37px;
     background: white;
     padding-left: 5px;
-    box-sizing: border-box;
-    border-radius: 10px 10px;
+    /* box-sizing: border-box; */
+    border-radius: 5px 5px;
   }
 
   .input_sel_date {
     /* float: left; */
-    font-size: 13px;
+    font-size: 10px;
+    color: rgb(48, 48, 48)
   }
-
+  .style_date_OutIn {
+    color: rgb(147, 147, 147);
+    margin-left: 5px;
+  }
   /* .input_sel input::-webkit-input-placeholder {    
     color: #aab2bd;
     font-size: 12px;
@@ -776,7 +784,9 @@
   }
 
   .input_search {
-    height: 40px;
+    height: 37px;
+    line-height: 34px;
+    width: 205px;
     padding-left: 3px
   }
 
@@ -791,40 +801,41 @@
     /* padding-bottom: 2px; */
     display: flex;
     justify-content: space-around;
-    font-size: 14px;
-    color: rgb(171, 171, 171);
-    height: 30px;
+    font-size: 13px;
+    color: rgb(91, 91, 91);
+    height: 37px;
     background: white;
-    line-height: 30px;
+    line-height: 37px;
   }
 
   .filter_sub_item {
     background: rgb(244, 244, 246);
-    margin-top: 8px;
+    /* margin-top: 8px; */
+    height: auto;
     padding: 10px 0;
     font-size: 11px
   }
 
   .input_map {
     /* float: right; */
-    width: 48px;
-    height: 40px;
+    width: 41px;
+    height: 37px;
     text-align: center;
-    line-height: 40px;
+    line-height: 37px;
     color: rgb(0, 126, 226);
     background: rgb(210, 228, 251);
     border: 0.5px solid #ccc;
-    border-radius: 10px 10px;
+    border-radius: 5px 5px;
   }
 
   .filter_li {
-    background: white;
-    width: 20%;
+    background: #fff;
+    width: 76px;
     height: 30px;
     text-align: center;
-    color: black;
+    color: rgb(48, 48, 48);
     line-height: 30px;
-    border-radius: 20px 20px;
+    border-radius: 15px 15px;
   }
 
   .click_change {
@@ -834,7 +845,7 @@
   .F_model {
     height: 400px;
     display: flex;
-    font-size: 15px;
+    font-size: 13px;
     flex-direction: column;
     /* position: fixed;
     top: 22%;
@@ -844,13 +855,15 @@
 
   .F_model_T {
     display: flex;
+    justify-content: space-between;
     height: 360px;
   }
 
   .F_model_T_L {
     display: flex;
     flex-direction: column;
-    flex: 1.5;
+    /* flex: 1.5; */
+    width: 80px;
     background: rgb(245, 245, 245);
     overflow-y: scroll
   }
@@ -859,44 +872,53 @@
     height: 40px;
     line-height: 40px;
     text-align: center;
-    border-bottom: 2px solid rgb(236, 236, 236);
+    color: rgb(160, 160, 160);
+    border-bottom: 1px solid rgb(236, 236, 236);
   }
 
   .F_model_choose_place {
     display: flex;
     justify-content: space-between;
     padding: 5px 10px;
+    height: 25px;
+    line-height: 25px;
     border-bottom: 1px solid rgb(235, 235, 235);
-    font-size: 15px
+    font-size: 12px
   }
 
   .F_model_T_R {
     display: flex;
     flex-direction: column;
-    font-size: 13px;
-    flex: 4;
-    margin-left: 10px;
+    font-size: 10.5px;
+    /* flex: 4; */
+    width: 290px;
+    /* margin-left: 10px; */
     overflow-y: scroll
   }
-
+  .F_model_T_R_title {
+    padding: 5px;
+    font-size: 12px;
+    color: rgb(147, 144, 144)
+  }
   .F_model_T_R_item {
-    width: 80px;
-    height: 30px;
+    width: 87px;
+    height: 33px;
+    color: rgb(93, 93, 93);
     background: rgb(237, 245, 251);
     text-align: center;
-    line-height: 30px;
+    line-height: 33px;
     margin: 2px;
   }
 
   .F_model_T_R_item_more {
-    width: 80px;
-    height: 30px;
+    width: 87px;
+    height: 33px;
     display: flex;
     align-items: center;
-    background: yellow;
+    background: rgb(237, 245, 251);
     justify-content: center;
-    line-height: 30px;
-    margin: 5px;
+    line-height: 33px;
+    margin: 2px;
   }
 
   .F_model_T_price {
@@ -912,6 +934,7 @@
   }
 
   .F_model_B_botton {
+    font-size: 15px;
     width: 50%;
     text-align: center;
     height: 41px;
@@ -919,12 +942,15 @@
   }
 
   .F_model_B_botton_sure {
+    color: #fff;
     background: rgb(254, 105, 19);
   }
 
   .F_model_tlF {
     border-left: 3px solid rgb(0, 72, 145);
-    background: white
+    background: white;
+    color: rgb(91, 91, 91)
+
   }
 
   .dist_color {
@@ -938,6 +964,8 @@
   }
 
   .starPriceBottom {
+    font-size: 13px;
+    color: rgb(113, 113, 113);
     margin-bottom: 15px;
   }
 
@@ -965,7 +993,8 @@
     align-items: center; */
     display: table-cell;
     vertical-align: middle;
-    font-size: 11px;
+    font-size: 10.5px;
+    color: rgb(91, 91, 91);
   }
 
   .star_choose {
@@ -974,8 +1003,8 @@
   }
 
   .imgS {
-    width: 15px;
-    height: 15px;
+    width: 13px;
+    height: 13px;
   }
   .scrollViewL {
     height: 350px;

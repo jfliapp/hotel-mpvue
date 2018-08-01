@@ -65,12 +65,16 @@
           <div class="phone_psw_input"><input type="text" placeholder="密码"></div>
         </div>
       </div>
-      <div class="login"@click="loginT">登录</div>
+      <div class="login" @click="loginT">登录</div>
     </div>
     <div v-else>
       <div class="reward_all">
-        <div class="reward_item"><img src="/static/imgs/great.png" class="img_reward">&nbsp;&nbsp;好赞！这么划算的房间都能给你挑到</div>
-        <div class="reward_item"><img src="/static/imgs/help.png" class="img_reward">&nbsp;&nbsp;好赞！这么划算的房间都能给你挑到</div>
+        <div class="reward_item L">
+          <img src="/static/imgs/great.png" class="img_reward">
+          &nbsp;&nbsp;好赞！这么划算的房间都能给你挑到
+        </div>
+        <div class="reward_item">
+          <img src="/static/imgs/help.png" class="img_reward">&nbsp;&nbsp;好赞！这么划算的房间都能给你挑到</div>
       </div>
       <form @submit="formSubmit" @reset="formReset">
         <div class="Room_from">
@@ -84,7 +88,7 @@
           <div>
             <div class="Room_from_item" v-for="(item, index) in roomNum" :key="index">
               <div style="display: flex;">
-                <div class="Room_from_item_num" :style="{visibility: item == '0' ? '' : 'hidden'}">入住人</div>
+                <div class="Room_from_item_num" :style="{visibility: item == '0' ? '' : 'hidden'}">入住数</div>
                 <div class="Room_from_item_Detail"><input type="text" placeholder="一间填一个人的姓名"></div>
               </div>
               <div style="display: flex;align-items: center"><img src="/static/imgs/down.png" class="img_down"></div>
@@ -132,7 +136,8 @@
           总计： ￥129.99
         </div>
         <div class="pay">
-          <button formType="submit">微信支付</button>
+          <!-- <button formType="submit">微信支付</button> -->
+          微信支付
         </div>
       </form>
     </div>
@@ -338,6 +343,8 @@
   .hotel_order{
     display: flex;
     flex-direction: column;
+    font-size: 14px;
+    color: rgb(53,53,53)
   }
   .hotel_order_Detail {
     display: flex;
@@ -348,20 +355,22 @@
   }
   .hotel_order_Detail_name{
     display: flex;
+    font-size: 18px;
     justify-content: center;
     height: 60px;
     align-items: center
   }
   .hotel_order_Detail_name_Detail {
-    font-size: 17px;
+    font-size: 15px;
     height: 40px;
     line-height: 40px
   }
   .hotel_order_Detail_D {
     display: flex;
     flex-direction: column;
-    font-size: 15px;
-    color: #ccc;height: 60px;
+    font-size: 12px;
+    color: rgb(136,136,136);
+    height: 60px;
     justify-content: space-around;
     border-bottom: 1px solid rgb(235, 235, 235);
     padding-bottom: 10px
@@ -370,8 +379,8 @@
     display: flex;
     height: 50px;
     align-items: center;
-    font-size: 15px;
-    color:#ccc;
+    font-size: 13px;
+    color: rgb(136,136,136);
     justify-content: space-between
   }
   .hotel_order_Detail_date_fix {
@@ -386,18 +395,18 @@
   .phone {
     display: flex;
     flex-direction: column;
-    height: 150px;
+    height: 120px;
     justify-content: space-around;
     font-size: 15px;
   }
   .phone_tel {
     display: flex;
     width: 95%;
-    height: 40px;
+    height: 47px;
     align-items: center;
     margin: 0 auto;
     border: 1px solid rgb(190, 190, 190);
-    border-radius: 8px 8px;
+    border-radius: 4px 4px;
   }
   .phone_tel_lable {
     margin-left: 10px;
@@ -433,14 +442,16 @@
     color: rgb(0, 126, 226)
   }
   .loginTip {
-    font-size: 13px;
+    font-size: 12px;
     height: 15px;
     line-height: 15px;
     padding: 20px;
+    color: rgb(53,53,53);
     background: white
   }
   .Room_from {
     margin-top: 10px;
+    font-size: 13px;
     /* height: 250px; */
     background: white;
     padding: 5px 0 5px 20px;
@@ -456,34 +467,30 @@
     padding: 5px;
     align-items: center;
     justify-content: space-between;
-    font-size: 16px
   }
   .Room_from_item_Detail {
-    margin-left: 10px;
+    margin-left: 5px;
   }
   .Room_from_item_num {
-    color: #ccc;
+    color: rgb(136,136,136);
     width: 80px;
   }
   .hotel_atention {
     display: flex;
+    color: rgb(178, 178, 178);
     /* height: 250px; */
-    font-size: 13px;
+    font-size: 12px;
     padding: 0 20px;
     display: flex;
     flex-direction: column;
     /* justify-content: space-around */
   }
   .hotel_atention1 {
-    color: #ccc;
-    /* height: 50px; */
     padding: 10px 0;
     border-bottom:1px solid #ccc;
   }
   .hotel_atention2 {
-    color: #ccc;
     padding: 10px 0;
-    /* height: 60px; */
   }
   .reward_all {
     margin-top: 10px;
@@ -492,13 +499,16 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    font-size: 13px;
+    font-size: 12px;
     padding: 20px
   }
   .reward_item {
     display: flex;
     align-items: center;
     color: rgb(0, 126, 226)
+  }
+  .L {
+    color: rgb(255, 107, 20)
   }
   .img_reward {
     width: 30px;
@@ -508,28 +518,29 @@
     font-size: 20px;
     color: white;
     width: 95%;
-    height: 50px;
+    height: 44px;
     text-align: center;
-    line-height: 56px;
-    margin: 0 auto;
-    border-radius: 8px 8px;
+    line-height: 44px;
+    margin: 10px auto;
+    border-radius: 6px 6px;
     background: rgb(255, 107, 20)
   }
   .free_get {
     display: flex;
-    height: 22px;
+    height: 32px;
     background: rgba(0, 126, 226, 0.05);
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    font-size: 15px;
+    padding: 10px;
+    /* font-weight: 600; */
+    font-size: 14px;
   }
   .login_first {
     display: flex;
     flex-direction:column;
     margin-top: 10px;
     font-size: 15px;
-    height: 300px;
+    /* height: 300px; */
   }
   .login_first_logintype {
     width: 50%;
@@ -542,10 +553,10 @@
     height: 20px;
   }
   .total {
-    height: 20px;
+    height: 30px;
     color: rgb(0, 126, 226);
     text-align: right;
-    padding: 20px;
+    padding: 10px;
     background: white;
     line-height: 30px;
     font-size: 17px;

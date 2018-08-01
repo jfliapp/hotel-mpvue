@@ -2,19 +2,19 @@
   <div class="commentsDetail">
     <div class="commentsDetail_title">上海8090青年求职公寓</div>
     <div class="commentsDetail_info">
-      <div style="display: flex;justify-content: space-between;">
+      <div class="commentsDetail_info_item">
         <div>房间卫生</div>
         <div><star v-model.lazy="homeStar"/></div>
       </div>
-      <div style="display: flex;justify-content: space-between;">
+      <div class="commentsDetail_info_item">
         <div>周边环境</div>
         <div><star/></div>
       </div>
-      <div style="display: flex;justify-content: space-between;">
+      <div class="commentsDetail_info_item">
         <div>酒店服务</div>
         <div><star/></div>
       </div>
-      <div style="display: flex;justify-content: space-between;">
+      <div class="commentsDetail_info_item">
         <div>设施服务</div>
         <div><star/></div>
       </div>
@@ -137,7 +137,7 @@
 <style>
   .commentsDetail {
     background:rgb(246, 246, 246);
-    font-size: 15px
+    font-size: 15px;
   }
   .commentsDetail_title {
     height: 20px;
@@ -149,8 +149,17 @@
     flex-direction: column;
     background: white;
     padding: 20px;
-    height: 200px;
+    font-size: 13px;
+    color: rgb(3, 3, 3);
+    /* height: 180px; */
     justify-content: space-around
+  }
+  .commentsDetail_info_item {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(245,245,245)
   }
   .commentsTypes {
     margin-top: 10px;
@@ -161,7 +170,7 @@
   .commentsType_L {
     width:85px;
     /* flex: 1; */
-    font-size: 11px;
+    font-size: 10px;
     height: 30px;
     line-height: 30px
   }
@@ -171,7 +180,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    font-size: 13px;
+    font-size: 12px;
   }
   .commentsItem{
     background: rgb(237, 245, 251);
@@ -179,6 +188,7 @@
     height: 20px;
     text-align: center;
     line-height: 20px;
+    color: rgb(93,93,93);
     margin: 5px 5px 5px 0;
   }
   .commentsChoose {
@@ -188,6 +198,7 @@
     width: 90%;
     margin: 20px auto;
     height: 44px;
+    border-radius: 6px;
     text-align: center;
     line-height: 44px;
     color: white;
@@ -195,6 +206,7 @@
   }
   .imgTip {
     width: 250px;
+    color: rgb(136,136,136);
     font-size: 13px;
     padding-left: 20px
   }
@@ -219,6 +231,7 @@
   }
   .commentsDetail_rule {
     display: flex;
+    font-size: 12px;
     flex-direction: column;
     text-align: right;
     height: 30px;

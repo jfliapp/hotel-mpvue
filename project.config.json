@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -40,14 +40,14 @@
 				},
 				{
 					"id": 1,
-					"name": "comment",
+					"name": "commentDetail",
 					"pathName": "pages/commentDetail/main",
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "wode",
-					"pathName": "pages/wode/main",
+					"id": 2,
+					"name": "collect",
+					"pathName": "pages/collect/main",
 					"query": ""
 				}
 			]

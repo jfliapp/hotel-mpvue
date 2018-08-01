@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style="width: 100%">
-      <img src="/static/imgs/hotelDetail.png" alt="" style="width:100%">
+      <img src="/static/imgs/hotelDetail.png" class="img_detail" style="width:100%">
     </div>
     <div class="detailD_facility">
       <div class="detailD_facility_item">
@@ -9,7 +9,7 @@
           <span style="color: #ccc;">{{item.name}}&nbsp;&nbsp;&nbsp;&nbsp;</span>{{item.attr}}
         </div> -->
         <div>
-          <span style="color: #ccc;">面积</span>&nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="detailD_facility_type">面积</span>&nbsp;&nbsp;&nbsp;&nbsp;
             {{detail_item.area}}m&sup2; | {{detail_item.floor}}层 | 可住{{detail_item.num}}人 | {{detail_item.window}} | {{detail_item.balcony}}
         </div>
         <div>
@@ -34,7 +34,7 @@
       <div style="height: 100px;background: rgb(246, 246, 246)"></div>
       <div class="detailD_facility_monney">
         <div style="display: flex;flex-direction: column;">
-          <div style="color: #ccc">C-TRIP <span style="text-decoration:line-through;">$120</span></div>
+          <div class="detailD_facility_monney_old">C-TRIP <span style="text-decoration:line-through;">$120</span></div>
           <div style="color:rgb(0, 126, 226)">OUR PRICE $99</div> 
         </div>
         <div class="detailD_facility_monney_order" @click="order(1)">预定</div>
@@ -103,9 +103,14 @@
   }
 </script>
 <style>
+  .img_detail {
+    width: 100%;
+    height: 220px;
+  }
   .detailD_facility {
     padding: 10px;
-    font-size: 15px;
+    font-size: 13px;
+    color: rgb(53, 53, 53)
   }
   .detailD_facility_item {
     display: flex;
@@ -113,10 +118,14 @@
     flex-direction: column;
     justify-content: space-around;
     height: 180px;
-    border-bottom: .1px solid #ccc
+    border-bottom: .1px solid rgb(235,235,235)
+  }
+  .detailD_facility_type {
+    color: rgb(178, 178, 178);
   }
   .detailD_facility_more {
     display: flex;
+    font-weight: 600;
     justify-content: space-between;
     height: 50px;
     line-height: 50px
@@ -132,10 +141,15 @@
     font-size: 15px;
     height: 60px
   }
+  .detailD_facility_monney_old {
+    font-size: 10px;
+    color: rgb(178, 178, 178);
+  }
   .detailD_facility_monney_order {
     background: rgb(255, 107, 20);
     color: white;
     width: 80px;
+    border-radius: 4px;
     height: 30px;
     line-height: 30px;
     text-align: center

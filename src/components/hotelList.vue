@@ -8,7 +8,7 @@
     <div>
       <div v-if="hasMore" class="hasmore">
         <img src="/static/imgs/loading.gif" class="imgLoad" mode="aspectFill"/>
-        <div style="margin-left: 20px;">正在加载。。。</div>
+        <div style="margin-left: 40rpx;">正在加载。。。</div>
       </div>
       <div v-else class="hasmore">
         <div>----- 我也是有底线的 -----</div>

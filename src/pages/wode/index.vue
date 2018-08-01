@@ -4,7 +4,7 @@
     </div>
     <div class="meun" v-show="meun" :class="{meunShow: isLeft}" :style="{right: left + 'rpx'}">
         <div class="meun_top" >
-          <div>M20135****95</div>
+          <div style="font-size: 32rpx">M20135****95</div>
           <div class="logout" @click="logout">退出</div>
         </div>
         <div class="meun_bottom">
@@ -84,11 +84,24 @@
         <div class="input_item">
           <div class="input_item_radio">
             <span class="input_item_radio_title">出行类型 · 帮您挑选心悦酒店</span>
-            <radio-group class="radio-group" @change="radioChange">
+            <div class="input_item_radio_B">
+              <div class="input_item_radio_img">
+                <img v-if="1" src="/static/imgs/map.png" class="img_radio">
+                <img v-else src="/static/imgs/map.png" class="img_radio">
+                &nbsp;出差
+              </div>
+              <div class="input_item_radio_img">
+                <img v-if="1" src="/static/imgs/map.png" class="img_radio">
+                <img v-else src="/static/imgs/map.png" class="img_radio">
+                &nbsp;出差
+              </div>
+            </div>
+            <!-- <radio-group class="radio-group" @change="radioChange">
               <label class="radio" v-for="(item,index) in radios" :key="index" style="margin-right: 30rpx;">
                 <radio :value="item.name" checked="item.checked"/>{{item.value}}
               </label>
-            </radio-group>
+            </radio-group> -->
+
           </div>
           <!-- <div style="float: left;line-height: 50px">></div> -->
           <!-- <div style="float: right;line-height: 50px">></div> -->
@@ -101,7 +114,7 @@
     </div>
     <div class="hotel_foot">
       <div class="hotel_foot_order" @click="orderUrl">
-        我的订单
+        <strong>我的订单</strong>
       </div>
       <div class="hotel_foot_Bottom">
         <span>
@@ -400,12 +413,11 @@
     position: fixed;
     width: 200px;
     height: 100%;
-    opacity: 93%;
     /* right: -210px; */
     top: 0;
     color: rgb(246, 246, 246);
     padding: 5px;
-    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.93);
     font-size: 14px;
     z-index: 5
     /* display: flex;
@@ -437,7 +449,7 @@
     height: 18px;
     line-height: 18px;
     text-align: center;
-    border: 0.5px solid #ccc;
+    border: 3px solid rgb(224, 224, 224);
     border-radius: 10px 10px;
     float: left;
     margin: 20px 20px;
@@ -525,8 +537,8 @@
     text-align: center;
     line-height: 37px;
     font-size: 15px;
-    box-shadow: 0 1 1px 2px #ccc;
-    background: white
+    /* box-shadow: 0 1 1px 2px #ccc; */
+    background: rgb(255, 255, 255);
   }
   .hotel_foot_Bottom {
     width: 100%;
@@ -596,14 +608,28 @@
   .dateDay {
     color: rgb(154, 154, 154);
     font-size: 11px
-  }
+  }  
   .input_item_radio {
     margin-top: 5px;
     display: flex;
-    /* height: 50px; */
+    height: 40px;
     flex-direction: column;
     justify-content: space-around;
-    font-size: 13px
+    font-size: 13px;
+    color: rgb(0,0,0);
+  }
+  .input_item_radio_B {
+    display: flex;
+  
+  }
+  .input_item_radio_img {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+  }
+  .img_radio {
+    width: 10px;
+    height: 10px;
   }
   .input_item_radio_title {
     color: rgb(154, 154, 154);
