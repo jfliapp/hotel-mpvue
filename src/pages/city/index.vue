@@ -29,12 +29,23 @@
             v-for="(item, index) in cityHot" :key="index">{{item}}</div>           
         </div>
       </div>
-    </div>
-    <!-- 测试三角形 -->
-    <div class="triangle_all">
-      <div class="triangle_icon">奖励</div>
-      <div class="triangle"></div>
-    </div>
+      <div class="place_city_alphabet">
+        <scroll-view :scroll-y="true" :scroll-into-view="whereAlph">
+          <div v-for="item in cityItem" :key="item.id" :id="item.alph">
+            <div style="padding: 20rpx;">{{item.alph}}</div>
+            <div v-for="(city,indexcity) in item.arr" :key="indexcity" class="place_city_alphabet_item">
+                {{city.name}}
+            </div>
+          </div>
+        </scroll-view>
+        <!-- 要使用这个要在scroll-view 里面加上scroll-y="true" -->
+        <!-- <div class="cityAlph">
+          <div v-for="item in cityItem" :key="item.id" class="cityAlphitem" @click="alphClick(item.alph)">
+            {{item.alph}}
+          </div>
+        </div> -->
+      </div>
+    </div>    
   </div>
 </template>
 <script>
@@ -42,12 +53,117 @@
     data() {
       return {
         place: '',
+        whereAlph: 'A',
         maskPlace: false,
         cityHot: ['北京', '上海', '广州', '深圳', '杭州', '成都', '上海', '广州', '深圳', '杭州', '成都'],
-        search_input: ['biejin']
+        search_input: ['biejin'], // 这个是输入之后提示
+        cityItem: [
+          {
+            id: 1,
+            alph: 'B',
+            arr: [
+              {
+                value: 'beijin',
+                name: '北京'
+              },
+              {
+                value: 'baoding',
+                name: '保定'
+              }
+            ]
+          },
+          {
+            id: 2,
+            alph: 'C',
+            arr: [
+              {
+                value: 'chengdu',
+                name: '成都'
+              },
+              {
+                value: 'chongqin',
+                name: '重庆'
+              }
+            ]
+          },
+          {
+            id: 3,
+            alph: 'D',
+            arr: [
+              {
+                value: 'chengdu',
+                name: '成都'
+              },
+              {
+                value: 'chongqin',
+                name: '重庆'
+              }
+            ]
+          },
+          {
+            id: 4,
+            alph: 'E',
+            arr: [
+              {
+                value: 'chengdu',
+                name: '成都'
+              },
+              {
+                value: 'chongqin',
+                name: '重庆'
+              }
+            ]
+          },
+          {
+            id: 5,
+            alph: 'F',
+            arr: [
+              {
+                value: 'chengdu',
+                name: '成都'
+              },
+              {
+                value: 'chongqin',
+                name: '重庆'
+              }
+            ]
+          },
+          {
+            id: 6,
+            alph: 'G',
+            arr: [
+              {
+                value: 'chengdu',
+                name: '成都'
+              },
+              {
+                value: 'chongqin',
+                name: '重庆'
+              }
+            ]
+          },
+          {
+            id: 7,
+            alph: 'H',
+            arr: [
+              {
+                value: 'chengdu',
+                name: '成都'
+              },
+              {
+                value: 'chongqin',
+                name: '重庆'
+              }
+            ]
+          }
+        ]
       }
     },
     methods: {
+      // 点击字母滚动到相应的位置
+      alphClick(item) {
+        this.whereAlph = item
+      },
       // 点击了其中一个 地址
       placeItem(item) {
         console.log(item)
@@ -167,28 +283,26 @@
     flex-direction: column;
     justify-content: space-around;
   }
-  .triangle_all {
-    width: 100%;
-    height: 50px;
-    background: #ccc;
-    position: relative
+  .place_city_alphabet_item {
+    /* width: 100%; */
+    padding: 10px;
+    height: 25px;
+    background: #fff;
+    line-height: 25px;
+    border-bottom: 1px solid #ccc;
   }
-  .triangle {
-    position: absolute;
-    font-size: #fff;
-    bottom: 0;
+  .cityAlph {
+    position: fixed;
+    top: 0;
     right: 0;
-    width: 0;
-    height: 0;
-    border-left: 50px solid transparent;
-    /* border-right: 30px solid transparent; */
-    border-bottom: 50px solid red;
+    width: 30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 50;
   }
-  .triangle_icon {
-    position: absolute;
-    bottom: 4px;
-    right: 4px;
-    font-size: 13px;
-    z-index: 23;
+  .cityAlphitem {
+    margin: 2px
   }
 </style>

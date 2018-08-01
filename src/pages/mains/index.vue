@@ -362,7 +362,8 @@
             border: false
           }
         ],
-        arrItemF: [{
+        arrItemF: [
+          {
             name: '高端连锁',
             sta: 'one',
             idx: 0,
@@ -409,7 +410,8 @@
             active: false
           }
         ],
-        hotel_item: [{
+        hotel_item: [
+          {
             id: 1,
             img: '/static/imgs/hotel_item.png',
             name: 'xx酒店(上海店)',
@@ -556,7 +558,7 @@
       },
       clickL(item) {
         let id = item.id
-        this.whereId = item.sta        
+        this.whereId = item.sta
       },
       clickL2(item) {
         let id = item.id
@@ -616,6 +618,7 @@
       },
       // 这里是想做右边滚动 左边也跟着滚动 
       ScrollY(e) {
+        // 这里主要你做了 更多/收缩 所以你的scrollTop距离不一定// 而且数据过多难做
         console.log(e.target.scrollTop, "这里是想做右边滚动 左边也跟着滚动 ")
       },
       //酒店类型 热门品牌的弹框
@@ -798,7 +801,8 @@
   .filter_sub_item {
     background: rgb(244, 244, 246);
     margin-top: 8px;
-    padding: 10px 0
+    padding: 10px 0;
+    font-size: 11px
   }
 
   .input_map {

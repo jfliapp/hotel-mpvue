@@ -1,30 +1,31 @@
 <template>
-  <div class="mask">
-    <!-- <div class="meun" :class="{meunShow: meunShow}"> -->
-    <div class="meun" :class="{meunShow: isLeft}" :style="{right: left + 'px'}">
-      <div class="meun_top" >
-        <div>M20135****95</div>
-        <div class="logout" @click="logout">退出</div>
-      </div>
-      <div class="meun_bottom">
-        <ul>
-          <li v-for="(item, index) in li_meun" :key="index">
-            <!-- <img style="width: 10px; height: 10px;" :src="{{item.icon}}" alt=""> -->
-            <div class="li_meun">
-              <img :src="item.icon" class="meun_icon">
-              {{item.name}}
-            </div>
-          </li>
-        </ul>
+  <div>
+    <div class="mask" @click="meun = !meun" v-show="meun"  @touchstart.stop="touchStart" @touchend.stop="touchEnd" @touchmove.stop="touchmove">
+    </div>
+    <div class="meun" v-show="meun" :class="{meunShow: isLeft}" :style="{right: left + 'rpx'}">
+        <div class="meun_top" >
+          <div>M20135****95</div>
+          <div class="logout" @click="logout">退出</div>
+        </div>
+        <div class="meun_bottom">
+          <ul>
+            <li v-for="(item, index) in li_meun" :key="index">
+              <!-- <img style="width: 10px; height: 10px;" :src="{{item.icon}}" alt=""> -->
+              <div class="li_meun">
+                <img :src="item.icon" class="meun_icon">
+                {{item.name}}
+              </div>
+            </li>
+          </ul>
+        </div>
+    </div>
+    <div class="sub_title">
+      <div style="display: flex;justify-content: flex-end" @click="menu">
+        <img class="img_sub" src="/static/imgs/avatar.png">
       </div>
     </div>
-    <div class="sub_title" @touchstart.stop="touchStart" @touchend.stop="touchEnd" @touchmove.stop="touchmove">
-      <div style="float: right;" @click="menu">
-        <img class="img_sub" src="/static/imgs/avatar.png" alt="图片丢失">
-      </div>
-    </div>
-    <div @touchstart.stop="touchStart" @touchend.stop="touchEnd" @touchmove.stop="touchmove">
-      <img src="/static/imgs/hotelDetail.png" class="img_tille" mode="aspectFill">
+    <div>
+      <img src="/static/imgs/hotelDetail.png" class="img_tille">
     </div>
     <div class="input_all">
       <form>
@@ -38,7 +39,7 @@
               <img class="img_item" src="/static/imgs/right.png">
             </div>
             <div class="input_place_R_distance" @click="getLocation">
-              <img style="width: 40px;height:40px;" src="/static/imgs/map_now.png" alt="">
+              <img style="width: 80rpx;height:80rpx;" src="/static/imgs/map_now.png" alt="">
             </div>
           </div>
         </div>
@@ -48,7 +49,7 @@
               <div style="display: flex;flex-direction: column;">
                 <div class="outIn">入住</div>
                 <!-- <div>6月11日<span class="dateDay">今天</span></div> -->
-                <div>{{checkInDate}}日
+                <div style="color: rgb(53, 53, 53);">{{checkInDate}}日
                   <span class="dateDay">{{indayweek}}</span>
                 </div>
               </div>
@@ -84,7 +85,7 @@
           <div class="input_item_radio">
             <span class="input_item_radio_title">出行类型 · 帮您挑选心悦酒店</span>
             <radio-group class="radio-group" @change="radioChange">
-              <label class="radio" v-for="(item,index) in radios" :key="index" style="margin-right: 15px;">
+              <label class="radio" v-for="(item,index) in radios" :key="index" style="margin-right: 30rpx;">
                 <radio :value="item.name" checked="item.checked"/>{{item.value}}
               </label>
             </radio-group>
@@ -125,8 +126,9 @@
         indayweek: '今天',
         outdayweek: '明天',
         days: 1,
+        meun: false,
         isLeft: false,
-        left: -230,
+        left: 0,
         mark: 0,
         newmark: 0,
         city: '北京', //地址默认
@@ -245,6 +247,7 @@
       menu() {
         console.log('侧边栏')
         this.isLeft = true
+        this.meun = true
       },
       touchStart(e) {
         this.mark = this.newmark = e.pageX
@@ -258,7 +261,7 @@
               this.left = 0
               this.isLeft = true
             } else {
-              this.left = rtl - 200
+              this.left = rtl - 436
             }
           }
         }
@@ -266,8 +269,9 @@
           let ltr = this.newmark - this.mark
           if (this.isLeft) {
             if (ltr > 100) {
-              this.left = -210
+              this.left = -436
               this.isLeft = false
+              this.meun = false
             } else {
               this.left = -ltr
             }
@@ -278,8 +282,9 @@
         let rtl = this.mark - this.newmark
         let ltr = this.newmark - this.mark
         if (rtl < 100) {
-          this.left = -220
+          this.left = 0
           this.isLeft = false
+          this.meun = false
         }
         if (ltr < 100) {
           this.left = 0
@@ -363,11 +368,19 @@
 </script>
 
 <style>
+  input::-webkit-input-placeholder {
+    color: rgb(154, 154, 154);
+    font-size: 14px;
+  }
   .mask {
     width: 100%;
-    height: auto;
-  }
-
+    height: 100%;
+    position: fixed;
+    overflow: hidden;
+    z-index: 2;
+    opacity: 1;
+    /* background: rgba(15, 15, 26, 0.7) */
+  }  
   .sub_title {
     width: 100%;
     height: 45px;
@@ -387,12 +400,14 @@
     position: fixed;
     width: 200px;
     height: 100%;
-    right: -210px;
+    opacity: 93%;
+    /* right: -210px; */
     top: 0;
-    color: white;
+    color: rgb(246, 246, 246);
     padding: 5px;
-    background: black;
-    font-size: 15px;
+    background: rgb(0, 0, 0);
+    font-size: 14px;
+    z-index: 5
     /* display: flex;
     justify-content: center */
   }
@@ -431,6 +446,7 @@
   .logout {
     width: 87px;
     height: 34px;
+    border-radius: 2px;
     border: 0.5px solid white;
     text-align: center;
     line-height: 34px;
@@ -455,13 +471,13 @@
   .input_item {
     width: 100%;
     padding: 5px;
-    font-size: 17px;
-    height: 50px;
+    font-size: 14px;
+    height: 45px;
     border-bottom: 0.5px solid #ccc;
   }
   .input_item_form {
     display: flex;
-    height: 40px;
+    height: 30px;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #ccc;
@@ -474,19 +490,20 @@
     margin-top: 10px;
   }
   .button {
-    width: 45%;
     height: 35px;
     text-align: center;
     line-height: 35px;
     border: 0.5px solid #ccc;
-    border-radius: 10px 10px;
+    border-radius: 5px 5px;
   }
   .buttonL {
+    width: 193px;
     color: white;
-    background: orangered;
+    background: rgb(255, 107, 20);
     font-size: 15px;
   }
   .buttonR {
+    width: 136px;
     color: rgb(0, 126, 226);
     /* background: orangered; */
   }
@@ -498,15 +515,17 @@
     background: rgb(246, 246, 246);
   }
   .hotel_foot_order {
-    border-radius: 10px 10px;
+    font-weight: 600;
+    border-radius: 4px 4px;
     color: rgb(0, 126, 226);
     margin: 0px auto;
     width: 90%;
-    height: 34px;
-    border: 0.5px solid #ccc;
+    height: 37px;
+    /* border: 0.5px solid #ccc; */
     text-align: center;
-    line-height: 34px;
+    line-height: 37px;
     font-size: 15px;
+    box-shadow: 0 1 1px 2px #ccc;
     background: white
   }
   .hotel_foot_Bottom {
@@ -529,13 +548,15 @@
     justify-content: space-between;
   }
   .input_place {
+    font-size: 19px;
+    color: rgb(53, 53, 53);
     display: flex;
     flex-direction: column;
     justify-content: space-between
   }
   .input_place_distance {
-    font-size: 13px;
-    color: #ccc
+    font-size: 11px;
+    color: rgb(154, 154, 154)
   }
   .input_place_R {
     margin: 4% 0 0 50%;
@@ -548,7 +569,8 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    font-size: 17px;
+    margin-top: 5px;
+    /* font-size: 17px; */
   }
   .dateDetail_L {
     display: flex;
@@ -558,35 +580,41 @@
   }
   .days {
     justify-self: center;
-    font-size: 15px;
+    font-size: 10px;
     border: 1px solid #ccc;
-    width: 50px;
+    width: 36px;
     text-align: center;
-    height: 20px;
-    border-radius: 10px 10px;
+    height: 18px;
+    line-height: 18px;
+    border-radius: 9px 9px;
   }
   .outIn {
     /* margin-left: 15%; */
-    font-size: 15px;
-    color: #ccc;
+    font-size: 11px;
+    color: rgb(154, 154, 154)
   }
   .dateDay {
-    color: #ccc;
-    font-size: 13px
+    color: rgb(154, 154, 154);
+    font-size: 11px
   }
   .input_item_radio {
+    margin-top: 5px;
     display: flex;
-    height: 50px;
+    /* height: 50px; */
     flex-direction: column;
     justify-content: space-around;
+    font-size: 13px
   }
   .input_item_radio_title {
-    color: #ccc;
-    font-size: 13px
+    color: rgb(154, 154, 154);
+    font-size: 11px;
+  }
+  .radio-group {
+    color: rgb(0, 0, 0)
   }
   radio .wx-radio-input{
     border-radius: 50%;/* 圆角 */
-    width: 15px;
-    height: 15px;
+    width: 12px;
+    height: 12px;
   }
 </style>
