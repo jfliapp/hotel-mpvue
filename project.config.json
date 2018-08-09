@@ -40,14 +40,14 @@
 				},
 				{
 					"id": 1,
-					"name": "commentDetail",
-					"pathName": "pages/commentDetail/main",
+					"name": "comments",
+					"pathName": "pages/comments/main",
 					"query": ""
 				},
 				{
 					"id": 2,
-					"name": "collect",
-					"pathName": "pages/collect/main",
+					"name": "wode",
+					"pathName": "pages/wode/main",
 					"query": ""
 				}
 			]

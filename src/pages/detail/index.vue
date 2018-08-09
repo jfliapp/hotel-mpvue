@@ -20,7 +20,7 @@
             <img src="/static/imgs/right.png" class="img_right">
           </div>
         </div>
-        <div class="detail_place">
+        <div class="detail_place" @click="mapPlace">
           <div>
             江湾五角场 证学路77好
           </div>
@@ -354,6 +354,24 @@ export default {
       let id = item.id
       wx.navigateTo({
         url: '/pages/detailD/main?id=' + id
+      })
+    },
+    // 跳到位置地图
+    mapPlace() {
+      // 这里后台给我个经纬度  我现在默认是 我自己本地的地址
+      wx.getLocation({
+        type: 'gcj02',
+        success: function (res) {
+          var lati = res.latitude
+          var longi = res.longitude
+          // 这里就是打开的地图的api
+          wx.openLocation({
+            latitude: lati,
+            longitude: longi,
+            name: 'xxx酒店',
+            address: '江湾五角场 证学路77好'
+          })
+        }
       })
     },
     // 跳到点评页面

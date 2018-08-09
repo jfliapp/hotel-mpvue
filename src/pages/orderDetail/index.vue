@@ -58,7 +58,7 @@
     <div class="orderDetail_detail">
       <div class="orderDetail_detail_detail">
         <div class="orderDetail_detail_detail_D">
-          <div class="orderDetail_detail_detail_Dlist">女生12人床位房&nbsp;&nbsp;(无窗)&nbsp;&nbsp;(一张床位)&nbsp;&nbsp;(女生入住)  (11天内预定)&nbsp;&nbsp;(内宾)&nbsp;&nbsp;(无窗)</div>
+          <div class="orderDetail_detail_detail_Dlist">女生12人床位房&nbsp;&nbsp;(无窗)&nbsp;&nbsp;(一张床位)&nbsp;&nbsp;(女生入住) (14天内预定)&nbsp;&nbsp;(内宾)&nbsp;&nbsp;(无窗)</div>
           <div style="color: rgb(0, 126, 226);">房型详情</div>
         </div>
         <div>6月12日 - 6月13日 共1晚 1间</div>
@@ -255,7 +255,7 @@
   justify-content: space-between
 }
 .orderDetail_detail_detail_Dlist {
-  flex: 0 0 277px;
+  flex: 0 0 252px;
   /* display: flex;
   flex-wrap: wrap; */
 }

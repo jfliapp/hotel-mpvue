@@ -19,7 +19,7 @@
       <div class="place_now">
         <div class="place_distance">当前城市</div>
         <div class="place_now_distance">
-          <div class="place_item">重新定位</div>
+          <div class="place_item">{{nowPlace || '重新定位'}}</div>
         </div>
       </div>
       <div class="place_hot">
@@ -33,8 +33,9 @@
         <scroll-view :scroll-y="true" :scroll-into-view="whereAlph">
           <div v-for="item in cityItem" :key="item.id" :id="item.alph">
             <div style="padding: 20rpx;">{{item.alph}}</div>
-            <div v-for="(city,indexcity) in item.arr" :key="indexcity" class="place_city_alphabet_item">
-                {{city.name}}
+            <div v-for="(city,indexcity) in item.arr" :key="indexcity" @click="placeItem(city.name)"
+              class="place_city_alphabet_item">
+               {{city.name}}
             </div>
           </div>
         </scroll-view>
@@ -54,6 +55,7 @@
       return {
         place: '',
         whereAlph: 'A',
+        nowPlace: '',
         maskPlace: false,
         cityHot: ['北京', '上海', '广州', '深圳', '杭州', '成都', '上海', '广州', '深圳', '杭州', '成都'],
         search_input: ['biejin'], // 这个是输入之后提示
@@ -159,6 +161,10 @@
         ]
       }
     },
+    onLoad() {
+      console.log("city choose onLoad")
+      this.nowPlace = wx.getStorageSync('city')
+    },
     methods: {
       // 点击字母滚动到相应的位置
       alphClick(item) {
@@ -167,6 +173,7 @@
       // 点击了其中一个 地址
       placeItem(item) {
         console.log(item)
+        wx.setStorageSync('city', item)
         wx.navigateBack({
           delta: -1
         })

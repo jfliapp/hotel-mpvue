@@ -755,7 +755,7 @@
   .input_sel {
     display: flex;
     /* float: left; */
-    width: 305px;
+    width: 300px;
     height: 37px;
     background: white;
     padding-left: 5px;

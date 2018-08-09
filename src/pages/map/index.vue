@@ -92,7 +92,7 @@
         }
       });
     },
-    methods: {
+    methods: {      
       // 这个是测试获取全部城市的列表
       mapClick1() {
         qqmapsdk.getCityList({

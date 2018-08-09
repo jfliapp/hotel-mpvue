@@ -31,13 +31,15 @@
       <form>
         <div class="input_item">
           <div class="input_place_all">
-            <div class="input_place" @click="distance">
-              <span class="input_place_distance">目的地</span>
-              <p>{{city}}</p>
-            </div>
-            <div class="input_place_R">
-              <img class="img_item" src="/static/imgs/right.png">
-            </div>
+            <div class="input_place_all_L" @click="distance">
+              <div class="input_place">
+                <span class="input_place_distance">目的地</span>
+                <p>{{city || '北京'}}</p>
+              </div>
+              <div class="input_place_R">
+                <img class="img_item" src="/static/imgs/right.png">
+              </div>
+            </div>            
             <div class="input_place_R_distance" @click="getLocation">
               <img style="width: 80rpx;height:80rpx;" src="/static/imgs/map_now.png" alt="">
             </div>
@@ -144,7 +146,7 @@
         left: 0,
         mark: 0,
         newmark: 0,
-        city: '北京', //地址默认
+        city: '', //地址默认
         userInfo: {}, // 个人用户信息
         checkInDate: null,
         checkOutDate: null,
@@ -210,6 +212,8 @@
 
       this.checkInDate = checkInDate.substr(5, 5).replace('-', '月')
       this.checkOutDate = checkOutDate.substr(5, 5).replace('-', '月')
+
+      this.city = wx.getStorageSync('city')
 
     },
     // 这个是获取tarbar上面的badage
@@ -328,21 +332,41 @@
       // 获取附近的地址
       getLocation() {
         const _that = this
-        wx.getLocation({
-          type: 'gcj02',
-          success(res) {
-            qqmapsdk.reverseGeocoder({
-              location: {
-                latitude: res.latitude,
-                longitude: res.longitude
-              },
-              success(res) {
-                console.log(res, '获取附近地址')
-                _that.city = res.result.address_component.city
-              }
-            })
+        wx.getSetting({
+          success: function(res) {
+            console.log(res, "wx.getSetting")
+            // 这里很奇怪  只会出现一次 就只有 清除数据时会出现
+            if(!res.authSetting['scope.userLocation']) {
+              console.log("!res.authSetting.scope.userLocation")
+              wx.authorize({
+                scope: 'scope.userLocation',
+                success: function(res) {
+                  console.log(res, "wx.authorize success")
+                  wx.getLocation({
+                    type: 'gcj02',
+                    success(res) {
+                      // 这里是用了我自己的微信的 地图由经纬度 获取详细地址
+                      qqmapsdk.reverseGeocoder({
+                        location: {
+                          latitude: res.latitude,
+                          longitude: res.longitude
+                        },
+                        success(res) {
+                          console.log(res, '获取附近地址')
+                          _that.city = res.result.address_component.city
+                          wx.setStorageSync('city', _that.city)
+                        }
+                      })
+                    }
+                  })
+                },
+                fail: function(err) {
+                  console.log(err, "wx.authorize fail")
+                }
+              })
+            }
           }
-        })
+        })                
       },
       // 登录授权的一些东西
       onGotUserInfo(e) {
@@ -559,6 +583,12 @@
     align-items: center;
     justify-content: space-between;
   }
+  .input_place_all_L {
+    width: 275px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   .input_place {
     font-size: 19px;
     color: rgb(53, 53, 53);
@@ -571,7 +601,8 @@
     color: rgb(154, 154, 154)
   }
   .input_place_R {
-    margin: 4% 0 0 50%;
+    /* margin: 4% 0 0 50%; */
+    margin-top: 17px;
   }
   .img_item {
     width: 20px;
