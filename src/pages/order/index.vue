@@ -402,11 +402,11 @@
   .phone_tel {
     display: flex;
     width: 95%;
-    height: 47px;
+    height: 40px;
     align-items: center;
     margin: 0 auto;
     border: 1px solid rgb(190, 190, 190);
-    border-radius: 4px 4px;
+    border-radius: 8px 8px;
   }
   .phone_tel_lable {
     margin-left: 10px;

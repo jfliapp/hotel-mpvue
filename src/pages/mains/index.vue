@@ -10,12 +10,12 @@
           </div>
         </navigator>
         <div>
-          <div class="filter_item">
+          <div class="filter_item" style="border-bottom: 2px solid rgb(235, 235, 235)">
             <div @click="filterItem(item)" v-for="(item, index) in filter_item" :key="index">
               <div>
                 <span :class="{click_change: item.active}">{{item.name}}&nbsp;&nbsp;</span>
                 <img v-if="!item.active" class="img_class" src="/static/imgs/down_san1.png" />
-                <img v-else class="img_class" src="/static/imgs/up_san.png" /> |
+                <img v-else class="img_class" src="/static/imgs/up_san.png" />&nbsp;&nbsp;&nbsp;&nbsp;|
               </div>
             </div>
             <div style="color: rgb(0, 126, 226)" @click="likeFli">&nbsp;欢迎度排序
@@ -161,7 +161,7 @@
         <div>
           <span :class="{click_change: item.active}">{{item.name}}&nbsp;&nbsp;</span>
           <img v-if="!item.active" class="img_class" src="/static/imgs/down_san1.png" />
-          <img v-else class="img_class" src="/static/imgs/up_san.png" /> |
+          <img v-else class="img_class" src="/static/imgs/up_san.png" />&nbsp;&nbsp;&nbsp;&nbsp;|
         </div>
       </div>
       <div style="color: rgb(0, 126, 226)">&nbsp;欢迎度排序

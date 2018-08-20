@@ -136,8 +136,8 @@
   color: rgb(53, 53, 53);
 }
 .orderDetail_wait_img {
-  width: 15px;
-  height: 15px;
+  width: 10px;
+  height: 10px;
   margin-left: 5px;
 }
 .orderDetail_pay {

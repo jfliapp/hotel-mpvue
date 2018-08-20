@@ -2,7 +2,9 @@ import Vue from 'vue'
 
 var Fly = require('flyio/dist/npm/wx.js')
 var fly = new Fly()
-
+fly.config({
+  baseURL: 'https://xxsfs.com'
+})
 fly.interceptors.request.use((req) => {
   console.log(req)
   wx.showLoading({title: '加载中...'})
@@ -29,7 +31,7 @@ fly.interceptors.response.use(
   }
 )
 
-fly.config.baseURL = 'https://www.easy-mock.com/mock/5aded45053796b38dd26e970/'
+// fly.config.baseURL = 'https://www.easy-mock.com/mock/5aded45053796b38dd26e970/'
 
 Vue.prototype.$http=fly
 export default fly
