@@ -1,12 +1,12 @@
 const CONF = {
   serverHost: 'localhost',
   tunnelServerUrl: '',
-  tunnelSignatureKey: '27fb7d1c161b7ca52d73cce0f1d833f9f5b5ec89',
+  tunnelSignatureKey: 'xxxxx',
   // 腾讯云相关配置可以查看云 API 秘钥控制台：https://console.cloud.tencent.com/capi
-  qcloudAppId: '1257984358',
-  qcloudSecretId: 'AKIDiPwHQO2mCUehIqmMK6g6KMG2f6MRk7fA',
-  qcloudSecretKey: 'TPCnCPQFNLQKJIDIG3e3GI8mEb2MVTGr',
-  wxMessageToken: 'weixinmsgtoken',
+  qcloudAppId: 'xxxx',
+  qcloudSecretId: 'xxx',
+  qcloudSecretKey: 'xxxx',
+  wxMessageToken: 'xxxx',
   networkTimeout: 30000,
 
 
